@@ -516,6 +516,14 @@ header {
     color: #FFF;
 }
 
+.right p{
+    color: #fff;
+}
+
+.custom{
+    color: #fff;
+}
+
 .left h2 {
     color: #8B0000;
     margin-top: 0;
