@@ -1,0 +1,1668 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shakti Milan Samaj - Empowering Women Living with HIV</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+
+
+</head>
+
+<body>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* Header Styles */
+        .topstrip {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 10px 0;
+            font-size: 14px;
+        }
+
+        .container {
+            max-width: 1500px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .topstrip .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .stripinfo {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+        }
+
+        .stripinfo li {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .stripinfo a {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .stripinfo a:hover {
+            opacity: 0.8;
+        }
+
+        .section-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .social-media {
+            display: flex;
+            list-style: none;
+            gap: 10px;
+        }
+
+        .social-media a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 35px;
+            height: 35px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border-radius: 50%;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-media a:hover {
+            background: white;
+            color: #667eea;
+            transform: translateY(-2px);
+        }
+
+        .donate-btn {
+            background: #ff6b6b;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            animation: pulse 2s infinite;
+        }
+
+        .donate-btn:hover {
+            background: #ff5252;
+            transform: scale(1.05);
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(255, 107, 107, 0.7);
+            }
+
+            70% {
+                box-shadow: 0 0 0 10px rgba(255, 107, 107, 0);
+            }
+
+            100% {
+                box-shadow: 0 0 0 0 rgba(255, 107, 107, 0);
+            }
+        }
+
+        /* Main Header */
+        .header-bar {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .head-section {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header-bar.scrolled {
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo img {
+            height: 60px;
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Navigation */
+        .main-navigation ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .main-navigation a {
+            color: #333;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 10px 0;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .main-navigation a:hover {
+            color: #667eea;
+        }
+
+        .main-navigation a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #667eea;
+            transition: width 0.3s ease;
+        }
+
+        .main-navigation a:hover::after {
+            width: 100%;
+        }
+
+        /* Dropdown */
+        .main-navigation li {
+            position: relative;
+        }
+
+        .dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            min-width: 200px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            list-style: none;
+            padding: 10px 0;
+        }
+
+        .main-navigation li:hover .dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown li {
+            padding: 0;
+        }
+
+        .dropdown a {
+            display: block;
+            padding: 10px 20px;
+            border-radius: 0;
+        }
+
+        .dropdown a:hover {
+            background: #f8f9fa;
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #333;
+        }
+
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: -100%;
+            width: 80%;
+            height: 100vh;
+            background: white;
+            z-index: 2000;
+            transition: left 0.3s ease;
+            overflow-y: auto;
+        }
+
+        .mobile-menu.active {
+            left: 0;
+        }
+
+        .mobile-menu-header {
+            padding: 20px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .mobile-menu-close {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .mobile-menu ul {
+            list-style: none;
+            padding: 20px;
+        }
+
+        .mobile-menu a {
+            display: block;
+            padding: 15px 0;
+            color: #333;
+            text-decoration: none;
+            border-bottom: 1px solid #eee;
+        }
+
+        /* Banner */
+        .banner {
+            height: 70vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('/placeholder.svg?height=800&width=1200');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .banner-content {
+            animation: fadeInUp 1s ease;
+        }
+
+        .banner h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .banner p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            max-width: 600px;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* News Ticker */
+        .news-ticker {
+            background: #f8f9fa;
+            padding: 15px 0;
+            border-left: 4px solid #667eea;
+        }
+
+        .ticker-content {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .ticker-label {
+            background: #667eea;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+
+        .ticker-text {
+            flex: 1;
+            overflow: hidden;
+        }
+
+        .ticker-text p {
+            animation: scroll 20s linear infinite;
+            white-space: nowrap;
+        }
+
+        @keyframes scroll {
+            0% {
+                transform: translateX(100%);
+            }
+
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+
+        /* Main Sections */
+        .main-section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: #333;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 2px;
+        }
+
+        .section-subtitle {
+            color: #666;
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Services Grid */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .service-card {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            transition: left 0.3s ease;
+            z-index: -1;
+        }
+
+        .service-card:hover::before {
+            left: 0;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            color: white;
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            color: #667eea;
+            margin-bottom: 20px;
+            transition: color 0.3s ease;
+        }
+
+        .service-card:hover .service-icon {
+            color: white;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        /* Stories Grid */
+        .stories-grid {
+            display: flex;
+            flex-wrap: wrap;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+            justify-content: center;
+        }
+
+        .story-card {
+            width: 23%;
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .story-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .story-image {
+            height: 200px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .story-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .story-card:hover .story-image img {
+            transform: scale(1.1);
+        }
+
+        .story-content {
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+
+        .story-content h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .story-content p {
+            color: #666;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        .story-date {
+            color: #999;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+
+        .story-btn {
+            background: #667eea;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .story-btn:hover {
+            background: #5a67d8;
+            transform: translateX(5px);
+        }
+
+        /* Video Section */
+        .video-section {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('/placeholder.svg?height=600&width=1200');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: white;
+        }
+
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        /*News Article*/
+        /* General styles */
+        .main-section {
+            padding: 50px 20px;
+            background: #f9f9f9;
+        }
+
+        .container {
+            margin: 0 auto;
+        }
+
+        .title-wrapper {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .title-wrapper h2 {
+            font-size: 32px;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .fancy-divider {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .fancy-divider .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #ccc;
+        }
+
+        .fancy-divider .dot.active {
+            background: #037a5a;
+        }
+
+        .event-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .event-card {
+            flex: 1 1 calc(25% - 20px);
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .event-wrap {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .event-wrap figure {
+            margin: 0;
+        }
+
+        .event-wrap img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+
+        .event-info {
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+
+        .event-info a {
+            text-decoration: none;
+        }
+
+        .event-info h3>a {
+            color: #037a5a;
+        }
+
+        .event-info h3 {
+            font-size: 18px;
+            margin: 0 0 10px;
+            color: #037a5a;
+        }
+
+        .event-info p {
+            font-size: 14px;
+            color: #555;
+            flex-grow: 1;
+        }
+
+        .event-info ul {
+            list-style: none;
+            padding: 0;
+            margin: 10px 0;
+            font-size: 14px;
+            color: #888;
+        }
+
+        .event-info ul i {
+            margin-right: 5px;
+        }
+
+        .event-btn {
+            align-self: flex-start;
+            padding: 8px 16px;
+            background: #037a5a;
+            color: white;
+            text-decoration: none;
+            border-radius: 20px;
+            font-size: 14px;
+            margin-top: auto;
+            transition: background 0.3s ease;
+        }
+
+        .event-btn:hover {
+            background: #025a45;
+        }
+
+        /* Tablet Breakpoint */
+        @media (max-width: 992px) {
+
+            .event-card,
+            .story-card {
+                flex: 1 1 calc(50% - 20px);
+            }
+
+            .title-wrapper h2 {
+                font-size: 28px;
+            }
+        }
+
+        /* Mobile Breakpoint */
+        @media (max-width: 600px) {
+
+            .event-card,
+            .story-card {
+                flex: 1 1 100%;
+            }
+
+            .main-section {
+                padding: 30px 15px;
+            }
+
+            .title-wrapper h2 {
+                font-size: 24px;
+            }
+
+            .event-info {
+                padding: 12px;
+            }
+
+            .event-info h3 {
+                font-size: 16px;
+            }
+
+            .event-info p,
+            .event-info ul {
+                font-size: 13px;
+            }
+
+            .event-btn {
+                font-size: 13px;
+                padding: 6px 14px;
+            }
+        }
+
+
+
+
+        /* Counter Section */
+        .counter-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .counter-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+        }
+
+        .counter-item {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .counter-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            opacity: 0.9;
+        }
+
+        .counter-number {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .counter-label {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        /* Footer */
+        .footer {
+            background: #2c3e50;
+            color: white;
+            padding: 60px 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 20px;
+            color: #ecf0f1;
+        }
+
+        .footer-section p,
+        .footer-section a {
+            color: #bdc3c7;
+            text-decoration: none;
+            line-height: 1.8;
+        }
+
+        .footer-section a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #34495e;
+            padding-top: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 15px;
+        }
+
+        .footer-social a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: #34495e;
+            color: white;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .footer-social a:hover {
+            background: #667eea;
+            transform: translateY(-2px);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .main-navigation {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+
+            .topstrip .container {
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
+            }
+
+            .stripinfo {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .banner h1 {
+                font-size: 2.5rem;
+            }
+
+            .section-title h2 {
+                font-size: 2rem;
+            }
+
+            .services-grid,
+            .stories-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+        }
+
+        /* Scroll animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Back to top button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #667eea;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            background: #5a67d8;
+            transform: translateY(-2px);
+        }
+    </style>
+    <!-- Top Strip -->
+    <div class="topstrip">
+        <div class="head-section">
+            <div class="container">
+                <div class="stripinfo">
+                    <div>
+                        <i class="fa fa-phone"></i> +977-1-4823288
+                    </div>
+                    <div>
+                        <i class="fa fa-envelope"></i>
+                        <a href="mailto:shaktimilan@gmail.com">shaktimilan@gmail.com</a>
+                    </div>
+                </div>
+                <div class="section-right">
+                    <ul class="social-media">
+                        <li><a href="https://www.facebook.com/SMSShaktimilansamaj" target="_blank"><i
+                                    class="fab fa-facebook"></i></a></li>
+                        <li><a href="https://www.youtube.com/channel/UCsEsVxFpMVYS679kUf-R6cw" target="_blank"><i
+                                    class="fab fa-youtube"></i></a></li>
+                        <li><a href="https://www.linkedin.com/in/shaktimilansamaj" target="_blank"><i
+                                    class="fab fa-linkedin"></i></a></li>
+                        <li><a href="https://plus.google.com/u/0/108912746357065074941" class="fab fa-google-plus"
+                                target="_blank"></a></li>
+                    </ul>
+                    <a href="#" class="donate-btn"><i class="fa fa-heart"></i> Donate Now</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="header-bar" id="header">
+        <div class="container">
+            <div class="head-section">
+                <div class="header-content">
+                    <a href="#" class="logo">
+                        <img src="logo.jpg" alt="Shakti Milan Samaj">
+                    </a>
+
+                    <nav class="main-navigation">
+                        <ul>
+                            <li><a href="#home">Home</a></li>
+                            <li>
+                                <a href="#about">About Us</a>
+                                <ul class="dropdown">
+                                    <li><a href="#introduction">Introduction</a></li>
+                                    <li><a href="#history">The History</a></li>
+                                    <li><a href="#affiliation">Affiliation</a></li>
+                                    <li><a href="#team">Our Team</a></li>
+                                    <li><a href="#structure">Organization Structure</a></li>
+                                    <li><a href="#partners">Our Partners</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#program">Program</a>
+                                <ul class="dropdown">
+                                    <li><a href="#thematic">Thematic Areas</a></li>
+                                    <li><a href="#accomplishment">Accomplishment</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#projects">Projects</a>
+                                <ul class="dropdown">
+                                    <li><a href="#current">Current Projects</a></li>
+                                    <li><a href="#previous">Previous Projects</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#media">Media & Resources</a>
+                                <ul class="dropdown">
+                                    <li><a href="#news">News & Events</a></li>
+                                    <li><a href="#publication">Publication</a></li>
+                                    <li><a href="#gallery">Image Gallery</a></li>
+                                    <li><a href="#videos">Video Gallery</a></li>
+                                    <li><a href="#press">Press Release</a></li>
+                                    <li><a href="#stories">Our Stories</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#contact">Contact Us</a></li>
+                        </ul>
+                    </nav>
+
+                    <button class="mobile-menu-btn" id="mobileMenuBtn">
+                        <i class="fa fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-menu-header">
+            <h3>Menu</h3>
+            <button class="mobile-menu-close" id="mobileMenuClose">
+                <i class="fa fa-times"></i>
+            </button>
+        </div>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#program">Program</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#media">Media & Resources</a></li>
+            <li><a href="#contact">Contact Us</a></li>
+        </ul>
+    </div>
+
+    <!-- Banner -->
+    <section class="banner" id="home">
+        <div class="banner-content">
+            <h1>Shakti Milan Samaj</h1>
+            <p>THE ORGANIZATION FORMED, GOVERNED, LED AND DEFINED BY WOMEN LIVING WITH HIV</p>
+        </div>
+    </section>
+
+    <!-- News Ticker -->
+    <div class="news-ticker">
+        <div class="container">
+            <div class="ticker-content">
+                <div class="ticker-label">Latest News</div>
+                <div class="ticker-text">
+                    <p>Handcrafted footwear - We are manufacturing handcrafted velvet and dhaka footwear inspired by
+                        ethnic designs. Affordable and sustainable.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mission, Vision, Goals -->
+    <section class="main-section" id="about">
+        <div class="container">
+            <div class="section-title fade-in">
+                <h2>Shakti Milan Samaj</h2>
+                <p class="section-subtitle">THE ORGANIZATION FORMED, GOVERNED, LED AND DEFINED BY WOMEN LIVING WITH HIV
+                </p>
+            </div>
+
+            <div class="services-grid">
+                <div class="service-card fade-in">
+                    <div class="service-icon">
+                        <i class="fa fa-bullseye"></i>
+                    </div>
+                    <h3>MISSION</h3>
+                    <p>Empowering women living with HIV through comprehensive support, advocacy, and community building
+                        initiatives.</p>
+                </div>
+                <div class="service-card fade-in">
+                    <div class="service-icon">
+                        <i class="fa fa-eye"></i>
+                    </div>
+                    <h3>VISION</h3>
+                    <p>A society where women living with HIV are empowered, respected, and have equal opportunities to
+                        thrive.</p>
+                </div>
+                <div class="service-card fade-in">
+                    <div class="service-icon">
+                        <i class="fa fa-flag"></i>
+                    </div>
+                    <h3>GOAL</h3>
+                    <p>To create sustainable support systems and eliminate stigma associated with HIV/AIDS in our
+                        communities.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Stories -->
+    <section class="main-section" style="background: #f8f9fa;">
+        <div class="container">
+            <div class="section-title fade-in">
+                <h2>Our Stories</h2>
+            </div>
+
+            <div class="stories-grid">
+                <div class="story-card fade-in">
+                    <div class="story-image">
+                        <img src="main.jpg" alt="From Pain to Power">
+                    </div>
+                    <div class="story-content">
+                        <h3>FROM PAIN TO POWER</h3>
+                        <p>A journey of transformation and empowerment through community support and resilience.</p>
+                        <div class="story-date"><i class="fa fa-calendar"></i> 31 May, 2017</div>
+                        <a href="#" class="story-btn">View Detail</a>
+                    </div>
+                </div>
+
+                <div class="story-card fade-in">
+                    <div class="story-image">
+                        <img src="/hand.jpg" alt="New Dawn of Life">
+                    </div>
+                    <div class="story-content">
+                        <h3>NEW DAWN OF LIFE</h3>
+                        <p>Ramaya Khadka's inspiring story of hope and new beginnings.</p>
+                        <div class="story-date"><i class="fa fa-calendar"></i> 09 May, 2017</div>
+                        <a href="#" class="story-btn">View Detail</a>
+                    </div>
+                </div>
+
+                <div class="story-card fade-in">
+                    <div class="story-image">
+                        <img src="founder.jpg" alt="Your Life - Your Way">
+                    </div>
+                    <div class="story-content">
+                        <h3>YOUR LIFE - YOUR WAY</h3>
+                        <p>Sarala Majhi's journey of self-determination and empowerment.</p>
+                        <div class="story-date"><i class="fa fa-calendar"></i> 17 May, 2017</div>
+                        <a href="#" class="story-btn">View Detail</a>
+                    </div>
+                </div>
+
+                <div class="story-card fade-in">
+                    <div class="story-image">
+                        <img src="founder.jpg" alt="If you think you can, you can">
+                    </div>
+                    <div class="story-content">
+                        <h3>If you think you can, you can</h3>
+                        <p>Maya Tamang's inspiring story of overcoming challenges through determination.</p>
+                        <div class="story-date"><i class="fa fa-calendar"></i> 16 April, 2017</div>
+                        <a href="#" class="story-btn">View Detail</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Section -->
+    <section class="main-section video-section">
+        <div class="container">
+            <div class="section-title fade-in">
+                <h2>Our Impact in Action</h2>
+            </div>
+
+            <div class="video-grid">
+                <div class="video-wrapper fade-in">
+                    <iframe src="https://www.youtube.com/embed/9plgyhFD8tA" allowfullscreen></iframe>
+                </div>
+                <div class="video-wrapper fade-in">
+                    <iframe src="https://www.youtube.com/embed/h5nirpE3grs" allowfullscreen></iframe>
+                </div>
+                <div class="video-wrapper fade-in">
+                    <iframe src="https://www.youtube.com/embed/9plgyhFD8tA" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--News -->
+    <section class="main-section">
+        <div class="container">
+            <div class="title-wrapper">
+                <h2>News &amp; Events</h2>
+                <div class="fancy-divider">
+                    <span class="dot"></span>
+                    <span class="dot active"></span>
+                    <span class="dot"></span>
+                </div>
+            </div>
+
+            <div class="event-list">
+                <!-- Repeat this block for each event -->
+                <div class="event-card">
+                    <div class="event-wrap">
+                        <figure>
+                            <img src="hand.jpg" alt="Handcrafted footwear">
+                        </figure>
+                        <div class="event-info">
+                            <h3><a href="#">Handcrafted footwear</a></h3>
+                            <p>We are manufacturing handcrafted velvet and dhaka footwear inspired by ethnic designs.
+                                Affordable and</p>
+                            <ul>
+                                <li><i class="fa fa-calendar"></i> 02 October, 2022</li>
+                            </ul>
+                            <a href="#" class="event-btn">View Detail</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="event-card">
+                    <div class="event-wrap">
+                        <figure>
+                            <img src="founder.jpg" alt="Handcrafted footwear">
+
+                        </figure>
+                        <div class="event-info">
+                            <h3><a href="#">Founder, Executive Director of SMS wins first South Asia Kamla Bhasin
+                                    Award</a></h3>
+                            <p></p>
+                            <ul>
+                                <li><i class="fa fa-calendar"></i> 02 October, 2022</li>
+                            </ul>
+                            <a href="#" class="event-btn">View Detail</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="event-card">
+                    <div class="event-wrap">
+                        <figure>
+                            <img src="aid.jpg" alt="Handcrafted footwear">
+                        </figure>
+                        <div class="event-info">
+                            <h3><a href="#">THIS AID'S DAY:LETS'S CHANGE OUR MINDSET
+                                    THIS AID'S DAY:LETS'S CHANGE OUR MINDSET</a></h3>
+                            <p>With HIV detected in Nepal in 1988, the disease</p>
+                            <ul>
+                                <li><i class="fa fa-calendar"></i> 02 October, 2022</li>
+                            </ul>
+                            <a href="#" class="event-btn">View Detail</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="event-card">
+                    <div class="event-wrap">
+                        <figure>
+                            <img src="donation.jpg" alt="Handcrafted footwear">
+                        </figure>
+                        <div class="event-info">
+                            <h3><a href="#">Looking for Donation</a></h3>
+                            <p></p>
+                            <ul>
+                                <li><i class="fa fa-calendar"></i> 02 October, 2022</li>
+                            </ul>
+                            <a href="#" class="event-btn">View Detail</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Add more .event-card blocks here... -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Counter Section -->
+    <section class="main-section counter-section">
+        <div class="container">
+            <div class="counter-grid">
+                <div class="counter-item fade-in">
+                    <div class="counter-icon">
+                        <i class="fa fa-users"></i>
+                    </div>
+                    <span class="counter-number" data-count="4375">0</span>
+                    <div class="counter-label">CCC Client Service</div>
+                </div>
+                <div class="counter-item fade-in">
+                    <div class="counter-icon">
+                        <i class="fa fa-graduation-cap"></i>
+                    </div>
+                    <span class="counter-number" data-count="215">0</span>
+                    <div class="counter-label">Education Support</div>
+                </div>
+                <div class="counter-item fade-in">
+                    <div class="counter-icon">
+                        <i class="fa fa-seedling"></i>
+                    </div>
+                    <span class="counter-number" data-count="10">0</span>
+                    <div class="counter-label">Seed Money Support</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer" id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3><i class="fa fa-map-marker-alt"></i> Address</h3>
+                    <p>Saraswatinagar-6, Kapan, Kathmandu<br>PO Box: 9501</p>
+                </div>
+                <div class="footer-section">
+                    <h3><i class="fa fa-phone"></i> Contact</h3>
+                    <p>Phone: +977-1-4823288</p>
+                    <p>Email: <a href="mailto:shaktimilan@gmail.com">shaktimilan@gmail.com</a></p>
+                </div>
+                <div class="footer-section">
+                    <h3><i class="fa fa-info-circle"></i> About</h3>
+                    <p>Shakti Milan Samaj is an organization formed, governed, led and defined by women living with HIV,
+                        working towards empowerment and equality.</p>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2024 Shakti Milan Samaj. All rights reserved.</p>
+                <div class="footer-social">
+                    <a href="https://www.facebook.com/SMSShaktimilansamaj" target="_blank"><i
+                            class="fab fa-facebook"></i></a>
+                    <a href="https://www.youtube.com/channel/UCsEsVxFpMVYS679kUf-R6cw" target="_blank"><i
+                            class="fab fa-youtube"></i></a>
+                    <a href="https://www.linkedin.com/in/shaktimilansamaj" target="_blank"><i
+                            class="fab fa-linkedin"></i></a>
+                    <a href="https://plus.google.com/u/0/108912746357065074941" class="fab fa-google-plus"
+                        target="_blank"></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <a href="#" class="back-to-top" id="backToTop">
+        <i class="fa fa-arrow-up"></i>
+    </a>
+
+    <script src="script.js"></script>
+    <!-- <script>
+
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const mobileMenuClose = document.getElementById('mobileMenuClose');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.add('active');
+        });
+
+        mobileMenuClose.addEventListener('click', () => {
+            mobileMenu.classList.remove('active');
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!mobileMenu.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+                mobileMenu.classList.remove('active');
+            }
+        });
+
+        // Header scroll effect
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Counter animation
+        function animateCounter(element) {
+            const target = parseInt(element.getAttribute('data-count'));
+            const duration = 2000;
+            const step = target / (duration / 16);
+            let current = 0;
+
+            const timer = setInterval(() => {
+                current += step;
+                if (current >= target) {
+                    current = target;
+                    clearInterval(timer);
+                }
+                element.textContent = Math.floor(current).toLocaleString();
+            }, 16);
+        }
+
+        // Trigger counter animation when section is visible
+        const counterObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const counters = entry.target.querySelectorAll('.counter-number');
+                    counters.forEach(counter => {
+                        if (!counter.classList.contains('animated')) {
+                            counter.classList.add('animated');
+                            animateCounter(counter);
+                        }
+                    });
+                }
+            });
+        }, { threshold: 0.5 });
+
+        const counterSection = document.querySelector('.counter-section');
+        if (counterSection) {
+            counterObserver.observe(counterSection);
+        }
+
+        // Back to top button
+        const backToTop = document.getElementById('backToTop');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+
+        backToTop.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Parallax effect for video section
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const parallax = document.querySelector('.video-section');
+            if (parallax) {
+                const speed = scrolled * 0.5;
+                parallax.style.backgroundPosition = `center ${speed}px`;
+            }
+        });
+
+        // Add loading animation
+        window.addEventListener('load', () => {
+            document.body.style.opacity = '1';
+        });
+
+        // Initialize
+        document.body.style.opacity = '0';
+        document.body.style.transition = 'opacity 0.5s ease';
+
+        //Newss
+        document.addEventListener("DOMContentLoaded", () => {
+            const cards = document.querySelectorAll('.event-card');
+
+            cards.forEach((card, index) => {
+                card.style.opacity = 0;
+                card.style.transform = "translateY(20px)";
+                setTimeout(() => {
+                    card.style.transition = "all 0.6s ease";
+                    card.style.opacity = 1;
+                    card.style.transform = "translateY(0)";
+                }, index * 150);
+            });
+        });
+    </script> -->
+
+    <script>
+
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const mobileMenuClose = document.getElementById('mobileMenuClose');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.add('active');
+        });
+
+        mobileMenuClose.addEventListener('click', () => {
+            mobileMenu.classList.remove('active');
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!mobileMenu.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+                mobileMenu.classList.remove('active');
+            }
+        });
+
+        // Header scroll effect
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Counter animation
+        function animateCounter(element) {
+            const target = parseInt(element.getAttribute('data-count'));
+            const duration = 2000;
+            const step = target / (duration / 16);
+            let current = 0;
+
+            const timer = setInterval(() => {
+                current += step;
+                if (current >= target) {
+                    current = target;
+                    clearInterval(timer);
+                }
+                element.textContent = Math.floor(current).toLocaleString();
+            }, 16);
+        }
+
+        // Trigger counter animation when section is visible
+        const counterObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const counters = entry.target.querySelectorAll('.counter-number');
+                    counters.forEach(counter => {
+                        if (!counter.classList.contains('animated')) {
+                            counter.classList.add('animated');
+                            animateCounter(counter);
+                        }
+                    });
+                }
+            });
+        }, { threshold: 0.5 });
+
+        const counterSection = document.querySelector('.counter-section');
+        if (counterSection) {
+            counterObserver.observe(counterSection);
+        }
+
+        // Back to top button
+        const backToTop = document.getElementById('backToTop');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+
+        backToTop.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Parallax effect for video section
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const parallax = document.querySelector('.video-section');
+            if (parallax) {
+                const speed = scrolled * 0.5;
+                parallax.style.backgroundPosition = `center ${speed}px`;
+            }
+        });
+
+        // Add loading animation
+        window.addEventListener('load', () => {
+            document.body.style.opacity = '1';
+        });
+
+        // Initialize
+        document.body.style.opacity = '0';
+        document.body.style.transition = 'opacity 0.5s ease';
+
+        //Newss
+        document.addEventListener("DOMContentLoaded", () => {
+            const cards = document.querySelectorAll('.event-card');
+
+            cards.forEach((card, index) => {
+                card.style.opacity = 0;
+                card.style.transform = "translateY(20px)";
+                setTimeout(() => {
+                    card.style.transition = "all 0.6s ease";
+                    card.style.opacity = 1;
+                    card.style.transform = "translateY(0)";
+                }, index * 150);
+            });
+        });
+    </script>
+</body>
+
+
+</html>
