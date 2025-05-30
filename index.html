@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shakti Milan</title>
+    <link rel="stylesheet" href="static/css/style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+</head>
+
+<body>
+    <nav class="navbar" id="home">
+        <div class="logo">
+            <img src="static/img/logo.jpg" alt="Globe Icon">
+        </div>
+        <div class="menu-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#home" class="active">Home</a></li>
+            <li><a href="about.html">About</a>
+                <ul class="dropdown">
+                    <li><a href="about.html#history">The History</a></li>
+                    <li><a href="team.html">Our Team</a></li>
+                    <li><a href="affiliation.html">Affiliation</a></li>
+                </ul>
+            </li>
+            <li><a href="#project">Projects</a></li>
+            <li><a href="#project">Program</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <div class="donate">
+                <li><a href="#donate" class="donate-btn">Donate</a></li>
+            </div>
+        </ul>
+    </nav>
+
+    <header>
+        <div class="hero">
+            <div class="hero1">
+                <h1>Welcome to Shakti Milan Samaj</h1>
+                <p>Creating sustainable change and empowering communities around the world.</p>
+                <div class="hero-buttons">
+                    <a href="#about"><button>Learn More</button></a>
+                    <a href="#contact"><button class="donate-btn">Get Involved</button></a>
+                </div>
+            </div>
+            <div>
+                <img src="static/img/founder.jpg" alt="">
+            </div>
+        </div>
+    </header>
+
+    <section class="about-section" id="about">
+        <!-- Decorative wave SVG -->
+        <!-- <div class="wave-top">
+
+        </div> -->
+        <svg viewBox="0 0 1440 200" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+            <path fill="#ffff"
+                d="M0,64L80,90.7C160,117,320,171,480,170.7C640,171,800,117,960,96C1120,75,1280,85,1360,90.7L1440,96L1440,0L1360,0C1280,0,1120,0,960,0C800,0,640,0,480,0C320,0,160,0,80,0L0,0Z" />
+        </svg>
+
+        <div class="container" id="about">
+            <h2 class="section-title">About Shakti Milan</h2>
+            <p class="section-subtitle">
+                THE ORGANIZATION FORMED , GOVERNED ,LED AND DEFINED BY WOMEN LIVING WITH HIV
+            </p>
+            <div class="card-grid">
+                <div class="about-card fade-in">
+                    <div class="icon">📘</div>
+                    <h3>Our Mission</h3>
+                    <p>
+                        To empower communities through sustainable development initiatives, quality education, and
+                        humanitarian assistance, creating lasting positive change.
+                    </p>
+                </div>
+                <div class="about-card fade-in">
+                    <div class="icon">🌐</div>
+                    <h3>Global Reach</h3>
+                    <p>
+                        With projects in 27 countries across 5 continents, we work directly with local communities to
+                        address their most pressing needs and challenges.
+                    </p>
+                </div>
+                <div class="about-card fade-in">
+                    <div class="icon">🎁</div>
+                    <h3>Transparency</h3>
+                    <p>
+                        We're committed to full financial transparency. 92% of all donations go directly to our
+                        programs, with detailed impact reports available to all supporters.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="projects-section" id="project">
+        <div class="container">
+            <h2>Our Global Projects</h2>
+            <p>Discover the communities we work with and the sustainable solutions we're implementing around the world.
+            </p>
+
+            <div class="projects-grid">
+                <!-- Card 1 -->
+                <div class="project-card">
+                    <div class="card-header">
+                        <!-- <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#fff"
+                            viewBox="0 0 24 24">
+                            <circle cx="12" cy="12" r="5" />
+                            <path
+                                d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" />
+                        </svg> -->
+                        <img src="static/img/hand.jpg" alt="">
+                    </div>
+                    <div class="card-body">
+                        <div class="badge-group">
+                            <span class="badge">East Africa</span>
+                            <span class="date">Since 2018</span>
+                        </div>
+                        <h3>Clean Water Initiative</h3>
+                        <p>Providing sustainable access to clean water through well construction and water purification
+                            systems in rural communities.</p>
+                        <div class="impact">
+                            <div>
+                                <strong>Impact:</strong> <span>120,000+ people</span>
+                            </div>
+                            <a href="#">Learn more &rarr;</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="project-card">
+                    <div class="card-header">
+                        <!-- <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#fff"
+                            viewBox="0 0 24 24">
+                            <path d="M4 19h16V5H4v14zm2-2V7h12v10H6z" />
+                        </svg> -->
+                        <img src="static/img/founder.jpg" alt="">
+                    </div>
+                    <div class="card-body">
+                        <div class="badge-group">
+                            <span class="badge">South Asia</span>
+                            <span class="date">Since 2015</span>
+                        </div>
+                        <h3>Education For All</h3>
+                        <p>Building schools, training teachers, and providing educational materials to ensure quality
+                            education for children in underserved areas.</p>
+                        <div class="impact">
+                            <div>
+                                <strong>Impact:</strong> <span>75,000+ students</span>
+                            </div>
+                            <a href="#">Learn more &rarr;</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="project-card">
+                    <div class="card-header">
+                        <!-- <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#fff"
+                            viewBox="0 0 24 24">
+                            <circle cx="5" cy="5" r="2" />
+                            <circle cx="19" cy="5" r="2" />
+                            <circle cx="5" cy="19" r="2" />
+                            <circle cx="19" cy="19" r="2" />
+                        </svg> -->
+                        <img src="static/img/donation.jpg" alt="">
+                    </div>
+                    <div class="card-body">
+                        <div class="badge-group">
+                            <span class="badge">Central America</span>
+                            <span class="date">Since 2019</span>
+                        </div>
+                        <h3>Sustainable Agriculture</h3>
+                        <p>Training farmers in sustainable practices, providing tools and seeds, and establishing market
+                            connections for long-term food security.</p>
+                        <div class="impact">
+                            <Div>
+                                <strong>Impact:</strong> <span>12,000+ farmers</span>
+                            </Div>
+                            <a href="#">Learn more &rarr;</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="card-header">
+                        <!-- <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#fff"
+                            viewBox="0 0 24 24">
+                            <circle cx="5" cy="5" r="2" />
+                            <circle cx="19" cy="5" r="2" />
+                            <circle cx="5" cy="19" r="2" />
+                            <circle cx="19" cy="19" r="2" />
+                        </svg> -->
+                        <img src="static/img/aid.jpg" alt="">
+                    </div>
+                    <div class="card-body">
+                        <div class="badge-group">
+                            <span class="badge">Southest Asia</span>
+                            <span class="date">Since 2017</span>
+                        </div>
+                        <h3>Healthcare Access</h3>
+                        <p>Establishing mobile clinics, training community health workers, and providing essential
+                            medical supplies to remote communities.</p>
+                        <div class="impact">
+                            <DIV>
+                                <strong>Impact:</strong> <span>95,000+ patients</span>
+                            </DIV>
+                            <a href="#">Learn more &rarr;</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="card-header">
+                        <!-- <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#fff"
+                            viewBox="0 0 24 24">
+                            <circle cx="5" cy="5" r="2" />
+                            <circle cx="19" cy="5" r="2" />
+                            <circle cx="5" cy="19" r="2" />
+                            <circle cx="19" cy="19" r="2" />
+                        </svg> -->
+                        <img src="static/img/main.jpg.jpg" alt="">
+                    </div>
+                    <div class="card-body">
+                        <div class="badge-group">
+                            <span class="badge">West Africa</span>
+                            <span class="date">Since 2020</span>
+                        </div>
+                        <h3>Renewable Energy</h3>
+                        <p>Installing solar panels and micro-grids to provide clean, reliable electricity to communities
+                            without access to power infrastructure.</p>
+                        <div class="impact">
+                            <div>
+                                <strong>Impact:</strong> <span>45,000+ people</span>
+                            </div>
+                            <a href="#">Learn more &rarr;</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="card-header">
+                        <!-- <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#fff"
+                            viewBox="0 0 24 24">
+                            <circle cx="5" cy="5" r="2" />
+                            <circle cx="19" cy="5" r="2" />
+                            <circle cx="5" cy="19" r="2" />
+                            <circle cx="19" cy="19" r="2" />
+                        </svg> -->
+                        <img src="static/img/founder.jpg" alt="">
+                    </div>
+                    <div class="card-body">
+                        <div class="badge-group">
+                            <span class="badge">South America</span>
+                            <span class="date">Since 2016</span>
+                        </div>
+                        <h3>Housing & Shelter</h3>
+                        <p>Building safe, durable homes for families affected by natural disasters and training local
+                            builders in resilient construction techniques.</p>
+                        <div class="impact">
+                            <div>
+                                <strong>Impact:</strong> <span>3,500+ homes</span>
+                            </div>
+                            <a href="#">Learn more &rarr;</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="project-all">
+                <button class="project-button">View All Projects</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="impact-section">
+        <div class="impact-container">
+            <h2>Our Global Impact</h2>
+            <!-- <div class="divider"></div> -->
+            <p>
+                Through the generous support of our donors, we've been able to create meaningful
+                change in communities around the world.
+            </p>
+
+            <div class="impact-cards">
+                <div class="impact-card">
+                    <div class="count" data-target="27">10</div>
+                    <p>Countries</p>
+                </div>
+                <div class="impact-card">
+                    <div class="count" data-target="64">50</div>
+                    <p>Active Projects</p>
+                </div>
+                <div class="impact-card">
+                    <div class="count" data-target="250000">550</div>
+                    <p>People Helped</p>
+                </div>
+                <div class="impact-card">
+                    <div class="count" data-target="3100">600</div>
+                    <p>Volunteers</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <div class="donation-container" id="donate">
+        <div class="left">
+            <h2>How Your Donations Help</h2>
+            <p>Your support directly funds our projects and operations, allowing us to create sustainable change in
+                communities worldwide.</p>
+
+            <div class="bar-label">
+                <span>Project Implementation</span><span>75%</span>
+            </div>
+            <div class="bar">
+                <div class="bar-fill" style="--fill: 75%;"></div>
+            </div>
+
+            <div class="bar-label">
+                <span>Local Staff & Training</span><span>17%</span>
+            </div>
+            <div class="bar">
+                <div class="bar-fill" style="--fill: 17%;"></div>
+            </div>
+
+            <div class="bar-label">
+                <span>Administration</span><span>5%</span>
+            </div>
+            <div class="bar">
+                <div class="bar-fill" style="--fill: 5%;"></div>
+            </div>
+
+            <div class="bar-label">
+                <span>Fundraising</span><span>3%</span>
+            </div>
+            <div class="bar">
+                <div class="bar-fill" style="--fill: 3%;"></div>
+            </div>
+        </div>
+
+        <div class="right">
+            <h2>Support Our Mission</h2>
+            <p>Your donation, no matter the size, makes a real difference in the lives of people around the world.</p>
+
+            <div class="amounts">
+                <button>$25</button>
+                <button>$50</button>
+                <button>$100</button>
+                <button>$250</button>
+                <button>$500</button>
+                <button>Other</button>
+            </div>
+
+            <label for="custom">Custom Amount</label>
+            <input type="text" id="custom" placeholder="Enter amount">
+
+            <button class="donate-btns">Donate Now</button>
+        </div>
+    </div>
+
+    <section class="impact-section">
+        <div class="impact-container">
+            <h2>Voices from the Field</h2>
+            <!-- <div class="divider"></div> -->
+            <p>
+                Hear from the communities and individuals whose lives have been transformed through our work.
+            </p>
+            <div class="testimonial-list">
+                <div class="testimonial">
+                    <p>"The clean water well has changed everything for our village. Our children are healthier, and
+                        women
+                        no longer have to walk for hours each day to collect water."</p>
+                    <div class="author">
+                        <span class="initials">AM</span>
+                        <div>
+                            <strong>Amara Mensah</strong>
+                            <small>Community Leader, Ghana</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial">
+                    <p>"The training and tools I received have doubled my crop yield. I can now feed my family and sell
+                        the
+                        surplus at the market, providing income for school fees."</p>
+                    <div class="author">
+                        <span class="initials">RL</span>
+                        <div>
+                            <strong>Rosa Lopez</strong>
+                            <small>Farmer, Honduras</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial">
+                    <p>"With the new school and trained teachers, my children are receiving quality education. They now
+                        have
+                        opportunities I never had growing up."</p>
+                    <div class="author">
+                        <span class="initials">SP</span>
+                        <div>
+                            <strong>Sanjay Patel</strong>
+                            <small>Parent, Nepal</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="donation-section">
+        <div class="partners">
+            <h2>Our Partners</h2>
+            <!-- <div class="divider"></div> -->
+            <p>
+                We collaborate with organizations around the world to maximize our impact and reach.
+            </p>
+
+            <div class="impact-cards">
+                <div class="impact-card">
+                    <img src="static/img/partner1.jpg" alt="partner1">
+                </div>
+                <div class="impact-card">
+                    <img src="static/img/partner.2.jpeg" alt="partner2">
+                </div>
+                <div class="impact-card">
+                    <img src="static/img/partner3.jpg" alt="partner3">
+                </div>
+                <div class="impact-card">
+                    <img src="static/img/partner4.jpeg" alt="partner4">
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+
+    <section class="impact-section" id="contact">
+        <div class="impact-container">
+            <h2>Get In Touch</h2>
+            <!-- <div class="divider"></div> -->
+            <p>Have questions or want to learn more about our work? We'd love to hear from you.
+            </p>
+        </div>
+
+        <div class="contact-container">
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h2 class="contact-head">Contact Information</h2>
+                    <div class="coninfo">
+                        <div>
+                            <i class="fa-solid fa-location-dot"></i>
+                        </div>
+                        <div class="info-section">
+                            <h2>Main Office</h2>
+                            <p>123 Impact Avenue</p>
+                            <p>New York, NY 10001</p>
+                            <p>United States</p>
+                        </div>
+                    </div>
+
+                    <div class="coninfo">
+                        <div>
+                            <i class="fa-solid fa-envelope"></i>
+                        </div>
+                        <div class="info-section">
+                            <h2>Email</h2>
+                            <p>info@globalimpact.org</p>
+                            <p>donations@globalimpact.org</p>
+                        </div>
+                    </div>
+                    <div class="coninfo">
+                        <div>
+                            <i class="fa-solid fa-phone"></i>
+                        </div>
+                        <div class="info-section">
+                            <h2>Phone</h2>
+                            <p>+1 (555) 123-4567</p>
+                            <p>+1 (555) 987-6543</p>
+                        </div>
+                    </div>
+                    <div class="coninfo">
+                        <div>
+                            <i class="fa-solid fa-clock"></i>
+                        </div>
+                        <div class="info-section">
+                            <h2>Office Hours</h2>
+                            <p>Monday - Friday: 9:00 AM - 5:00 PM</p>
+                            <p>Saturday: 10:00 AM - 2:00 PM</p>
+                            <p>Sunday: Closed</p>
+                        </div>
+                    </div>
+
+                    <h2>Follow Us</h2>
+                    <div class="coninfo">
+                        <div>
+                            <i class="fa-brands fa-facebook"></i>
+                            <i class="fa-brands fa-twitter"></i>
+                            <i class="fa-brands fa-instagram"></i>
+                            <i class="fa-brands fa-linkedin"></i>
+                            <i class="fa-brands fa-youtube"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contact-form">
+                    <h2 class="contact-head">Send Us a Message</h2>
+
+                    <form id="contactForm">
+                        <div class="name-fields">
+                            <div class="form-group">
+                                <label for="firstName">First Name</label>
+                                <input type="text" id="firstName" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="lastName">Last Name</label>
+                                <input type="text" id="lastName" required>
+                            </div>
+                        </div>
+
+                        <div class="divider"></div>
+
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <select id="subject" required>
+                                <option value="">Please select</option>
+                                <option value="general">General Inquiry</option>
+                                <option value="donation">Donation Question</option>
+                                <option value="volunteer">Volunteer Opportunity</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" rows="5" required></textarea>
+                        </div>
+
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="newsletter">
+                            <label for="newsletter">Subscribe to our newsletter to stay updated on our work and
+                                impact</label>
+                        </div>
+
+                        <button type="submit" class="btn">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="news-email">
+        <div class="newsletter-container">
+            <h2 class="newsletter-title">Stay Updated on Our Impact</h2>
+            <p class="newsletter-description">
+                Join our newsletter to receive updates on our projects, success stories, and ways you can help make a
+                difference.
+            </p>
+
+            <form class="newsletter-form" id="newsletterForm">
+                <div class="form-group">
+                    <label for="email">Your email address</label>
+                    <input type="email" id="email" placeholder="Enter your email" required>
+                    <div class="error-message" id="emailError"></div>
+                </div>
+
+                <button type="submit" class="subscribe-btn">Subscribe</button>
+
+                <div class="success-message" id="successMessage">
+                    Thank you for subscribing! Please check your email to confirm.
+                </div>
+            </form>
+
+            <p class="privacy-note">
+                We respect your privacy. You can unsubscribe at any time.
+            </p>
+        </div>
+    </section>
+
+
+    <div class="footer">
+        <div class="footer-top">
+            <div class="footer-brand">
+                <div class="footer-logo">
+                    <!-- <img src="logo.jpg" alt="Logo"> -->
+                    <h3>ShaktiMilan</h3>
+                </div>
+                <p class="footer-tagline">
+                    THE ORGANIZATION FORMED, GOVERNED, LED AND DEFINED BY WOMEN LIVING WITH HIV
+                </p>
+            </div>
+
+            <div class="footer-contact">
+                <p><strong>Address:</strong> Saraswatinagar-6, Kapan, Kathmandu</p>
+                <p><strong>Phone:</strong> +977-1-4823288</p>
+                <p><strong>PO Box:</strong> 9501</p>
+                <p><strong>Email:</strong> shaktimilan@gmail.com</p>
+            </div>
+
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html#home">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="#project">Projects</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2025 Shakti Milan Samaj. All rights reserved.</p>
+            <div class="footer-social">
+                <a href="#"><img src="https://img.icons8.com/ios-filled/24/ffffff/facebook-new.png" alt="Facebook"></a>
+                <a href="#"><img src="https://img.icons8.com/ios-filled/24/ffffff/twitter.png" alt="Twitter"></a>
+                <a href="#"><img src="https://img.icons8.com/ios-filled/24/ffffff/linkedin.png" alt="LinkedIn"></a>
+                <a href="#"><img src="https://img.icons8.com/ios-filled/24/ffffff/youtube.png" alt="YouTube"></a>
+            </div>
+        </div>
+    </div>
+
+    <script src="static/js/script.js"></script>
+</body>
+
+</html>
