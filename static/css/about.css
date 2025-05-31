@@ -45,7 +45,7 @@
 
 .detail-editor p {
     margin-bottom: 1.5rem;
-    color: #555;
+    color: #403f3f;
     font-size: 1.1rem;
 }
 
@@ -713,6 +713,14 @@
 
 .container p{
     color: #fff;
+}
+
+.container .about-content p{
+    color: #666;
+}
+
+.container .timeline p{
+    color: #666;
 }
 
 .contact-link {
