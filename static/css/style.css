@@ -173,6 +173,10 @@ html {
     background: #8B0000;
 }
 
+.nav-links .dropdown.show {
+    display: block;
+}
+
 .nav-links a.active {
     color: #667eea;
     font-weight: 600;
@@ -328,6 +332,26 @@ header {
     .hero img {
         max-width: 300px;
     }
+
+    .nav-links {
+        flex-direction: column;
+    }
+
+    .nav-links li {
+        position: relative;
+    }
+
+    .nav-links .dropdown {
+        position: relative;
+        top: auto;
+        left: auto;
+        box-shadow: none;
+        display: none;
+    }
+
+    .nav-links .dropdown.show {
+        display: block;
+    }
 }
 
 @media (max-width: 480px) {
@@ -361,6 +385,7 @@ header {
     .hero img {
         max-width: 250px;
     }
+
     .dropdown li {
         margin-left: 75px;
     }

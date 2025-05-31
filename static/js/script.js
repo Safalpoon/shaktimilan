@@ -311,3 +311,16 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
+//drop-down nav-links
+document.addEventListener('DOMContentLoaded', function () {
+    const toggleLink = document.querySelector('.dropdown-toggle');
+    const dropdownMenu = document.querySelector('.dropdown');
+
+    toggleLink.addEventListener('click', function (e) {
+        // Prevent immediate navigation on mobile
+        if (window.innerWidth <= 768) {
+            e.preventDefault();
+            dropdownMenu.classList.toggle('show');
+        }
+    });
+});
