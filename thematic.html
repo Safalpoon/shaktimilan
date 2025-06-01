@@ -1,0 +1,1034 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Our Programs - Shakti Milan</title>
+    <link rel="stylesheet" href="static/css/style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <style>
+        .programs-hero {
+            background: linear-gradient(135deg, #9f7aea 0%, #e53e3e 100%);
+            color: white;
+            padding: 100px 0 60px;
+            text-align: center;
+        }
+
+        .programs-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .programs-hero p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+            opacity: 0.9;
+            color: #ffff;
+        }
+
+        .breadcrumb {
+            background: #f8f9fa;
+            padding: 15px 0;
+        }
+
+        .breadcrumb-nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .breadcrumb-nav a {
+            color: #6c757d;
+            text-decoration: none;
+            margin-right: 10px;
+        }
+
+        .breadcrumb-nav a:hover {
+            color: #495057;
+        }
+
+        .filter-section {
+            background: white;
+            padding: 30px 0;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .filter-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .filter-tabs {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .filter-tab {
+            padding: 12px 24px;
+            border: 2px solid #e9ecef;
+            background: white;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .filter-tab.active,
+        .filter-tab:hover {
+            background: #9f7aea;
+            color: white;
+            border-color: #9f7aea;
+        }
+
+        .programs-main {
+            padding: 60px 0;
+            background: #f8f9fa;
+        }
+
+        .programs-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        .programs-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+        }
+
+        .program-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            flex: 1 1 calc(33.333% - 20px);
+            min-width: 300px;
+            max-width: 400px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .program-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .program-header {
+            position: relative;
+            height: 200px;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .program-header img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .program-type {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .type-workshop {
+            color: #9f7aea;
+        }
+
+        .type-training {
+            color: #3182ce;
+        }
+
+        .type-support {
+            color: #38a169;
+        }
+
+        .type-advocacy {
+            color: #e53e3e;
+        }
+
+        .type-education {
+            color: #dd6b20;
+        }
+
+        .type-health {
+            color: #805ad5;
+        }
+
+        .program-body {
+            padding: 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .program-meta {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #6c757d;
+            font-size: 0.85rem;
+        }
+
+        .meta-item i {
+            color: #9f7aea;
+        }
+
+        .program-body h3 {
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+            color: #2c3e50;
+        }
+
+        .program-description {
+            color: #6c757d;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .program-features {
+            margin-bottom: 20px;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+        }
+
+        .feature-item i {
+            color: #9f7aea;
+            margin-top: 3px;
+        }
+
+        .program-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: auto;
+        }
+
+        .btn-primary {
+            background: #9f7aea;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .btn-primary:hover {
+            background: #805ad5;
+        }
+
+        .btn-outline {
+            border: 2px solid #9f7aea;
+            color: #9f7aea;
+            padding: 8px 18px;
+            background: transparent;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .btn-outline:hover {
+            background: #9f7aea;
+            color: white;
+        }
+
+        .upcoming-section {
+            background: white;
+            padding: 60px 0;
+        }
+
+        .upcoming-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-title h2 {
+            font-size: 2.2rem;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .section-title p {
+            color: #6c757d;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .event-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .event-card {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 25px;
+            flex: 1 1 calc(50% - 10px);
+            min-width: 300px;
+            display: flex;
+            gap: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .event-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .event-date {
+            background: #9f7aea;
+            color: white;
+            width: 80px;
+            height: 80px;
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            flex-shrink: 0;
+        }
+
+        .event-date .day {
+            font-size: 1.8rem;
+            font-weight: 700;
+            line-height: 1;
+        }
+
+        .event-date .month {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+        }
+
+        .event-info {
+            flex-grow: 1;
+        }
+
+        .event-info h3 {
+            font-size: 1.3rem;
+            margin-bottom: 8px;
+            color: #2c3e50;
+        }
+
+        .event-meta {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 10px;
+            flex-wrap: wrap;
+        }
+
+        .event-meta .meta-item {
+            font-size: 0.85rem;
+        }
+
+        .event-description {
+            color: #6c757d;
+            font-size: 0.95rem;
+            margin-bottom: 15px;
+        }
+
+        .testimonial-section {
+            background: linear-gradient(135deg, #9f7aea 0%, #e53e3e 100%);
+            color: white;
+            padding: 60px 0;
+        }
+
+        .testimonial-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .testimonial-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .testimonial-title h2 {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+        }
+
+        .testimonial-title p {
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .testimonial-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+        }
+
+        .testimonial-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 30px;
+            flex: 1 1 calc(33.333% - 20px);
+            min-width: 300px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .testimonial-text {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        .author-info h4 {
+            font-size: 1.1rem;
+            margin-bottom: 3px;
+        }
+
+        .author-info p {
+            opacity: 0.8;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 1024px) {
+            .program-card {
+                flex: 1 1 calc(50% - 15px);
+            }
+
+            .testimonial-card {
+                flex: 1 1 calc(50% - 15px);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .programs-hero h1 {
+                font-size: 2rem;
+            }
+
+            .filter-tabs {
+                justify-content: flex-start;
+                overflow-x: auto;
+                padding-bottom: 10px;
+            }
+
+            .program-card {
+                flex: 1 1 100%;
+                max-width: 100%;
+            }
+
+            .event-card {
+                flex: 1 1 100%;
+            }
+
+            .testimonial-card {
+                flex: 1 1 100%;
+            }
+
+            .program-meta {
+                flex-direction: column;
+                gap: 8px;
+            }
+
+            .program-actions {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            <img src="static/img/logo.jpg" alt="Globe Icon">
+        </div>
+        <div class="menu-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html" class="dropdown-toggle">About</a>
+                <ul class="dropdown">
+                    <li><a href="about.html">Introduction</a></li>
+                    <li><a href="about.html#history">The History</a></li>
+                    <li><a href="team.html">Our Team</a></li>
+                    <li><a href="affiliation.html">Affiliation</a></li>
+                </ul>
+            </li>
+            <li><a href="project.html">Projects</a>
+                <ul class="dropdown">
+                    <li><a href="current-project.html">Current Project</a></li>
+                    <li><a href="previous-project.html">Pervious Projects</a></li>
+                </ul>
+            </li>
+            <li><a href="#" class="active">Program</a>
+                <ul class="dropdown">
+                    <li><a href="thematic.html">Thematic Area</a></li>
+                    <li><a href="accomplishment.html">Accomplishment</a></li>
+                </ul>
+            </li>
+            <li><a href="contact.html">Contact</a></li>
+            <div class="donate">
+                <li><a href="#donate" class="donate-btn">Donate</a></li>
+            </div>
+        </ul>
+    </nav>
+
+    <section class="programs-hero">
+        <div class="container">
+            <h1>Thematic Areas</h1>
+            <p>Empowering women living with HIV through education, support, and advocacy programs that create lasting
+                positive change.</p>
+        </div>
+    </section>
+
+    <section class="breadcrumb">
+        <div class="breadcrumb-nav">
+            <a href="index.html">Home</a> / <span>Programs</span>
+        </div>
+    </section>
+
+    <section class="filter-section">
+        <div class="filter-container">
+            <div class="filter-tabs">
+                <div class="filter-tab active" data-filter="all">All Programs</div>
+                <div class="filter-tab" data-filter="support">Support Groups</div>
+                <div class="filter-tab" data-filter="education">Education</div>
+                <div class="filter-tab" data-filter="advocacy">Advocacy</div>
+                <div class="filter-tab" data-filter="health">Health Services</div>
+                <div class="filter-tab" data-filter="training">Skills Training</div>
+                <div class="filter-tab" data-filter="workshop">Workshops</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="programs-main">
+        <div class="programs-container">
+            <div class="programs-grid">
+                <!-- Support Group Program -->
+                <div class="program-card" data-category="support">
+                    <div class="program-header">
+                        <img src="static/img/founder.jpg" alt="Support Group Program">
+                        <div class="program-type type-support">Support Group</div>
+                    </div>
+                    <div class="program-body">
+                        <div class="program-meta">
+                            <div class="meta-item">
+                                <i class="fas fa-calendar"></i>
+                                <span>Weekly Meetings</span>
+                            </div>
+                            <div class="meta-item">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Multiple Locations</span>
+                            </div>
+                        </div>
+                        <h3>COMMUNITY CARE CENTER</h3>
+                        <p class="program-description">
+                            Community Care Centre was established with an objective to provide care and support services
+                            to women living with HIV who are from and outside of
+                        </p>
+                        <!-- <div class="program-features">
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Facilitated by trained peer counselors</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Confidential and judgment-free environment</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Available in 12 communities across Nepal</span>
+                            </div>
+                        </div> -->
+                        <div class="program-actions">
+                            <!-- <a href="#" class="btn-primary">Join a Group</a> -->
+                            <a href="#" class="btn-outline">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Skills Training Program -->
+                <div class="program-card" data-category="training">
+                    <div class="program-header">
+                        <img src="static/img/hand.jpg" alt="Skills Training Program">
+                        <div class="program-type type-training">Skills Training</div>
+                    </div>
+                    <div class="program-body">
+                        <div class="program-meta">
+                            <div class="meta-item">
+                                <i class="fas fa-calendar"></i>
+                                <span>3-Month Programs</span>
+                            </div>
+                            <div class="meta-item">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Training Centers</span>
+                            </div>
+                        </div>
+                        <h3>Crisis Care Center</h3>
+                        <p class="program-description">
+                            Shakti Milan Samaj’s Crisis Care Center has long been providing accommodation, food and
+                            nutrition support to Women Living with HIV and children infected
+                        </p>
+
+                        <div class="program-actions">
+                            <a href="#" class="btn-outline">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Health Services Program -->
+                <div class="program-card" data-category="health">
+                    <div class="program-header">
+                        <img src="static/img/aid.jpg" alt="Health Services Program">
+                        <div class="program-type type-health">Health Services</div>
+                    </div>
+                    <div class="program-body">
+                        <div class="program-meta">
+                            <div class="meta-item">
+                                <i class="fas fa-calendar"></i>
+                                <span>Ongoing Services</span>
+                            </div>
+                            <div class="meta-item">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Health Centers</span>
+                            </div>
+                        </div>
+                        <h3>EDUCATION AND SKILL DEVELOPMENT</h3>
+                        <p class="program-description">
+                            The program is driven by the objective to make HIV infected women economically independent
+                            by providing them with various kinds of skill development training
+                        </p>
+
+                        <div class="program-actions">
+                            <a href="#" class="btn-outline">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Education Program -->
+                <div class="program-card" data-category="education">
+                    <div class="program-header">
+                        <img src="static/img/donation.jpg" alt="Education Program">
+                        <div class="program-type type-education">Education</div>
+                    </div>
+                    <div class="program-body">
+                        <div class="program-meta">
+                            <div class="meta-item">
+                                <i class="fas fa-calendar"></i>
+                                <span>Year-round</span>
+                            </div>
+                            <div class="meta-item">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Schools & Communities</span>
+                            </div>
+                        </div>
+                        <h3>EMERGENCY SUPPORT FUND</h3>
+                        <p class="program-description">
+                            The objective of emergency support fund is to save the lives of patients who are severely
+                            ill and needs immediate support for treatment. Since inception,
+                        </p>
+
+                        <div class="program-actions">
+                            <a href="#" class="btn-outline">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Advocacy Program -->
+                <div class="program-card" data-category="advocacy">
+                    <div class="program-header">
+                        <img src="static/img/main.jpg.jpg" alt="Advocacy Program">
+                        <div class="program-type type-advocacy">Advocacy</div>
+                    </div>
+                    <div class="program-body">
+                        <div class="program-meta">
+                            <div class="meta-item">
+                                <i class="fas fa-calendar"></i>
+                                <span>Ongoing Initiatives</span>
+                            </div>
+                            <div class="meta-item">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>National Level</span>
+                            </div>
+                        </div>
+                        <h3>INCOME GENERATION</h3>
+                        <p class="program-description">
+                            With an objective to empower HIV infected women and affected families socially and
+                            economically, the agency designs and implements various kinds of income
+                        </p>
+
+                        <div class="program-actions">
+                            <a href="#" class="btn-outline">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Workshop Program -->
+                <div class="program-card" data-category="workshop">
+                    <div class="program-header">
+                        <img src="static/img/founder.jpg" alt="Workshop Program">
+                        <div class="program-type type-workshop">Workshop</div>
+                    </div>
+                    <div class="program-body">
+                        <div class="program-meta">
+                            <div class="meta-item">
+                                <i class="fas fa-calendar"></i>
+                                <span>Monthly Sessions</span>
+                            </div>
+                            <div class="meta-item">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Community Centers</span>
+                            </div>
+                        </div>
+                        <h3>ADVOCACY AND AWARENESS</h3>
+                        <p class="program-description">
+                            Awareness and advocacy on women’s right, violence against women, and HIV/ AIDS can
+                            tremendously help to make general as well as vulnerable people aware
+                        </p>
+
+                        <div class="program-actions">
+                            <a href="#" class="btn-outline">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Workshop Program -->
+                <div class="program-card" data-category="workshop">
+                    <div class="program-header">
+                        <img src="static/img/founder.jpg" alt="Workshop Program">
+                        <div class="program-type type-workshop">Workshop</div>
+                    </div>
+                    <div class="program-body">
+                        <div class="program-meta">
+                            <div class="meta-item">
+                                <i class="fas fa-calendar"></i>
+                                <span>Monthly Sessions</span>
+                            </div>
+                            <div class="meta-item">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Community Centers</span>
+                            </div>
+                        </div>
+                        <h3>Women and Children Inclusion as Cross-Cutting Theme</h3>
+                        <p class="program-description">
+                            The inclusion of women and children infected and affected by HIV and AIDS and household and
+                            community violence stretches across all above program thematic
+                        </p>
+
+                        <div class="program-actions">
+                            <a href="#" class="btn-outline">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="upcoming-section">
+        <div class="upcoming-container">
+            <div class="section-title">
+                <h2>Upcoming Events</h2>
+                <p>Join us for these upcoming programs and events to get involved with our community</p>
+            </div>
+
+            <div class="event-list">
+                <div class="event-card">
+                    <div class="event-date">
+                        <span class="day">15</span>
+                        <span class="month">Jun</span>
+                    </div>
+                    <div class="event-info">
+                        <h3>HIV Awareness Workshop</h3>
+                        <div class="event-meta">
+                            <div class="meta-item">
+                                <i class="fas fa-clock"></i>
+                                <span>10:00 AM - 2:00 PM</span>
+                            </div>
+                            <div class="meta-item">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Saraswatinagar Community Center</span>
+                            </div>
+                        </div>
+                        <p class="event-description">
+                            Join us for an interactive workshop on HIV awareness, prevention, and reducing stigma in our
+                            communities.
+                        </p>
+                        <!-- <a href="#" class="btn-outline">Register Now</a> -->
+                    </div>
+                </div>
+
+                <div class="event-card">
+                    <div class="event-date">
+                        <span class="day">22</span>
+                        <span class="month">Jun</span>
+                    </div>
+                    <div class="event-info">
+                        <h3>Vocational Training Orientation</h3>
+                        <div class="event-meta">
+                            <div class="meta-item">
+                                <i class="fas fa-clock"></i>
+                                <span>1:00 PM - 4:00 PM</span>
+                            </div>
+                            <div class="meta-item">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Shakti Milan Training Center</span>
+                            </div>
+                        </div>
+                        <p class="event-description">
+                            Learn about our vocational training programs and how they can help you develop marketable
+                            skills for economic independence.
+                        </p>
+                        <!-- <a href="#" class="btn-outline">Register Now</a> -->
+                    </div>
+                </div>
+
+                <div class="event-card">
+                    <div class="event-date">
+                        <span class="day">30</span>
+                        <span class="month">Jun</span>
+                    </div>
+                    <div class="event-info">
+                        <h3>Health & Nutrition Workshop</h3>
+                        <div class="event-meta">
+                            <div class="meta-item">
+                                <i class="fas fa-clock"></i>
+                                <span>11:00 AM - 3:00 PM</span>
+                            </div>
+                            <div class="meta-item">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Kapan Health Center</span>
+                            </div>
+                        </div>
+                        <p class="event-description">
+                            A comprehensive workshop on nutrition, medication adherence, and maintaining overall health
+                            for women living with HIV.
+                        </p>
+                        <!-- <a href="#" class="btn-outline">Register Now</a> -->
+                    </div>
+                </div>
+
+                <div class="event-card">
+                    <div class="event-date">
+                        <span class="day">05</span>
+                        <span class="month">Jul</span>
+                    </div>
+                    <div class="event-info">
+                        <h3>Advocacy Training Session</h3>
+                        <div class="event-meta">
+                            <div class="meta-item">
+                                <i class="fas fa-clock"></i>
+                                <span>9:00 AM - 4:00 PM</span>
+                            </div>
+                            <div class="meta-item">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Shakti Milan Headquarters</span>
+                            </div>
+                        </div>
+                        <p class="event-description">
+                            Learn effective advocacy techniques to help promote the rights and needs of women living
+                            with HIV in policy discussions.
+                        </p>
+                        <!-- <a href="#" class="btn-outline">Register Now</a> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- <section class="testimonial-section">
+        <div class="testimonial-container">
+            <div class="testimonial-title">
+                <h2>Program Impact Stories</h2>
+                <p>Hear from women whose lives have been transformed through our programs</p>
+            </div>
+
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <p class="testimonial-text">
+                        "The vocational training program gave me the skills to start my own tailoring business. Now I
+                        can support my family and pay for my children's education. I've regained my confidence and
+                        independence."
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">SM</div>
+                        <div class="author-info">
+                            <h4>Sunita M.</h4>
+                            <p>Vocational Training Graduate</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <p class="testimonial-text">
+                        "The peer support group has been my lifeline. When I was first diagnosed, I felt so alone. Now I
+                        have a community of women who understand exactly what I'm going through and support me every
+                        step of the way."
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">RK</div>
+                        <div class="author-info">
+                            <h4>Rekha K.</h4>
+                            <p>Support Group Member</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <p class="testimonial-text">
+                        "The health services program helped me understand how to manage my condition and stay healthy.
+                        The nutritional support and regular check-ups have made a huge difference in my quality of
+                        life."
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">AT</div>
+                        <div class="author-info">
+                            <h4>Anita T.</h4>
+                            <p>Health Program Participant</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section> -->
+
+    <div class="footer">
+        <div class="footer-top">
+            <div class="footer-brand">
+                <div class="footer-logo">
+                    <h3>ShaktiMilan</h3>
+                </div>
+                <p class="footer-tagline">
+                    THE ORGANIZATION FORMED, GOVERNED, LED AND DEFINED BY WOMEN LIVING WITH HIV
+                </p>
+            </div>
+
+            <div class="footer-contact">
+                <p><strong>Address:</strong> Saraswatinagar-6, Kapan, Kathmandu</p>
+                <p><strong>Phone:</strong> +977-1-4823288</p>
+                <p><strong>PO Box:</strong> 9501</p>
+                <p><strong>Email:</strong> shaktimilan@gmail.com</p>
+            </div>
+
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="project.html">Projects</a></li>
+                    <li><a href="program.html">Programs</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2025 Shakti Milan Samaj. All rights reserved.</p>
+            <div class="footer-social">
+                <a href="#"><img src="https://img.icons8.com/ios-filled/24/ffffff/facebook-new.png" alt="Facebook"></a>
+                <a href="#"><img src="https://img.icons8.com/ios-filled/24/ffffff/twitter.png" alt="Twitter"></a>
+                <a href="#"><img src="https://img.icons8.com/ios-filled/24/ffffff/linkedin.png" alt="LinkedIn"></a>
+                <a href="#"><img src="https://img.icons8.com/ios-filled/24/ffffff/youtube.png" alt="YouTube"></a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Filter functionality
+        document.addEventListener('DOMContentLoaded', function () {
+            const filterTabs = document.querySelectorAll('.filter-tab');
+            const programCards = document.querySelectorAll('.program-card');
+
+            filterTabs.forEach(tab => {
+                tab.addEventListener('click', function () {
+                    // Remove active class from all tabs
+                    filterTabs.forEach(t => t.classList.remove('active'));
+                    // Add active class to clicked tab
+                    this.classList.add('active');
+
+                    const filter = this.getAttribute('data-filter');
+
+                    programCards.forEach(card => {
+                        if (filter === 'all' || card.getAttribute('data-category') === filter) {
+                            card.style.display = 'block';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            });
+
+            // Mobile menu toggle
+            const menuToggle = document.querySelector('.menu-toggle');
+            const navLinks = document.querySelector('.nav-links');
+
+            if (menuToggle) {
+                menuToggle.addEventListener('click', function () {
+                    navLinks.classList.toggle('active');
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>
