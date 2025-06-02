@@ -293,6 +293,7 @@ header {
         opacity: 0;
         transform: translateX(-50px);
     }
+
     100% {
         opacity: 1;
         transform: translateX(0);
@@ -304,6 +305,7 @@ header {
         opacity: 0;
         transform: translateX(50px);
     }
+
     100% {
         opacity: 1;
         transform: translateX(0);
@@ -318,7 +320,7 @@ header {
     opacity: 0;
 }
 
-.hero > div:last-child {
+.hero>div:last-child {
     flex: 1;
     display: flex;
     justify-content: center;
@@ -344,6 +346,7 @@ header {
         opacity: 0;
         transform: translateY(20px);
     }
+
     100% {
         opacity: 1;
         transform: translateY(0);
@@ -1162,6 +1165,10 @@ h2 {
 .form-group.visible {
     opacity: 1;
     transform: translateY(0);
+}
+
+.required{
+    color: red;
 }
 
 label {
