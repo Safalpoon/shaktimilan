@@ -324,3 +324,132 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 });
+
+
+//slider home page
+let currentSlideIndex = 0;
+const slides = document.querySelectorAll('.carousel-slide');
+const dots = document.querySelectorAll('.nav-dot');
+const totalSlides = slides.length;
+let slideInterval;
+
+// Function to show a specific slide
+function showSlide(index) {
+    // Remove active class from all slides and dots
+    slides.forEach(slide => slide.classList.remove('active'));
+    dots.forEach(dot => dot.classList.remove('active'));
+
+    // Add active class to current slide and dot
+    slides[index].classList.add('active');
+    dots[index].classList.add('active');
+
+    // Trigger animations
+    const animatedElements = slides[index].querySelectorAll('.animated');
+    animatedElements.forEach(element => {
+        element.style.animation = 'none';
+        element.offsetHeight; // Trigger reflow
+        element.style.animation = null;
+    });
+}
+
+// Function to go to next slide
+function nextSlide() {
+    currentSlideIndex = (currentSlideIndex + 1) % totalSlides;
+    showSlide(currentSlideIndex);
+}
+
+// Function to go to previous slide
+function prevSlide() {
+    currentSlideIndex = (currentSlideIndex - 1 + totalSlides) % totalSlides;
+    showSlide(currentSlideIndex);
+}
+
+// Function to change slide by direction
+function changeSlide(direction) {
+    if (direction === 1) {
+        nextSlide();
+    } else {
+        prevSlide();
+    }
+    resetInterval();
+}
+
+// Function to go to specific slide
+function currentSlide(index) {
+    currentSlideIndex = index - 1;
+    showSlide(currentSlideIndex);
+    resetInterval();
+}
+
+// Function to start auto-slide
+function startSlideShow() {
+    slideInterval = setInterval(nextSlide, 5000); // Change slide every 5 seconds
+}
+
+// Function to reset interval
+function resetInterval() {
+    clearInterval(slideInterval);
+    startSlideShow();
+}
+
+// Keyboard navigation
+document.addEventListener('keydown', function (event) {
+    if (event.key === 'ArrowLeft') {
+        changeSlide(-1);
+    } else if (event.key === 'ArrowRight') {
+        changeSlide(1);
+    }
+});
+
+// Touch/swipe support for mobile
+let touchStartX = 0;
+let touchEndX = 0;
+
+document.addEventListener('touchstart', function (event) {
+    touchStartX = event.changedTouches[0].screenX;
+});
+
+document.addEventListener('touchend', function (event) {
+    touchEndX = event.changedTouches[0].screenX;
+    handleSwipe();
+});
+
+function handleSwipe() {
+    const swipeThreshold = 50;
+    const diff = touchStartX - touchEndX;
+
+    if (Math.abs(diff) > swipeThreshold) {
+        if (diff > 0) {
+            // Swiped left - go to next slide
+            changeSlide(1);
+        } else {
+            // Swiped right - go to previous slide
+            changeSlide(-1);
+        }
+    }
+}
+
+// Pause auto-slide on hover
+const carousel = document.querySelector('.header-carousel');
+carousel.addEventListener('mouseenter', function () {
+    clearInterval(slideInterval);
+});
+
+carousel.addEventListener('mouseleave', function () {
+    startSlideShow();
+});
+
+// Initialize the slideshow
+document.addEventListener('DOMContentLoaded', function () {
+    showSlide(0);
+    startSlideShow();
+});
+
+// Handle visibility change (pause when tab is not active)
+document.addEventListener('visibilitychange', function () {
+    if (document.hidden) {
+        clearInterval(slideInterval);
+    } else {
+        startSlideShow();
+    }
+});
