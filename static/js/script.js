@@ -327,129 +327,148 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 //slider home page
-let currentSlideIndex = 0;
-const slides = document.querySelectorAll('.carousel-slide');
-const dots = document.querySelectorAll('.nav-dot');
-const totalSlides = slides.length;
-let slideInterval;
+class Carousel {
+    constructor() {
+        this.currentSlide = 0;
+        this.slides = document.querySelectorAll('.carousel-slide');
+        this.dots = document.querySelectorAll('.nav-dot');
+        this.wrapper = document.querySelector('.carousel-wrapper');
+        this.totalSlides = this.slides.length;
+        this.autoPlayInterval = null;
 
-// Function to show a specific slide
-function showSlide(index) {
-    // Remove active class from all slides and dots
-    slides.forEach(slide => slide.classList.remove('active'));
-    dots.forEach(dot => dot.classList.remove('active'));
-
-    // Add active class to current slide and dot
-    slides[index].classList.add('active');
-    dots[index].classList.add('active');
-
-    // Trigger animations
-    const animatedElements = slides[index].querySelectorAll('.animated');
-    animatedElements.forEach(element => {
-        element.style.animation = 'none';
-        element.offsetHeight; // Trigger reflow
-        element.style.animation = null;
-    });
-}
-
-// Function to go to next slide
-function nextSlide() {
-    currentSlideIndex = (currentSlideIndex + 1) % totalSlides;
-    showSlide(currentSlideIndex);
-}
-
-// Function to go to previous slide
-function prevSlide() {
-    currentSlideIndex = (currentSlideIndex - 1 + totalSlides) % totalSlides;
-    showSlide(currentSlideIndex);
-}
-
-// Function to change slide by direction
-function changeSlide(direction) {
-    if (direction === 1) {
-        nextSlide();
-    } else {
-        prevSlide();
+        this.init();
     }
-    resetInterval();
-}
 
-// Function to go to specific slide
-function currentSlide(index) {
-    currentSlideIndex = index - 1;
-    showSlide(currentSlideIndex);
-    resetInterval();
-}
-
-// Function to start auto-slide
-function startSlideShow() {
-    slideInterval = setInterval(nextSlide, 5000); // Change slide every 5 seconds
-}
-
-// Function to reset interval
-function resetInterval() {
-    clearInterval(slideInterval);
-    startSlideShow();
-}
-
-// Keyboard navigation
-document.addEventListener('keydown', function (event) {
-    if (event.key === 'ArrowLeft') {
-        changeSlide(-1);
-    } else if (event.key === 'ArrowRight') {
-        changeSlide(1);
+    init() {
+        this.updateSlide();
+        this.startAutoPlay();
+        this.addEventListeners();
     }
-});
 
-// Touch/swipe support for mobile
-let touchStartX = 0;
-let touchEndX = 0;
+    addEventListeners() {
+        // Pause auto-play on hover
+        const container = document.querySelector('.carousel-container');
+        container.addEventListener('mouseenter', () => this.stopAutoPlay());
+        container.addEventListener('mouseleave', () => this.startAutoPlay());
 
-document.addEventListener('touchstart', function (event) {
-    touchStartX = event.changedTouches[0].screenX;
-});
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') {
+                this.changeSlide(-1);
+            } else if (e.key === 'ArrowRight') {
+                this.changeSlide(1);
+            }
+        });
 
-document.addEventListener('touchend', function (event) {
-    touchEndX = event.changedTouches[0].screenX;
-    handleSwipe();
-});
+        // Touch/swipe support
+        let startX = 0;
+        let endX = 0;
 
-function handleSwipe() {
-    const swipeThreshold = 50;
-    const diff = touchStartX - touchEndX;
+        container.addEventListener('touchstart', (e) => {
+            startX = e.touches[0].clientX;
+        });
 
-    if (Math.abs(diff) > swipeThreshold) {
-        if (diff > 0) {
-            // Swiped left - go to next slide
-            changeSlide(1);
-        } else {
-            // Swiped right - go to previous slide
-            changeSlide(-1);
+        container.addEventListener('touchend', (e) => {
+            endX = e.changedTouches[0].clientX;
+            this.handleSwipe(startX, endX);
+        });
+    }
+
+    handleSwipe(startX, endX) {
+        const threshold = 50;
+        const diff = startX - endX;
+
+        if (Math.abs(diff) > threshold) {
+            if (diff > 0) {
+                this.changeSlide(1); // Swipe left - next slide
+            } else {
+                this.changeSlide(-1); // Swipe right - previous slide
+            }
         }
     }
+
+    changeSlide(direction) {
+        this.currentSlide += direction;
+
+        if (this.currentSlide >= this.totalSlides) {
+            this.currentSlide = 0;
+        } else if (this.currentSlide < 0) {
+            this.currentSlide = this.totalSlides - 1;
+        }
+
+        this.updateSlide();
+        this.restartAutoPlay();
+    }
+
+    goToSlide(index) {
+        this.currentSlide = index;
+        this.updateSlide();
+        this.restartAutoPlay();
+    }
+
+    updateSlide() {
+        // Update slide position
+        const translateX = -this.currentSlide * 100;
+        this.wrapper.style.transform = `translateX(${translateX}%)`;
+
+        // Update active states
+        this.slides.forEach((slide, index) => {
+            slide.classList.toggle('active', index === this.currentSlide);
+        });
+
+        this.dots.forEach((dot, index) => {
+            dot.classList.toggle('active', index === this.currentSlide);
+        });
+
+        // Add animation classes
+        const currentSlideElement = this.slides[this.currentSlide];
+        const textElements = currentSlideElement.querySelectorAll('.main-title, .description, .cta-button');
+
+        textElements.forEach((element, index) => {
+            element.style.animation = 'none';
+            setTimeout(() => {
+                element.style.animation = `slideInLeft 0.6s ease-out ${index * 0.1}s both`;
+            }, 50);
+        });
+    }
+
+    startAutoPlay() {
+        this.autoPlayInterval = setInterval(() => {
+            this.changeSlide(1);
+        }, 5000);
+    }
+
+    stopAutoPlay() {
+        if (this.autoPlayInterval) {
+            clearInterval(this.autoPlayInterval);
+            this.autoPlayInterval = null;
+        }
+    }
+
+    restartAutoPlay() {
+        this.stopAutoPlay();
+        this.startAutoPlay();
+    }
 }
 
-// Pause auto-slide on hover
-const carousel = document.querySelector('.header-carousel');
-carousel.addEventListener('mouseenter', function () {
-    clearInterval(slideInterval);
+// Global functions for button onclick events
+function changeSlide(direction) {
+    carousel.changeSlide(direction);
+}
+
+function goToSlide(index) {
+    carousel.goToSlide(index);
+}
+
+// Initialize carousel when DOM is loaded
+let carousel;
+document.addEventListener('DOMContentLoaded', () => {
+    carousel = new Carousel();
 });
 
-carousel.addEventListener('mouseleave', function () {
-    startSlideShow();
-});
-
-// Initialize the slideshow
-document.addEventListener('DOMContentLoaded', function () {
-    showSlide(0);
-    startSlideShow();
-});
-
-// Handle visibility change (pause when tab is not active)
-document.addEventListener('visibilitychange', function () {
-    if (document.hidden) {
-        clearInterval(slideInterval);
-    } else {
-        startSlideShow();
+// Handle window resize
+window.addEventListener('resize', () => {
+    if (carousel) {
+        carousel.updateSlide();
     }
 });
