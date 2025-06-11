@@ -1691,6 +1691,7 @@ select:focus {
     background: white;
     opacity: 0.5;
     cursor: pointer;
+    border: none;
 }
 
 .nav-dot.active {
