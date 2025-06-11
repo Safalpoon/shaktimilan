@@ -1713,3 +1713,9 @@ select:focus {
 .slide-in-left {
     animation: slideInLeft 0.6s ease-out;
 }
+
+@media (max-width: 768px){
+    .nav-arrow {
+        padding: 0.3rem;
+    }
+}
