@@ -1723,6 +1723,7 @@ select:focus {
     align-items: center;
     height: 100%;
     padding: 3rem 0;
+    margin: 5rem 0;
 }
 
 .text-section {
@@ -1780,6 +1781,7 @@ select:focus {
 .nav-slide-button{
     margin: 30px;
 }
+
 .nav-dots {
     position: absolute;
     bottom: 2rem;
@@ -1827,6 +1829,9 @@ select:focus {
 }
 
 @media (max-width: 768px) {
+    .split-wrapper{
+        margin: 5rem 0;
+    }
     .container-div {
         padding: 0 1rem;
     }
