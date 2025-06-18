@@ -1520,7 +1520,7 @@ select:focus {
 
 /* Base Footer Styling */
 .footer {
-    background: #8B0000;
+    background: linear-gradient(135deg, #e22727, #d48888);
     color: #fff;
     padding: 30px 20px 5px 20px;
     font-family: Arial, sans-serif;
@@ -1715,8 +1715,40 @@ select:focus {
     animation: slideInLeft 0.6s ease-out;
 }
 
-@media (max-width: 768px){
+@media (max-width: 768px) {
     .nav-arrow {
         padding: 0.3rem;
+    }
+}
+
+.about-section-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    justify-content: space-evenly;
+}
+
+.about-card {
+    flex: 1 1 calc(50% - 12px);
+    /* Two cards per row with 24px gap */
+    box-sizing: border-box;
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.icon {
+    width: 40px;
+    height: 40px;
+    background-color: #037a5a;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+@media (max-width: 768px) {
+    .about-card {
+        flex: 1 1 100%;
+        /* Stack cards on small screens */
     }
 }

@@ -711,15 +711,15 @@
     gap: 15px;
 }
 
-.container p{
+.container p {
     color: #fff;
 }
 
-.container .about-content p{
+.container .about-content p {
     color: #666;
 }
 
-.container .timeline p{
+.container .timeline p {
     color: #666;
 }
 
@@ -1221,5 +1221,54 @@
     .contact-info-card,
     .contact-form-card {
         padding: 30px 20px;
+    }
+}
+
+.projects-hero {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 100px 0 60px;
+    text-align: center;
+}
+
+.projects-hero h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    font-weight: 700;
+    color: #ffff;
+}
+
+.projects-hero p {
+    font-size: 1.2rem;
+    max-width: 600px;
+    margin: 0 auto;
+    opacity: 0.9;
+    color: #ffff;
+}
+
+.breadcrumb {
+    background: #f8f9fa;
+    padding: 15px 0;
+}
+
+.breadcrumb-nav {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.breadcrumb-nav a {
+    color: #6c757d;
+    text-decoration: none;
+    margin-right: 10px;
+}
+
+.breadcrumb-nav a:hover {
+    color: #495057;
+}
+
+@media (max-width: 768px) {
+    .projects-hero h1 {
+        font-size: 2rem;
     }
 }
