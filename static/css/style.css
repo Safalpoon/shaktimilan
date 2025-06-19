@@ -221,6 +221,11 @@ header {
     color: #fff;
 }
 
+.hero1 h5{
+    color: #0000008a;
+    margin-bottom: 8px;
+}
+
 .hero-buttons {
     display: flex;
     gap: 1rem;
