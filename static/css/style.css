@@ -221,7 +221,7 @@ header {
     color: #fff;
 }
 
-.hero1 h5{
+.hero1 h5 {
     color: #0000008a;
     margin-bottom: 8px;
 }
@@ -590,6 +590,9 @@ header {
 .container {
     max-width: 1200px;
     margin: auto;
+}
+
+.container h2{
     text-align: center;
 }
 
@@ -742,6 +745,10 @@ p {
 .impact-container {
     max-width: 1300px;
     margin: 0 auto;
+}
+
+.impact-container:nth-child(1){
+    text-align: center;
 }
 
 .impact-container h2 {
@@ -1755,5 +1762,116 @@ select:focus {
     .about-card {
         flex: 1 1 100%;
         /* Stack cards on small screens */
+    }
+    .story-section{
+        flex-direction: column;
+    }
+}
+
+/*story section*/
+.story-section{
+    display: flex;
+     flex: 1 1 calc(50% - 12px);
+}
+
+.story-card {
+    background-color: #ffffff;
+    border-radius: 1rem;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+    margin: 1rem;
+    max-width: 600px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    animation: fadeIn 1s ease forwards;
+    opacity: 0;
+}
+
+/* Fade-in animation */
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+}
+
+.story-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.story-card h3 {
+    font-size: 1.5rem;
+    color: #037a5a;
+    /* Primary green color */
+    margin-bottom: 1rem;
+}
+
+.story-card .div-icon {
+    width: 50px;
+    height: 50px;
+    background-color: #037a5a;
+    border-radius: 50%;
+    margin-bottom: 1rem;
+}
+
+.story-card p {
+    font-size: 1rem;
+    color: #333;
+    line-height: 1.6;
+}
+
+
+.story-card .div-icon {
+    width: 60px;
+    height: 60px;
+    background-color: #037a5a;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.2rem;
+    box-shadow: 0 4px 10px rgba(3, 122, 90, 0.3);
+    transition: transform 0.3s ease;
+}
+
+/* Optional: Add an icon inside */
+.story-card .div-icon::before {
+    content: "🛡️";
+    /* Example emoji, replace with icon font or SVG if needed */
+    font-size: 1.5rem;
+    color: #fff;
+}
+
+/* Hover effect */
+.story-card .div-icon:hover {
+    transform: scale(1.1);
+}
+
+
+@media (max-width: 500px) {
+    .story-card {
+        padding: 1.2rem;
+    }
+
+    .story-card h3 {
+        font-size: 1.25rem;
+    }
+
+    .story-card .div-icon {
+        width: 50px;
+        height: 50px;
+    }
+
+    .story-card .div-icon::before {
+        font-size: 1.2rem;
+    }
+
+    .story-card p {
+        font-size: 0.95rem;
     }
 }

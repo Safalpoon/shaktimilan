@@ -2,227 +2,159 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="static/css/style.css">
-    <title>Carousel Test</title>
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            font-family: sans-serif;
-        }
-
-        .carousel-container {
-            position: relative;
-            width: 100%;
-            height: 100vh;
-            overflow: hidden;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        }
-
-        .carousel-wrapper {
-            display: flex;
-            height: 100%;
-            transition: transform 0.5s ease-in-out;
-        }
-
-        .carousel-slide {
-            min-width: 100%;
-            height: 100%;
-            opacity: 0;
-            transition: opacity 0.5s ease-in-out;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: white;
-            font-size: 2rem;
-            padding: 2rem;
-        }
-
-        .carousel-slide.active {
-            opacity: 1;
-        }
-
-        .nav-arrow {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(0, 0, 0, 0.3);
-            border: none;
-            color: white;
-            padding: 1rem;
-            border-radius: 50%;
-            cursor: pointer;
-            z-index: 10;
-        }
-
-        .prev-arrow {
-            left: 2rem;
-        }
-
-        .next-arrow {
-            right: 2rem;
-        }
-
-        .nav-dots {
-            position: absolute;
-            bottom: 1rem;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 0.5rem;
-        }
-
-        .nav-dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: white;
-            opacity: 0.5;
-            cursor: pointer;
-        }
-
-        .nav-dot.active {
-            opacity: 1;
-            background: #3b82f6;
-        }
-
-        @keyframes slideInLeft {
-            from {
-                opacity: 0;
-                transform: translateX(-30px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        .slide-in-left {
-            animation: slideInLeft 0.6s ease-out;
-        }
-    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
 </head>
 
 <body>
-    <div class="carousel-container">
-        <div class="carousel-wrapper">
-            <div class="carousel-slide">
-                <div class="slide-content slide-in-left">
-                    <div class="hero">
-                        <div class="hero1">
-                            <h5>Welcome to Shakti Milan Samaj</h5>
-                            <!-- <h1>Creating <span class="text-primary">sustainable change</span> and empowering communities
-                                around the world.</h1> -->
-                            <p class="description">
-                                Shakti Milan Samaj (SMS) is an apolitical, non-profit organization based in
-                                Kathmandu,
-                                Nepal started by three HIV positive women who were trafficked and rescued in
-                                1996, came
-                                together with a common mission to support and work for the empowerment of the
-                                trafficked
-                                HIV infected women and their children infected and affected by HIV.
-                            </p>
-                            <div class="hero-buttons">
-                                <a href="#about"><button>Learn More</button></a>
-                                <a href="#contact"><button class="donate-btn">Get Involved</button></a>
-                            </div>
-                        </div>
-                        <div>
-                            <img src="static/img/founder.jpg" alt="">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="carousel-slide">
-                <div class="slide-content slide-in-left">
-                    <div class="hero">
-                        <div class="hero1">
-                            <!-- <h1>Welcome to Shakti Milan Samaj</h1> -->
-                            <h1>Restoring Dignity, Fighting Stigma, and Uplifting Lives</h1>
-                            <div class="hero-buttons">
-                                <a href="#about"><button>Learn More</button></a>
-                                <a href="#contact"><button class="donate-btn">Get Involved</button></a>
-                            </div>
-                        </div>
-                        <div>
-                            <img src="static/img/founder.jpg" alt="">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <style>
+        body {
+            display: flex;
+        }
 
-        <button class="nav-arrow prev-arrow" onclick="changeSlide(-1)">&#8592;</button>
-        <button class="nav-arrow next-arrow" onclick="changeSlide(1)">&#8594;</button>
+        .about-card {
+            background-color: #ffffff;
+            border-radius: 1rem;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            margin: 1rem;
+            max-width: 600px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: fadeIn 1s ease forwards;
+            opacity: 0;
+        }
 
-        <div class="nav-dots">
-            <button class="nav-dot active" onclick="goToSlide(0)"></button>
-            <button class="nav-dot" onclick="goToSlide(1)"></button>
-        </div>
+        /* Fade-in animation */
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+        }
+
+        .about-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+        }
+
+        .about-card h3 {
+            font-size: 1.5rem;
+            color: #037a5a;
+            /* Primary green color */
+            margin-bottom: 1rem;
+        }
+
+        .about-card .div-icon {
+            width: 50px;
+            height: 50px;
+            background-color: #037a5a;
+            border-radius: 50%;
+            margin-bottom: 1rem;
+        }
+
+        .about-card p {
+            font-size: 1rem;
+            color: #333;
+            line-height: 1.6;
+        }
+
+
+        .about-card .div-icon {
+            width: 60px;
+            height: 60px;
+            background-color: #037a5a;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.2rem;
+            box-shadow: 0 4px 10px rgba(3, 122, 90, 0.3);
+            transition: transform 0.3s ease;
+        }
+
+        /* Optional: Add an icon inside */
+        .about-card .div-icon::before {
+            content: "🛡️";
+            /* Example emoji, replace with icon font or SVG if needed */
+            font-size: 1.5rem;
+            color: #fff;
+        }
+
+        /* Hover effect */
+        .about-card .div-icon:hover {
+            transform: scale(1.1);
+        }
+
+
+        @media (max-width: 500px) {
+            .about-card {
+                padding: 1.2rem;
+            }
+
+            .about-card h3 {
+                font-size: 1.25rem;
+            }
+
+            .about-card .div-icon {
+                width: 50px;
+                height: 50px;
+            }
+
+            .about-card .div-icon::before {
+                font-size: 1.2rem;
+            }
+
+            .about-card p {
+                font-size: 0.95rem;
+            }
+        }
+    </style>
+    <div class="about-card fade-in">
+        <h3>Prevention, rescue and rehabilitation in Human Trafficking:</h3>
+        <div class="div-icon"></div>
+        <p>
+            SMS works at the grassroots and systemic levels to prevent trafficking through education,
+            empowerment, and community vigilance. We support survivors with safe rescue/coordination,
+            trauma-informed rehabilitation, and holistic reintegration into society, ensuring that their
+            safety, rights, and dignity are upheld.
+        </p>
     </div>
-
-    <script>
-        class Carousel {
-            constructor() {
-                this.currentSlide = 0;
-                this.slides = document.querySelectorAll('.carousel-slide');
-                this.dots = document.querySelectorAll('.nav-dot');
-                this.wrapper = document.querySelector('.carousel-wrapper');
-                this.totalSlides = this.slides.length;
-                this.init();
-            }
-
-            init() {
-                this.updateSlide();
-            }
-
-            changeSlide(direction) {
-                this.currentSlide += direction;
-                if (this.currentSlide >= this.totalSlides) this.currentSlide = 0;
-                if (this.currentSlide < 0) this.currentSlide = this.totalSlides - 1;
-                this.updateSlide();
-            }
-
-            goToSlide(index) {
-                this.currentSlide = index;
-                this.updateSlide();
-            }
-
-            updateSlide() {
-                const translateX = -this.currentSlide * 100;
-                this.wrapper.style.transform = `translateX(${translateX}%)`;
-
-                this.slides.forEach((slide, i) =>
-                    slide.classList.toggle('active', i === this.currentSlide)
-                );
-                this.dots.forEach((dot, i) =>
-                    dot.classList.toggle('active', i === this.currentSlide)
-                );
-            }
-        }
-
-        const carousel = new Carousel();
-
-        function changeSlide(dir) {
-            carousel.changeSlide(dir);
-        }
-
-        function goToSlide(index) {
-            carousel.goToSlide(index);
-        }
-
-        const container = document.querySelector('.carousel-container');
-        container.addEventListener('mouseenter', () => this.stopAutoPlay());
-        container.addEventListener('mouseleave', () => this.startAutoPlay());
-
-    </script>
+    <div class="about-card fade-in">
+        <h3>Prevention, rescue and rehabilitation in Human Trafficking:</h3>
+        <div class="div-icon"></div>
+        <p>
+            SMS works at the grassroots and systemic levels to prevent trafficking through education,
+            empowerment, and community vigilance. We support survivors with safe rescue/coordination,
+            trauma-informed rehabilitation, and holistic reintegration into society, ensuring that their
+            safety, rights, and dignity are upheld.
+        </p>
+    </div>
+    <div class="about-card fade-in">
+        <h3>Prevention, rescue and rehabilitation in Human Trafficking:</h3>
+        <div class="div-icon"></div>
+        <p>
+            SMS works at the grassroots and systemic levels to prevent trafficking through education,
+            empowerment, and community vigilance. We support survivors with safe rescue/coordination,
+            trauma-informed rehabilitation, and holistic reintegration into society, ensuring that their
+            safety, rights, and dignity are upheld.
+        </p>
+    </div>
+    <div class="about-card fade-in">
+        <h3>Prevention, rescue and rehabilitation in Human Trafficking:</h3>
+        <div class="div-icon"></div>
+        <p>
+            SMS works at the grassroots and systemic levels to prevent trafficking through education,
+            empowerment, and community vigilance. We support survivors with safe rescue/coordination,
+            trauma-informed rehabilitation, and holistic reintegration into society, ensuring that their
+            safety, rights, and dignity are upheld.
+        </p>
+    </div>
 </body>
 
 </html>
