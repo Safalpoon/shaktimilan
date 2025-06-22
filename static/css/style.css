@@ -1768,6 +1768,12 @@ select:focus {
     }
 }
 
+@media (max-width: 900px){
+    .story-section{
+        flex-wrap: wrap;
+    }
+}
+
 /*story section*/
 .story-section{
     display: flex;
@@ -1805,7 +1811,7 @@ select:focus {
 }
 
 .story-card h3 {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     color: #037a5a;
     /* Primary green color */
     margin-bottom: 1rem;
@@ -1820,7 +1826,7 @@ select:focus {
 }
 
 .story-card p {
-    font-size: 1rem;
+    font-size: 0.9rem;
     color: #333;
     line-height: 1.6;
 }
