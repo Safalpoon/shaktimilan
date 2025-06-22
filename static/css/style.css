@@ -563,6 +563,7 @@ header {
 .about-card p {
     color: #8B0000;
     font-size: 0.95rem;
+    text-align: left;
 }
 
 .about-card .icon {
@@ -592,7 +593,7 @@ header {
     margin: auto;
 }
 
-.container h2{
+.container h2 {
     text-align: center;
 }
 
@@ -747,7 +748,7 @@ p {
     margin: 0 auto;
 }
 
-.impact-container:nth-child(1){
+.impact-container:nth-child(1) {
     text-align: center;
 }
 
@@ -1753,7 +1754,7 @@ select:focus {
 .div-icon {
     width: 40px;
     height: 40px;
-    background-color: #037a5a;
+    background-color: #bf3434;
     border-radius: 50%;
     margin-bottom: 10px;
 }
@@ -1763,21 +1764,25 @@ select:focus {
         flex: 1 1 100%;
         /* Stack cards on small screens */
     }
-    .story-section{
+
+    .story-section {
         flex-direction: column;
     }
 }
 
-@media (max-width: 900px){
-    .story-section{
+@media (max-width: 900px) {
+    .story-section {
         flex-wrap: wrap;
     }
 }
 
 /*story section*/
-.story-section{
+.story-section {
     display: flex;
-     flex: 1 1 calc(50% - 12px);
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+
 }
 
 .story-card {
@@ -1790,6 +1795,21 @@ select:focus {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     animation: fadeIn 1s ease forwards;
     opacity: 0;
+    flex: 1 1 calc(20% - 20px);
+    min-width: 300px;
+    max-width: 400px;
+}
+/* 
+@media (max-width: 300px) {
+    .story-card {
+        flex: 1 1 calc(50% - 15px);
+    }
+} */
+
+@media (max-width:768px) {
+    .story-card {
+        flex-direction: column;
+    }
 }
 
 /* Fade-in animation */
@@ -1812,7 +1832,7 @@ select:focus {
 
 .story-card h3 {
     font-size: 1.2rem;
-    color: #037a5a;
+    color: #B80000;
     /* Primary green color */
     margin-bottom: 1rem;
 }
