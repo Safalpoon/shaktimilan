@@ -1777,15 +1777,23 @@ select:focus {
 }
 
 /*story section*/
+.story-head {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
 .story-section {
     display: flex;
     flex-wrap: wrap;
     gap: 30px;
     justify-content: center;
-
+    max-width: 1450px;
+    margin: 0 auto;
 }
 
 .story-card {
+    display: flex;
+    flex-wrap: wrap;
     background-color: #ffffff;
     border-radius: 1rem;
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
@@ -1799,6 +1807,7 @@ select:focus {
     min-width: 300px;
     max-width: 400px;
 }
+
 /* 
 @media (max-width: 300px) {
     .story-card {
@@ -1838,6 +1847,7 @@ select:focus {
 }
 
 .story-card .div-icon {
+
     width: 50px;
     height: 50px;
     background-color: #037a5a;
@@ -1853,6 +1863,8 @@ select:focus {
 
 
 .story-card .div-icon {
+    display: flex;
+    flex-wrap: wrap;
     width: 60px;
     height: 60px;
     background-color: #a0060668;
@@ -1860,10 +1872,10 @@ select:focus {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 1.2rem;
     box-shadow: 0 4px 10px rgba(3, 122, 90, 0.3);
     transition: transform 0.3s ease;
     font-size: 1.5rem;
+    margin: 0 auto 1.2rem auto;
 }
 
 /* Optional: Add an icon inside */
@@ -1872,6 +1884,8 @@ select:focus {
     /* Example emoji, replace with icon font or SVG if needed */
     font-size: 1.5rem;
     color: #fff;
+    justify-content: center;
+    align-items: center;
 }
 
 /* Hover effect */
