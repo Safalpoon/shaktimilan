@@ -63,59 +63,52 @@
             </div>
         </div>
     </header> -->
-    <div class="carousel-container">
-        <div class="carousel-wrapper">
-            <div class="carousel-slide">
-                <div class="slide-content slide-in-left">
-                    <div class="hero">
-                        <div class="hero1">
-                            <h5>Welcome to Shakti Milan Samaj</h5>
-                            <!-- <h1>Creating <span class="text-primary">sustainable change</span> and empowering communities
-                                around the world.</h1> -->
-                            <p class="description">
-                                Shakti Milan Samaj (SMS) is an apolitical, non-profit organization based in Kathmandu,
-                                Nepal, founded in 1996 by three courageous women who were trafficked, rescued, and
-                                living with HIV. United by their shared experiences and determination, they established
-                                SMS with a mission to empower women and girls living with HIV/AIDS, survivors of
-                                trafficking and victims of gender-based violence through access to adequate care,
-                                sustainable advocacy, and community-led transformation..
-                            </p>
-                            <div class="hero-buttons">
-                                <a href="about.html"><button>Learn More</button></a>
-                                <!-- <a href="#contact"><button class="donate-btn">Get Involved</button></a> -->
-                            </div>
-                        </div>
-                        <div class="hero-img">
-                            <img src="static/img/main page/main1.jpg.jpg" alt="">
-                        </div>
-                    </div>
+    <div class="hero-carousel">
+        <div class="slides-container">
+            <!-- Slide 1 -->
+            <div class="slide active"
+                style="background-image: url('static/img/main page/main1.jpg.jpg');">
+                <div class="overlay">
+                    <h2>Welcome to Shakti Milan Samaj</h2>
+                    <p>Shakti Milan Samaj (SMS) is an apolitical, non-profit organization based in Kathmandu, Nepal,
+                        founded in 1996 by three courageous women who were trafficked, rescued, and living with HIV.
+                        United by their shared experiences and determination, they established SMS with a mission to
+                        empower women and girls living with HIV/AIDS, survivors of trafficking and victims of
+                        gender-based violence through access to adequate care, sustainable advocacy, and community-led
+                        transformation.</p>
+                    <a href="about.html"><button>Learn More</button></a>
                 </div>
             </div>
-            <div class="carousel-slide">
-                <div class="slide-content slide-in-left">
-                    <div class="hero">
-                        <div class="hero1">
-                            <!-- <h1>Welcome to Shakti Milan Samaj</h1> -->
-                            <h1>Restoring Dignity, Fighting Stigma, and Uplifting Lives</h1>
-                            <div class="hero-buttons">
-                                <!-- <a href="#about"><button>Learn More</button></a> -->
-                                <a href="contact.html"><button class="donate-btn">Get Involved</button></a>
-                            </div>
-                        </div>
-                        <div class="hero-img">
-                            <img src="static/img/main page/main2.jpg.jpg" alt="">
-                        </div>
-                    </div>
+
+            <!-- Slide 2 -->
+            <div class="slide"
+                style="background-image: url('static/img/main page/main2.jpg.jpg');">
+                <div class="overlay">
+                    <h2>Restoring Dignity, Fighting Stigma, and Uplifting Lives</h2>
+                    <p>We fight stigma and uplift lives through sustainable advocacy and care.</p>
+                    <a href="contact.html"><button class="donate-btn">Get Involved</button></a>
+                </div>
+            </div>
+
+            <!-- Slide 3 -->
+            <div class="slide" style="background-image: url('static/img/founder.jpg');">
+                <div class="overlay">
+                    <h2>Leading Community Transformation</h2>
+                    <p>Together we build a stronger, inclusive, and resilient society.</p>
+                    <a href="contact.html"><button class="donate-btn">Join Us</button></a>
                 </div>
             </div>
         </div>
 
-        <button class="nav-arrow prev-arrow" onclick="changeSlide(-1)">&#8592;</button>
-        <button class="nav-arrow next-arrow" onclick="changeSlide(1)">&#8594;</button>
+        <!-- Navigation -->
+        <button class="nav prev" onclick="prevSlide()">&#10094;</button>
+        <button class="nav next" onclick="nextSlide()">&#10095;</button>
 
-        <div class="nav-dots">
-            <button class="nav-dot active" onclick="goToSlide(0)"></button>
-            <button class="nav-dot" onclick="goToSlide(1)"></button>
+        <!-- Dots -->
+        <div class="dots">
+            <span class="dot active" onclick="goToSlide(0)"></span>
+            <span class="dot" onclick="goToSlide(1)"></span>
+            <span class="dot" onclick="goToSlide(2)"></span>
         </div>
     </div>
 
@@ -658,6 +651,45 @@
     </div>
 
     <script src="static/js/script.js"></script>
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const dots = document.querySelectorAll('.dot');
+        const container = document.querySelector('.slides-container');
+
+        function showSlide(index) {
+            currentSlide = index;
+            container.style.transform = `translateX(-${index * 100}%)`;
+
+            slides.forEach((slide, i) => {
+                dots[i].classList.toggle('active', i === index);
+            });
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+        }
+
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+            showSlide(currentSlide);
+        }
+
+        function goToSlide(index) {
+            showSlide(index);
+        }
+
+        // Auto-play every 6 seconds
+        let autoPlay = setInterval(nextSlide, 6000);
+
+        // Pause on hover
+        document.querySelector('.hero-carousel').addEventListener('mouseover', () => clearInterval(autoPlay));
+        document.querySelector('.hero-carousel').addEventListener('mouseout', () => {
+            autoPlay = setInterval(nextSlide, 6000);
+        });
+
+    </script>
 </body>
 
 </html>

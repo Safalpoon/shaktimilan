@@ -327,129 +327,46 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 //slider home page
-class Carousel {
-    constructor() {
-        this.currentSlide = 0;
-        this.slides = document.querySelectorAll('.carousel-slide');
-        this.dots = document.querySelectorAll('.nav-dot');
-        this.wrapper = document.querySelector('.carousel-wrapper');
-        this.totalSlides = this.slides.length;
-        this.autoPlayInterval = null;
+let currentSlide = 0;
+const slides = document.querySelectorAll('.slide');
+const dots = document.querySelectorAll('.dot');
+const container = document.querySelector('.slides-container');
 
-        this.init();
-    }
+function showSlide(index) {
+    currentSlide = index;
+    container.style.transform = `translateX(-${index * 100}%)`;
 
-    init() {
-        this.updateSlide();
-        this.startAutoPlay();
-        this.addEventListeners();
-    }
-
-    addEventListeners() {
-        // Pause auto-play on hover
-        const container = document.querySelector('.carousel-container');
-        container.addEventListener('mouseenter', () => this.stopAutoPlay());
-        container.addEventListener('mouseleave', () => this.startAutoPlay());
-
-        // Keyboard navigation
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'ArrowLeft') {
-                this.changeSlide(-1);
-            } else if (e.key === 'ArrowRight') {
-                this.changeSlide(1);
-            }
-        });
-
-        // Touch/swipe support
-        let startX = 0;
-        let endX = 0;
-
-        container.addEventListener('touchstart', (e) => {
-            startX = e.touches[0].clientX;
-        });
-
-        container.addEventListener('touchend', (e) => {
-            endX = e.changedTouches[0].clientX;
-            this.handleSwipe(startX, endX);
-        });
-    }
-
-    handleSwipe(startX, endX) {
-        const threshold = 50;
-        const diff = startX - endX;
-
-        if (Math.abs(diff) > threshold) {
-            if (diff > 0) {
-                this.changeSlide(1); // Swipe left - next slide
-            } else {
-                this.changeSlide(-1); // Swipe right - previous slide
-            }
-        }
-    }
-
-    changeSlide(direction) {
-        this.currentSlide += direction;
-
-        if (this.currentSlide >= this.totalSlides) {
-            this.currentSlide = 0;
-        } else if (this.currentSlide < 0) {
-            this.currentSlide = this.totalSlides - 1;
-        }
-
-        this.updateSlide();
-        this.restartAutoPlay();
-    }
-
-    goToSlide(index) {
-        this.currentSlide = index;
-        this.updateSlide();
-        this.restartAutoPlay();
-    }
-
-    updateSlide() {
-        // Update slide position
-        const translateX = -this.currentSlide * 100;
-        this.wrapper.style.transform = `translateX(${translateX}%)`;
-
-        // Update active states
-        this.slides.forEach((slide, index) => {
-            slide.classList.toggle('active', index === this.currentSlide);
-        });
-
-        this.dots.forEach((dot, index) => {
-            dot.classList.toggle('active', index === this.currentSlide);
-        });
-
-        // Add animation classes
-        const currentSlideElement = this.slides[this.currentSlide];
-        const textElements = currentSlideElement.querySelectorAll('.main-title, .description, .cta-button');
-
-        textElements.forEach((element, index) => {
-            element.style.animation = 'none';
-            setTimeout(() => {
-                element.style.animation = `slideInLeft 0.6s ease-out ${index * 0.1}s both`;
-            }, 50);
-        });
-    }
-
-    startAutoPlay() {
-        this.autoPlayInterval = setInterval(() => {
-            this.changeSlide(1);
-        }, 5000);
-    }
-
-    stopAutoPlay() {
-        if (this.autoPlayInterval) {
-            clearInterval(this.autoPlayInterval);
-            this.autoPlayInterval = null;
-        }
-    }
-
-    restartAutoPlay() {
-        this.stopAutoPlay();
-        this.startAutoPlay();
-    }
+    slides.forEach((slide, i) => {
+        dots[i].classList.toggle('active', i === index);
+    });
 }
+
+function nextSlide() {
+    currentSlide = (currentSlide + 1) % slides.length;
+    showSlide(currentSlide);
+}
+
+function prevSlide() {
+    currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+    showSlide(currentSlide);
+}
+
+function goToSlide(index) {
+    showSlide(index);
+}
+
+// Auto-play every 6 seconds
+let autoPlay = setInterval(nextSlide, 6000);
+
+// Pause on hover
+document.querySelector('.hero-carousel').addEventListener('mouseover', () => clearInterval(autoPlay));
+document.querySelector('.hero-carousel').addEventListener('mouseout', () => {
+    autoPlay = setInterval(nextSlide, 6000);
+});
+
+
+
+
 
 // Global functions for button onclick events
 function changeSlide(direction) {

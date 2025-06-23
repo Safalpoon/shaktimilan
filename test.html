@@ -2,159 +2,293 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shakti Milan Samaj Slider</title>
+    <link rel="stylesheet" href="" />
 </head>
 
 <body>
     <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
         body {
+            font-family: 'Segoe UI', sans-serif;
+            background: #f4f4f4;
+        }
+
+        .hero-carousel {
+            position: relative;
+            width: 100%;
+            height: 100dvh;
+            /* Use dynamic vh unit for mobile compatibility */
+            overflow: hidden;
+        }
+
+        .slides-container {
             display: flex;
+            width: 300%;
+            height: 100%;
+            transition: transform 0.8s ease-in-out;
         }
 
-        .story-card {
-            background-color: #ffffff;
-            border-radius: 1rem;
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-            padding: 2rem;
-            margin: 1rem;
-            max-width: 600px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            animation: fadeIn 1s ease forwards;
-            opacity: 0;
+        .slide {
+            flex: 1 0 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            position: relative;
         }
 
-        /* Fade-in animation */
-        @keyframes fadeIn {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
+        .overlay {
+            position: absolute;
+            top: 50%;
+            left: 2%;
+            transform: translateY(-50%);
+            color: white;
+            max-width: 1000px;
+            z-index: 1;
+            padding: 1rem;
         }
 
-        .story-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+        .overlay h2 {
+            font-size: 3rem;
+            margin-bottom: 1.25rem;
+            text-shadow: 2px 2px 5px #000;
         }
 
-        .story-card h3 {
-            font-size: 1.5rem;
-            color: #037a5a;
-            /* Primary green color */
-            margin-bottom: 1rem;
+        .overlay p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            text-shadow: 1px 1px 3px #000;
         }
 
-        .story-card .div-icon {
-            width: 50px;
-            height: 50px;
-            background-color: #037a5a;
-            border-radius: 50%;
-            margin-bottom: 1rem;
-        }
-
-        .story-card p {
+        .overlay button {
+            padding: 0.75rem 1.5rem;
+            background: #037a5a;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
             font-size: 1rem;
-            color: #333;
-            line-height: 1.6;
+            transition: background 0.3s ease;
         }
 
+        .overlay button:hover {
+            background: #025f45;
+        }
 
-        .story-card .div-icon {
-            width: 60px;
-            height: 60px;
+        .nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 2rem;
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 0.625rem 1rem;
+            cursor: pointer;
+            z-index: 2;
+            border-radius: 50%;
+        }
+
+        .nav.prev {
+            left: 1rem;
+        }
+
+        .nav.next {
+            right: 1rem;
+        }
+
+        .dots {
+            position: absolute;
+            bottom: 1.25rem;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+        }
+
+        .dot {
+            height: 12px;
+            width: 12px;
+            margin: 0 5px;
+            background-color: #ccc;
+            border-radius: 50%;
+            display: inline-block;
+            cursor: pointer;
+        }
+
+        .dot.active {
             background-color: #037a5a;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 1.2rem;
-            box-shadow: 0 4px 10px rgba(3, 122, 90, 0.3);
-            transition: transform 0.3s ease;
         }
 
-        /* Optional: Add an icon inside */
-        .story-card .div-icon::before {
-            content: "🛡️";
-            /* Example emoji, replace with icon font or SVG if needed */
-            font-size: 1.5rem;
-            color: #fff;
+        /* Tablets and down */
+        @media (max-width: 768px) {
+            .overlay {
+                left: 5%;
+                right: 5%;
+                top: 55%;
+                transform: translateY(-50%);
+                max-width: 400px;
+                padding: 0.75rem;
+            }
+
+            .overlay h2 {
+                font-size: 2rem;
+            }
+
+            .overlay p {
+                font-size: 1rem;
+                margin-bottom: 1.25rem;
+            }
+
+            .overlay button {
+                font-size: 0.9rem;
+                padding: 0.625rem 1.25rem;
+            }
+
+            .nav {
+                font-size: 1.5rem;
+                padding: 0.5rem 0.75rem;
+            }
+
+            .dot {
+                height: 10px;
+                width: 10px;
+            }
         }
 
-        /* Hover effect */
-        .story-card .div-icon:hover {
-            transform: scale(1.1);
+        @media (max-width: 400px) {
+            .overlay {
+                max-width: 300px;
+            }
         }
 
-
-        @media (max-width: 500px) {
-            .story-card {
-                padding: 1.2rem;
+        /* Small mobile phones: 350px and below */
+        @media (max-width: 350px) {
+            .overlay {
+                top: 60%;
+                left: 5%;
+                max-width: 300px;
+                padding: 0.5rem;
             }
 
-            .story-card h3 {
-                font-size: 1.25rem;
+            .overlay h2 {
+                font-size: 1.4rem;
+                line-height: 1.2;
             }
 
-            .story-card .div-icon {
-                width: 50px;
-                height: 50px;
+            .overlay p {
+                font-size: 0.9rem;
+                line-height: 1.4;
             }
 
-            .story-card .div-icon::before {
+            .overlay button {
+                font-size: 0.85rem;
+                padding: 0.5rem 0.875rem;
+            }
+
+            .nav {
                 font-size: 1.2rem;
+                padding: 0.375rem 0.625rem;
             }
 
-            .story-card p {
-                font-size: 0.95rem;
+            .dot {
+                height: 8px;
+                width: 8px;
             }
         }
     </style>
-    <div class="about-card fade-in">
-        <h3>Prevention, rescue and rehabilitation in Human Trafficking:</h3>
-        <div class="div-icon"></div>
-        <p>
-            SMS works at the grassroots and systemic levels to prevent trafficking through education,
-            empowerment, and community vigilance. We support survivors with safe rescue/coordination,
-            trauma-informed rehabilitation, and holistic reintegration into society, ensuring that their
-            safety, rights, and dignity are upheld.
-        </p>
+    <div class="hero-carousel">
+        <div class="slides-container">
+            <!-- Slide 1 -->
+            <div class="slide active" style="background-image: url('static/img/main page/main1.jpg.jpg');">
+                <div class="overlay">
+                    <h2>Welcome to Shakti Milan Samaj</h2>
+                    <p>Shakti Milan Samaj (SMS) is an apolitical, non-profit organization based in Kathmandu, Nepal,
+                        founded in 1996 by three courageous women who were trafficked, rescued, and living with HIV.
+                        United by their shared experiences and determination, they established SMS with a mission to
+                        empower women and girls living with HIV/AIDS, survivors of trafficking and victims of
+                        gender-based violence through access to adequate care, sustainable advocacy, and community-led
+                        transformation.</p>
+                    <a href="about.html"><button>Learn More</button></a>
+                </div>
+            </div>
+
+            <!-- Slide 2 -->
+            <div class="slide" style="background-image: url('static/img/main page/main2.jpg.jpg');">
+                <div class="overlay">
+                    <h2>Restoring Dignity, Fighting Stigma, and Uplifting Lives</h2>
+                    <p>We fight stigma and uplift lives through sustainable advocacy and care.</p>
+                    <a href="contact.html"><button class="donate-btn">Get Involved</button></a>
+                </div>
+            </div>
+
+            <!-- Slide 3 -->
+            <div class="slide" style="background-image: url('static/img/founder.jpg');">
+                <div class="overlay">
+                    <h2>Leading Community Transformation</h2>
+                    <p>Together we build a stronger, inclusive, and resilient society.</p>
+                    <a href="contact.html"><button class="donate-btn">Join Us</button></a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation -->
+        <button class="nav prev" onclick="prevSlide()">&#10094;</button>
+        <button class="nav next" onclick="nextSlide()">&#10095;</button>
+
+        <!-- Dots -->
+        <div class="dots">
+            <span class="dot active" onclick="goToSlide(0)"></span>
+            <span class="dot" onclick="goToSlide(1)"></span>
+            <span class="dot" onclick="goToSlide(2)"></span>
+        </div>
     </div>
-    <div class="about-card fade-in">
-        <h3>Prevention, rescue and rehabilitation in Human Trafficking:</h3>
-        <div class="div-icon"></div>
-        <p>
-            SMS works at the grassroots and systemic levels to prevent trafficking through education,
-            empowerment, and community vigilance. We support survivors with safe rescue/coordination,
-            trauma-informed rehabilitation, and holistic reintegration into society, ensuring that their
-            safety, rights, and dignity are upheld.
-        </p>
-    </div>
-    <div class="about-card fade-in">
-        <h3>Prevention, rescue and rehabilitation in Human Trafficking:</h3>
-        <div class="div-icon"></div>
-        <p>
-            SMS works at the grassroots and systemic levels to prevent trafficking through education,
-            empowerment, and community vigilance. We support survivors with safe rescue/coordination,
-            trauma-informed rehabilitation, and holistic reintegration into society, ensuring that their
-            safety, rights, and dignity are upheld.
-        </p>
-    </div>
-    <div class="about-card fade-in">
-        <h3>Prevention, rescue and rehabilitation in Human Trafficking:</h3>
-        <div class="div-icon"></div>
-        <p>
-            SMS works at the grassroots and systemic levels to prevent trafficking through education,
-            empowerment, and community vigilance. We support survivors with safe rescue/coordination,
-            trauma-informed rehabilitation, and holistic reintegration into society, ensuring that their
-            safety, rights, and dignity are upheld.
-        </p>
-    </div>
+
+    <script src="script.js"></script>
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const dots = document.querySelectorAll('.dot');
+        const container = document.querySelector('.slides-container');
+
+        function showSlide(index) {
+            currentSlide = index;
+            container.style.transform = `translateX(-${index * 100}%)`;
+
+            slides.forEach((slide, i) => {
+                dots[i].classList.toggle('active', i === index);
+            });
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+        }
+
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+            showSlide(currentSlide);
+        }
+
+        function goToSlide(index) {
+            showSlide(index);
+        }
+
+        // Auto-play every 6 seconds
+        let autoPlay = setInterval(nextSlide, 6000);
+
+        // Pause on hover
+        document.querySelector('.hero-carousel').addEventListener('mouseover', () => clearInterval(autoPlay));
+        document.querySelector('.hero-carousel').addEventListener('mouseout', () => {
+            autoPlay = setInterval(nextSlide, 6000);
+        });
+    </script>
 </body>
 
 </html>
