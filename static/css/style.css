@@ -1764,16 +1764,21 @@ select:focus {
     .overlay {
         padding: 1rem;
     }
+    .story-img img{
+       width: 90%;
+    }
 }
 
 @media (max-width: 480px) {
     .overlay {
         padding: 0.8rem;
         max-width: 90%;
-        left: 10%;
     }
 
     .overlay button {
+        width: 100%;
+    }
+    .story-img img{
         width: 100%;
     }
 }
@@ -1802,8 +1807,8 @@ select:focus {
 }
 
 .story-img img {
-    width: 600px;
-    height: 450px;
+    width: 80%;
+    height: 60%;
     margin-bottom: 1.5rem;
     border-radius: 5px;
 }
