@@ -65,9 +65,7 @@
     </header> -->
     <div class="hero-carousel">
         <div class="slides-container">
-            <!-- Slide 1 -->
-            <div class="slide active"
-                style="background-image: url('static/img/main page/main1.jpg.jpg');">
+            <div class="slide active" style="background-image: url('static/img/main page/main1.jpg.jpg');">
                 <div class="overlay">
                     <h2>Welcome to Shakti Milan Samaj</h2>
                     <p>Shakti Milan Samaj (SMS) is an apolitical, non-profit organization based in Kathmandu, Nepal,
@@ -80,9 +78,7 @@
                 </div>
             </div>
 
-            <!-- Slide 2 -->
-            <div class="slide"
-                style="background-image: url('static/img/main page/main2.jpg.jpg');">
+            <div class="slide" style="background-image: url('static/img/main page/main2.jpg.jpg');">
                 <div class="overlay">
                     <h2>Restoring Dignity, Fighting Stigma, and Uplifting Lives</h2>
                     <p>We fight stigma and uplift lives through sustainable advocacy and care.</p>
@@ -90,7 +86,6 @@
                 </div>
             </div>
 
-            <!-- Slide 3 -->
             <div class="slide" style="background-image: url('static/img/founder.jpg');">
                 <div class="overlay">
                     <h2>Leading Community Transformation</h2>
@@ -100,17 +95,16 @@
             </div>
         </div>
 
-        <!-- Navigation -->
         <button class="nav prev" onclick="prevSlide()">&#10094;</button>
         <button class="nav next" onclick="nextSlide()">&#10095;</button>
 
-        <!-- Dots -->
         <div class="dots">
             <span class="dot active" onclick="goToSlide(0)"></span>
             <span class="dot" onclick="goToSlide(1)"></span>
             <span class="dot" onclick="goToSlide(2)"></span>
         </div>
     </div>
+
 
 
     <section class="about-section" id="about">
@@ -652,42 +646,7 @@
 
     <script src="static/js/script.js"></script>
     <script>
-        let currentSlide = 0;
-        const slides = document.querySelectorAll('.slide');
-        const dots = document.querySelectorAll('.dot');
-        const container = document.querySelector('.slides-container');
-
-        function showSlide(index) {
-            currentSlide = index;
-            container.style.transform = `translateX(-${index * 100}%)`;
-
-            slides.forEach((slide, i) => {
-                dots[i].classList.toggle('active', i === index);
-            });
-        }
-
-        function nextSlide() {
-            currentSlide = (currentSlide + 1) % slides.length;
-            showSlide(currentSlide);
-        }
-
-        function prevSlide() {
-            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
-            showSlide(currentSlide);
-        }
-
-        function goToSlide(index) {
-            showSlide(index);
-        }
-
-        // Auto-play every 6 seconds
-        let autoPlay = setInterval(nextSlide, 6000);
-
-        // Pause on hover
-        document.querySelector('.hero-carousel').addEventListener('mouseover', () => clearInterval(autoPlay));
-        document.querySelector('.hero-carousel').addEventListener('mouseout', () => {
-            autoPlay = setInterval(nextSlide, 6000);
-        });
+        
 
     </script>
 </body>

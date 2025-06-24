@@ -330,15 +330,15 @@ document.addEventListener('DOMContentLoaded', function () {
 let currentSlide = 0;
 const slides = document.querySelectorAll('.slide');
 const dots = document.querySelectorAll('.dot');
-const container = document.querySelector('.slides-container');
 
 function showSlide(index) {
-    currentSlide = index;
-    container.style.transform = `translateX(-${index * 100}%)`;
-
     slides.forEach((slide, i) => {
-        dots[i].classList.toggle('active', i === index);
+        slide.classList.remove('active');
+        dots[i].classList.remove('active');
     });
+    slides[index].classList.add('active');
+    dots[index].classList.add('active');
+    currentSlide = index;
 }
 
 function nextSlide() {
@@ -355,14 +355,9 @@ function goToSlide(index) {
     showSlide(index);
 }
 
-// Auto-play every 6 seconds
-let autoPlay = setInterval(nextSlide, 6000);
+// Optional: Auto-slide every 6 seconds
+setInterval(nextSlide, 6000);
 
-// Pause on hover
-document.querySelector('.hero-carousel').addEventListener('mouseover', () => clearInterval(autoPlay));
-document.querySelector('.hero-carousel').addEventListener('mouseout', () => {
-    autoPlay = setInterval(nextSlide, 6000);
-});
 
 
 
