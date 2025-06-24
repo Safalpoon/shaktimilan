@@ -1774,7 +1774,7 @@ select:focus {
     .overlay {
         padding: 0.8rem;
         max-width: 90%;
-        bottom: 5%;
+        bottom: 9%;
     }
 
     .overlay button {
