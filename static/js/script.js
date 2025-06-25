@@ -376,3 +376,40 @@ window.addEventListener('resize', () => {
         carousel.updateSlide();
     }
 });
+
+
+//story-list
+// Filter functionality
+document.addEventListener('DOMContentLoaded', function () {
+    const filterTabs = document.querySelectorAll('.filter-tab');
+    const programCards = document.querySelectorAll('.program-card');
+
+    filterTabs.forEach(tab => {
+        tab.addEventListener('click', function () {
+            // Remove active class from all tabs
+            filterTabs.forEach(t => t.classList.remove('active'));
+            // Add active class to clicked tab
+            this.classList.add('active');
+
+            const filter = this.getAttribute('data-filter');
+
+            programCards.forEach(card => {
+                if (filter === 'all' || card.getAttribute('data-category') === filter) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+    });
+
+    // Mobile menu toggle
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navLinks = document.querySelector('.nav-links');
+
+    if (menuToggle) {
+        menuToggle.addEventListener('click', function () {
+            navLinks.classList.toggle('active');
+        });
+    }
+});
