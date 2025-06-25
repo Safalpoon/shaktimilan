@@ -333,11 +333,9 @@ const dots = document.querySelectorAll('.dot');
 
 function showSlide(index) {
     slides.forEach((slide, i) => {
-        slide.classList.remove('active');
-        dots[i].classList.remove('active');
+        slide.classList.toggle('active', i === index);
+        dots[i].classList.toggle('active', i === index);
     });
-    slides[index].classList.add('active');
-    dots[index].classList.add('active');
     currentSlide = index;
 }
 
@@ -355,13 +353,7 @@ function goToSlide(index) {
     showSlide(index);
 }
 
-// Optional: Auto-slide every 6 seconds
 setInterval(nextSlide, 6000);
-
-
-
-
-
 
 // Global functions for button onclick events
 function changeSlide(direction) {

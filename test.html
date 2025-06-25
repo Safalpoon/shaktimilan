@@ -4,18 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-
-<body>
-
-
+    <title>Hero Carousel - Shakti Milan Samaj</title>
     <style>
+        /*Slider home page - Professional Design */
         .hero-carousel {
             position: relative;
             width: 100%;
             height: 100vh;
             overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
         }
 
         .slides-container {
@@ -27,150 +24,414 @@
 
         .slide {
             min-width: 100%;
-            height: 100%;
+            height: 90%;
             background-size: cover;
             background-position: center;
+            background-attachment: fixed;
             display: none;
-            transition: opacity 0.5s ease-in-out;
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
             position: absolute;
             top: 0;
             left: 0;
+            /* Add a subtle overlay for better text readability */
+            background-blend-mode: overlay;
+            background-color: rgba(0, 0, 0, 0.3);
         }
 
         .slide.active {
             display: block;
+            animation: slideIn 0.8s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: scale(1.05);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
         }
 
         .overlay {
-            border-radius: 10px;
-            background-color: rgba(0, 0, 0, 0.379);
+            background: linear-gradient(135deg,
+                    rgba(161, 26, 26, 0.662) 0%,
+                    rgba(163, 55, 55, 0.584) 50%,
+                    rgba(0, 0, 0, 0.451) 100%);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
             color: #fff;
-            padding: 2rem;
-            max-width: 800px;
+            padding: 3rem;
+            max-width: 700px;
             margin: auto;
             position: absolute;
-            bottom: 30%;
+            top: 50%;
             left: 35%;
-            transform: translateX(-50%);
+            transform: translate(-50%, -50%);
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            animation: overlayFadeIn 1s ease-out 0.3s both;
+        }
+
+        @keyframes overlayFadeIn {
+            from {
+                opacity: 0;
+                transform: translate(-50%, -40%);
+            }
+
+            to {
+                opacity: 1;
+                transform: translate(-50%, -50%);
+            }
         }
 
         .overlay h2 {
-            font-size: 2rem;
-            margin-bottom: 1rem;
+            color: #ffffff;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            animation: titleFadeIn 1s ease-out 0.6s both;
+        }
+
+        @keyframes titleFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .overlay p {
-            font-size: 1rem;
-            margin-bottom: 1.5rem;
+            color: #f0f0f0;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+            animation: textFadeIn 1s ease-out 0.9s both;
+        }
+
+        @keyframes textFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .overlay button {
-            padding: 0.7rem 1.5rem;
-            font-size: 1rem;
-            background-color: #037a5a;
-            border: none;
-            color: white;
-            border-radius: 4px;
+            padding: 1rem 2.5rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            background: linear-gradient(135deg, #ffffff 0%, #f0f0f0 100%);
+            border: 2px solid transparent;
+            color: #8B0000;
+            border-radius: 50px;
             cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+            animation: buttonFadeIn 1s ease-out 1.2s both;
         }
 
+        @keyframes buttonFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px) scale(0.9);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .overlay button:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(135deg, #f8f8f8 0%, #e8e8e8 100%);
+        }
+
+        .overlay button:active {
+            transform: translateY(-1px) scale(1.02);
+        }
+
+        .overlay a {
+            text-decoration: none;
+        }
+
+        /* Navigation arrows */
         .nav {
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            font-size: 2rem;
-            background: rgba(0, 0, 0, 0.3);
+            font-size: 1.5rem;
+            background: rgba(139, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
             color: white;
-            border: none;
+            border: 2px solid rgba(255, 255, 255, 0.2);
             cursor: pointer;
-            padding: 0.5rem 1rem;
+            padding: 1rem 1.2rem;
+            border-radius: 50%;
             z-index: 10;
+            transition: all 0.3s ease;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .nav:hover {
+            background: rgba(139, 0, 0, 1);
+            transform: translateY(-50%) scale(1.1);
+            box-shadow: 0 10px 25px rgba(139, 0, 0, 0.4);
         }
 
         .nav.prev {
-            left: 10px;
+            left: 30px;
         }
 
         .nav.next {
-            right: 10px;
+            right: 30px;
         }
 
+        /* Dots indicator */
         .dots {
             text-align: center;
             position: absolute;
-            bottom: 20px;
+            bottom: 100px;
             width: 100%;
+            z-index: 10;
         }
 
         .dot {
             display: inline-block;
-            height: 10px;
-            width: 10px;
-            margin: 0 5px;
-            background-color: #ccc;
+            height: 12px;
+            width: 12px;
+            margin: 0 8px;
+            background-color: rgba(255, 255, 255, 0.4);
             border-radius: 50%;
             cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .dot:hover {
+            background-color: rgba(255, 255, 255, 0.7);
+            transform: scale(1.2);
         }
 
         .dot.active {
-            background-color: #037a5a;
+            background-color: #ffffff;
+            transform: scale(1.3);
+            box-shadow: 0 0 0 3px rgba(139, 0, 0, 0.6);
         }
 
-        @media (max-width: 768px) {
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .overlay {
+                max-width: 600px;
+                padding: 2.5rem;
+            }
+
             .overlay h2 {
-                font-size: 1.5rem;
+                font-size: 2.2rem;
             }
 
             .overlay p {
-                font-size: 0.9rem;
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .overlay {
+                max-width: 90%;
+                padding: 2rem;
+                top: 60%;
+                border-radius: 15px;
             }
 
-            .overlay {
-                padding: 1rem;
-                bottom: 5%;
+            .overlay h2 {
+                font-size: 1.8rem;
+                margin-bottom: 1rem;
+            }
+
+            .overlay p {
+                font-size: 0.95rem;
+                margin-bottom: 1.5rem;
+                line-height: 1.5;
+            }
+
+            .overlay button {
+                padding: 0.8rem 2rem;
+                font-size: 1rem;
+            }
+
+            .nav {
+                width: 50px;
+                height: 50px;
+                font-size: 1.2rem;
+                padding: 0.8rem;
+            }
+
+            .nav.prev {
+                left: 20px;
+            }
+
+            .nav.next {
+                right: 20px;
+            }
+
+            .dots {
+                bottom: 30px;
+            }
+
+            .dot {
+                height: 10px;
+                width: 10px;
+                margin: 0 6px;
             }
         }
 
         @media (max-width: 480px) {
+            .hero-carousel {
+                height: 100vh;
+            }
+
             .overlay {
-                padding: 0.8rem;
-                max-width: 90%;
+                padding: 1.5rem;
+                top: 65%;
+                max-width: 95%;
+                border-radius: 12px;
+            }
+
+            .overlay h2 {
+                font-size: 1.5rem;
+                line-height: 1.3;
+            }
+
+            .overlay p {
+                font-size: 0.9rem;
+                margin-bottom: 1.2rem;
             }
 
             .overlay button {
                 width: 100%;
+                padding: 0.9rem 1.5rem;
+                font-size: 0.95rem;
+            }
+
+            .nav {
+                width: 45px;
+                height: 45px;
+                font-size: 1rem;
+                padding: 0.6rem;
+            }
+
+            .nav.prev {
+                left: 15px;
+            }
+
+            .nav.next {
+                right: 15px;
+            }
+
+            .dots {
+                bottom: 25px;
+            }
+
+            .dot {
+                height: 8px;
+                width: 8px;
+                margin: 0 4px;
+            }
+        }
+
+        /* Additional smooth animations */
+        @media (prefers-reduced-motion: no-preference) {
+            .slide {
+                transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+
+            .slide,
+            .overlay,
+            .nav,
+            .dot {
+                transition: none;
+                animation: none;
+            }
+        }
+
+        /* Focus states for accessibility */
+        .nav:focus,
+        .dot:focus,
+        .overlay button:focus {
+            outline: 3px solid rgba(255, 255, 255, 0.6);
+            outline-offset: 2px;
+        }
+
+        /* High contrast mode support */
+        @media (prefers-contrast: high) {
+            .overlay {
+                background: rgba(0, 0, 0, 0.9);
+                border: 2px solid #ffffff;
+            }
+
+            .nav {
+                background: #000000;
+                border: 2px solid #ffffff;
+            }
+
+            .dot {
+                border: 2px solid #ffffff;
             }
         }
     </style>
+</head>
+
+<body>
 
     <div class="hero-carousel">
         <div class="slides-container">
             <div class="slide active" style="background-image: url('static/img/main page/main1.jpg.jpg');">
                 <div class="overlay">
                     <h2>Welcome to Shakti Milan Samaj</h2>
-                    <p>Shakti Milan Samaj (SMS) is an apolitical, non-profit organization based in Kathmandu, Nepal,
-                        founded in 1996 by three courageous women who were trafficked, rescued, and living with HIV.
-                        United by their shared experiences and determination, they established SMS with a mission to
-                        empower women and girls living with HIV/AIDS, survivors of trafficking and victims of
-                        gender-based violence through access to adequate care, sustainable advocacy, and community-led
-                        transformation.</p>
+                    <p>Empowering women and girls living with HIV/AIDS, survivors of trafficking, and victims of
+                        gender-based violence through sustainable advocacy and care.</p>
                     <a href="about.html"><button>Learn More</button></a>
                 </div>
             </div>
 
             <div class="slide" style="background-image: url('static/img/main page/main2.jpg.jpg');">
                 <div class="overlay">
-                    <h2>Restoring Dignity, Fighting Stigma, and Uplifting Lives</h2>
-                    <p>We fight stigma and uplift lives through sustainable advocacy and care.</p>
-                    <a href="contact.html"><button class="donate-btn">Get Involved</button></a>
+                    <h2>Restoring Dignity, Fighting Stigma</h2>
+                    <p>We uplift lives and build a future free from stigma and inequality.</p>
+                    <a href="contact.html"><button>Get Involved</button></a>
                 </div>
             </div>
 
             <div class="slide" style="background-image: url('static/img/founder.jpg');">
                 <div class="overlay">
                     <h2>Leading Community Transformation</h2>
-                    <p>Together we build a stronger, inclusive, and resilient society.</p>
-                    <a href="contact.html"><button class="donate-btn">Join Us</button></a>
+                    <p>Together we build a stronger, inclusive, and resilient society for all.</p>
+                    <a href="contact.html"><button>Join Us</button></a>
                 </div>
             </div>
         </div>
@@ -185,7 +446,6 @@
         </div>
     </div>
 
-
     <script>
         let currentSlide = 0;
         const slides = document.querySelectorAll('.slide');
@@ -193,11 +453,9 @@
 
         function showSlide(index) {
             slides.forEach((slide, i) => {
-                slide.classList.remove('active');
-                dots[i].classList.remove('active');
+                slide.classList.toggle('active', i === index);
+                dots[i].classList.toggle('active', i === index);
             });
-            slides[index].classList.add('active');
-            dots[index].classList.add('active');
             currentSlide = index;
         }
 
@@ -215,7 +473,6 @@
             showSlide(index);
         }
 
-        // Optional: Auto-slide every 6 seconds
         setInterval(nextSlide, 6000);
     </script>
 
