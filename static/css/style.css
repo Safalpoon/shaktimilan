@@ -22,7 +22,7 @@ html {
     background-size: cover;
     background-repeat: no-repeat;
 } */
-
+ 
 .navbar {
     display: flex;
     justify-content: space-between;
@@ -81,6 +81,7 @@ html {
     display: none;
     flex-direction: column;
     cursor: pointer;
+    z-index: 1001;
 }
 
 .menu-toggle span {
@@ -90,46 +91,6 @@ html {
     margin: 2px 0;
     transition: 0.4s;
 }
-
-@media (max-width: 768px) {
-    .menu-toggle {
-        display: flex;
-    }
-
-    .nav-links {
-        display: none;
-        position: absolute;
-        top: 100px;
-        left: 0;
-        right: 0;
-        background-color: white;
-        flex-direction: column;
-        padding: 20px 10%;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-    }
-
-    .nav-links.active {
-        display: flex;
-    }
-
-    .nav-links a {
-        margin: 10px 0;
-    }
-
-    .donate-btn {
-        display: block;
-        text-align: center;
-    }
-
-    .navbar {
-        padding: 15px 5%;
-    }
-
-    a {
-        text-decoration: none;
-    }
-}
-
 
 /* Dropdown */
 .nav-links li {
@@ -173,13 +134,104 @@ html {
     background: #8B0000;
 }
 
-.nav-links .dropdown.show {
-    display: block;
-}
-
 .nav-links a.active {
     color: #667eea;
     font-weight: 600;
+}
+
+/* FIXED MOBILE STYLES */
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: flex;
+    }
+
+    .nav-links {
+        position: fixed;
+        /* Changed from absolute to fixed */
+        top: 0;
+        left: -100%;
+        /* Start off-screen */
+        width: 100%;
+        height: 100vh;
+        background-color: white;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        transition: left 0.3s ease;
+        /* Smooth slide animation */
+        z-index: 1000;
+    }
+
+    .nav-links.active {
+        left: 0;
+        /* Slide in when active */
+    }
+
+    .nav-links li {
+        margin: 15px 0;
+    }
+
+    .nav-links a {
+        font-size: 1.2rem;
+        padding: 10px 20px;
+    }
+
+    .donate-btn {
+        display: block;
+        text-align: center;
+    }
+
+    .navbar {
+        padding: 15px 5%;
+    }
+
+    /* Mobile dropdown fixes */
+    .dropdown {
+        position: static;
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+        background: #f8f9fa;
+        box-shadow: none;
+        border-radius: 0;
+        margin-top: 10px;
+        display: none;
+        /* Hide by default on mobile */
+    }
+
+    .dropdown.show {
+        display: block;
+    }
+
+    .dropdown a {
+        color: #333;
+        padding: 8px 20px;
+    }
+
+    .dropdown a:hover {
+        background: #e9ecef;
+    }
+
+    /* Hamburger animation when active */
+    .menu-toggle.active span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+    }
+
+    .menu-toggle.active span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .menu-toggle.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(7px, -6px);
+    }
+}
+
+/* Demo content */
+.content {
+    padding: 50px 10%;
+    line-height: 1.6;
 }
 
 header {

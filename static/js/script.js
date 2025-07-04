@@ -413,3 +413,57 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 });
+
+// FIXED MOBILE NAVIGATION JAVASCRIPT
+document.addEventListener('DOMContentLoaded', function () {
+    // Mobile menu toggle
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navLinks = document.querySelector('.nav-links');
+
+    if (menuToggle && navLinks) {
+        menuToggle.addEventListener('click', function () {
+            navLinks.classList.toggle('active');
+            menuToggle.classList.toggle('active'); // For hamburger animation
+        });
+
+        // Close mobile menu when clicking on a link (optional)
+        const navLinksItems = navLinks.querySelectorAll('a');
+        navLinksItems.forEach(link => {
+            link.addEventListener('click', function () {
+                // Close mobile menu when clicking on a non-dropdown link
+                if (!this.classList.contains('dropdown-toggle')) {
+                    navLinks.classList.remove('active');
+                    menuToggle.classList.remove('active');
+                }
+            });
+        });
+    }
+
+    // Mobile dropdown functionality
+    const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
+
+    dropdownToggles.forEach(toggle => {
+        toggle.addEventListener('click', function (e) {
+            // On mobile, prevent default and toggle dropdown
+            if (window.innerWidth <= 768) {
+                e.preventDefault();
+                const dropdown = this.nextElementSibling;
+                if (dropdown) {
+                    dropdown.classList.toggle('show');
+                }
+            }
+        });
+    });
+
+    // Close dropdowns when window is resized to desktop
+    window.addEventListener('resize', function () {
+        if (window.innerWidth > 768) {
+            const dropdowns = document.querySelectorAll('.dropdown');
+            dropdowns.forEach(dropdown => {
+                dropdown.classList.remove('show');
+            });
+            navLinks.classList.remove('active');
+            menuToggle.classList.remove('active');
+        }
+    });
+});
