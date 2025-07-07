@@ -802,7 +802,7 @@ p {
 }
 
 .impact-container {
-    max-width: 1450px;
+    max-width: 1300px;
     margin: 0 auto;
 }
 
@@ -2127,7 +2127,7 @@ select:focus {
 
 /*story section*/
 .story-head {
-    max-width: 1400px;
+    max-width: 1300px;
     margin: 0 auto;
 }
 
@@ -2146,8 +2146,8 @@ select:focus {
 }
 
 .story-img img {
-    width: 80%;
-    height: 60%;
+    width: 75%;
+    height: 55%;
     margin-bottom: 1.5rem;
     border-radius: 5px;
 }
