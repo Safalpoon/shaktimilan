@@ -8,15 +8,6 @@ function supportWork() {
     // window.location.href = "/support.html";
 }
 
-//nav bar for the mobile device 
-// Toggle mobile menu
-const menuToggle = document.querySelector('.menu-toggle');
-const navLinks = document.querySelector('.nav-links');
-
-menuToggle.addEventListener('click', () => {
-    navLinks.classList.toggle('active');
-});
-
 
 //about-----
 const observers = new IntersectionObserver((entries) => {
@@ -311,21 +302,6 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
-//drop-down nav-links
-document.addEventListener('DOMContentLoaded', function () {
-    const toggleLink = document.querySelector('.dropdown-toggle');
-    const dropdownMenu = document.querySelector('.dropdown');
-
-    toggleLink.addEventListener('click', function (e) {
-        // Prevent immediate navigation on mobile
-        if (window.innerWidth <= 768) {
-            e.preventDefault();
-            dropdownMenu.classList.toggle('show');
-        }
-    });
-});
-
-
 //slider home page
 let currentSlide = 0;
 const slides = document.querySelectorAll('.slide');
@@ -403,67 +379,135 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    // Mobile menu toggle
-    const menuToggle = document.querySelector('.menu-toggle');
-    const navLinks = document.querySelector('.nav-links');
 
-    if (menuToggle) {
-        menuToggle.addEventListener('click', function () {
-            navLinks.classList.toggle('active');
-        });
-    }
 });
 
 // FIXED MOBILE NAVIGATION JAVASCRIPT
-document.addEventListener('DOMContentLoaded', function () {
+
+// Navigation functionality
+document.addEventListener("DOMContentLoaded", () => {
     // Mobile menu toggle
-    const menuToggle = document.querySelector('.menu-toggle');
-    const navLinks = document.querySelector('.nav-links');
+    const mobileMenuToggle = document.querySelector(".mobile-menu-toggle")
+    const mobileMenu = document.querySelector(".mobile-menu")
 
-    if (menuToggle && navLinks) {
-        menuToggle.addEventListener('click', function () {
-            navLinks.classList.toggle('active');
-            menuToggle.classList.toggle('active'); // For hamburger animation
-        });
-
-        // Close mobile menu when clicking on a link (optional)
-        const navLinksItems = navLinks.querySelectorAll('a');
-        navLinksItems.forEach(link => {
-            link.addEventListener('click', function () {
-                // Close mobile menu when clicking on a non-dropdown link
-                if (!this.classList.contains('dropdown-toggle')) {
-                    navLinks.classList.remove('active');
-                    menuToggle.classList.remove('active');
-                }
-            });
-        });
-    }
+    mobileMenuToggle.addEventListener("click", function () {
+        this.classList.toggle("active")
+        mobileMenu.classList.toggle("active")
+    })
 
     // Mobile dropdown functionality
-    const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
+    const mobileDropdowns = document.querySelectorAll(".mobile-dropdown")
 
-    dropdownToggles.forEach(toggle => {
-        toggle.addEventListener('click', function (e) {
-            // On mobile, prevent default and toggle dropdown
-            if (window.innerWidth <= 768) {
-                e.preventDefault();
-                const dropdown = this.nextElementSibling;
-                if (dropdown) {
-                    dropdown.classList.toggle('show');
+    mobileDropdowns.forEach((dropdown) => {
+        const toggle = dropdown.querySelector(".mobile-dropdown-toggle")
+
+        toggle.addEventListener("click", () => {
+            // Close other dropdowns
+            mobileDropdowns.forEach((otherDropdown) => {
+                if (otherDropdown !== dropdown) {
+                    otherDropdown.classList.remove("active")
                 }
-            }
-        });
-    });
+            })
 
-    // Close dropdowns when window is resized to desktop
-    window.addEventListener('resize', function () {
-        if (window.innerWidth > 768) {
-            const dropdowns = document.querySelectorAll('.dropdown');
-            dropdowns.forEach(dropdown => {
-                dropdown.classList.remove('show');
-            });
-            navLinks.classList.remove('active');
-            menuToggle.classList.remove('active');
+            // Toggle current dropdown
+            dropdown.classList.toggle("active")
+        })
+    })
+
+    // Active link functionality
+    const navLinks = document.querySelectorAll(".nav-link, .mobile-nav-link")
+
+    navLinks.forEach((link) => {
+        link.addEventListener("click", function (e) {
+            // Remove active class from all links
+            navLinks.forEach((l) => l.classList.remove("active"))
+
+            // Add active class to clicked link
+            this.classList.add("active")
+
+            // Close mobile menu if open
+            mobileMenuToggle.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        })
+    })
+
+    // Close mobile menu when clicking outside
+    document.addEventListener("click", (e) => {
+        if (!e.target.closest(".navbar")) {
+            mobileMenuToggle.classList.remove("active")
+            mobileMenu.classList.remove("active")
+
+            // Close all mobile dropdowns
+            mobileDropdowns.forEach((dropdown) => {
+                dropdown.classList.remove("active")
+            })
         }
-    });
-});
+    })
+
+    // Navbar scroll effect
+    let lastScrollTop = 0
+    const navbar = document.querySelector(".navbar")
+
+    window.addEventListener("scroll", () => {
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop
+
+        if (scrollTop > lastScrollTop && scrollTop > 100) {
+            // Scrolling down
+            navbar.style.transform = "translateY(-100%)"
+        } else {
+            // Scrolling up
+            navbar.style.transform = "translateY(0)"
+        }
+
+        lastScrollTop = scrollTop
+    })
+
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault()
+            const target = document.querySelector(this.getAttribute("href"))
+
+            if (target) {
+                const offsetTop = target.offsetTop - 70 // Account for fixed navbar
+
+                window.scrollTo({
+                    top: offsetTop,
+                    behavior: "smooth",
+                })
+            }
+        })
+    })
+
+    // Keyboard navigation for dropdowns
+    document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") {
+            // Close mobile menu
+            mobileMenuToggle.classList.remove("active")
+            mobileMenu.classList.remove("active")
+
+            // Close mobile dropdowns
+            mobileDropdowns.forEach((dropdown) => {
+                dropdown.classList.remove("active")
+            })
+        }
+    })
+
+    // Handle window resize
+    window.addEventListener("resize", () => {
+        if (window.innerWidth > 768) {
+            // Reset mobile menu state on desktop
+            mobileMenuToggle.classList.remove("active")
+            mobileMenu.classList.remove("active")
+
+            mobileDropdowns.forEach((dropdown) => {
+                dropdown.classList.remove("active")
+            })
+        }
+    })
+})
+
+
+
+
+//Reports

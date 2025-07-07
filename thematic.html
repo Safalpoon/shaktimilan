@@ -497,36 +497,135 @@
 
 <body>
     <nav class="navbar">
-        <div class="logo">
-            <a href="index.html"><img src="static/img/logo.jpg" alt="Globe Icon"></a>
-        </div>
-        <div class="menu-toggle">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-        <ul class="nav-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html" class="dropdown-toggle">About</a>
-                <ul class="dropdown">
-                    <li><a href="about.html">Introduction</a></li>
-                    <li><a href="about.html#history">The History</a></li>
-                    <li><a href="team.html">Our Team</a></li>
-                    <li><a href="affiliation.html">Affiliation</a></li>
-                </ul>
-            </li>
-            <li><a href="project.html">Projects</a>
-                <ul class="dropdown">
-                    <li><a href="current-project.html">Current Project</a></li>
-                    <li><a href="previous-project.html">Pervious Projects</a></li>
-                </ul>
-            </li>
-            <li><a href="resources.html">Resources</a></li>
-            <li><a href="contact.html">Contact</a></li>
-            <div class="donate">
-                <li><a href="#donate" class="donate-btn">Donate</a></li>
+        <div class="nav-container">
+            <!-- Logo Section -->
+            <div class="nav-logo">
+                <a href="index.html">
+                    <img src="static/img/logo.jpg" alt="Company Logo" class="logo-img">
+                </a>
             </div>
-        </ul>
+
+            <!-- Desktop Navigation Menu -->
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link active">Home</a>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a href="about.html" class="nav-link dropdown-toggle">
+                        What We Are
+                        <svg class="dropdown-arrow" width="12" height="8" viewBox="0 0 12 8" fill="none">
+                            <path d="M1 1.5L6 6.5L11 1.5" stroke="currentColor" stroke-width="1.5"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </a>
+                    <div class="dropdown-menu">
+                        <a href="about.html" class="dropdown-item">Introduction</a>
+                        <a href="about.html#history" class="dropdown-item">The History</a>
+                        <a href="team.html" class="dropdown-item">Our Team</a>
+                        <a href="affiliation.html" class="dropdown-item">Affiliation</a>
+                    </div>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a href="current-project.html" class="nav-link dropdown-toggle">
+                        What We Do
+                        <!-- <svg class="dropdown-arrow" width="12" height="8" viewBox="0 0 12 8" fill="none">
+                            <path d="M1 1.5L6 6.5L11 1.5" stroke="currentColor" stroke-width="1.5"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                        </svg> -->
+                    </a>
+                    <!-- <div class="dropdown-menu">
+                        <a href="#current-projects" class="dropdown-item">Current Projects</a>
+                        <a href="#completed-projects" class="dropdown-item">Completed Projects</a>
+                        <a href="#upcoming-projects" class="dropdown-item">Upcoming Projects</a>
+                    </div> -->
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a href="resources.html" class="nav-link dropdown-toggle">
+                        Resources
+                        <svg class="dropdown-arrow" width="12" height="8" viewBox="0 0 12 8" fill="none">
+                            <path d="M1 1.5L6 6.5L11 1.5" stroke="currentColor" stroke-width="1.5"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </a>
+                    <div class="dropdown-menu">
+                        <a href="resources.html#reports" class="dropdown-item">Reports</a>
+                        <a href="resources.html#recent-updates" class="dropdown-item">Recent Updates</a>
+                    </div>
+                </li>
+
+                <li class="nav-item">
+                    <a href="contact.html" class="nav-link">Contact</a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="#donate" class="nav-link donate-btn">Donate</a>
+                </li>
+            </ul>
+
+            <!-- Mobile Menu Toggle -->
+            <div class="mobile-menu-toggle">
+                <span class="toggle-bar"></span>
+                <span class="toggle-bar"></span>
+                <span class="toggle-bar"></span>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Menu -->
+        <div class="mobile-menu">
+            <a href="index.html" class="mobile-nav-link active">Home</a>
+
+            <div class="mobile-dropdown">
+                <button class="mobile-dropdown-toggle">
+                    Who We Are
+                    <svg class="mobile-dropdown-arrow" width="12" height="8" viewBox="0 0 12 8" fill="none">
+                        <path d="M1 1.5L6 6.5L11 1.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                    </svg>
+                </button>
+                <div class="mobile-dropdown-content">
+                    <a href="about.html" class="mobile-nav-link">Introduction</a>
+                    <a href="about.html#history" class="mobile-nav-link">The History</a>
+                    <a href="team.html" class="mobile-nav-link">Our Team</a>
+                    <a href="affiliation.html" class="mobile-nav-link">Affiliation</a>
+                </div>
+            </div>
+
+            <a href="current-project.html" class="mobile-nav-link">What We Do</a>
+            <!-- <div class="mobile-dropdown">
+                <button class="mobile-dropdown-toggle">
+                    Projects
+                    <svg class="mobile-dropdown-arrow" width="12" height="8" viewBox="0 0 12 8" fill="none">
+                        <path d="M1 1.5L6 6.5L11 1.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                    </svg>
+                </button>
+                <div class="mobile-dropdown-content">
+                    <a href="#current-projects" class="mobile-nav-link">Current Projects</a>
+                    <a href="#completed-projects" class="mobile-nav-link">Completed Projects</a>
+                    <a href="#upcoming-projects" class="mobile-nav-link">Upcoming Projects</a>
+                </div>
+            </div> -->
+
+            <div class="mobile-dropdown">
+                <button class="mobile-dropdown-toggle">
+                    Resources
+                    <svg class="mobile-dropdown-arrow" width="12" height="8" viewBox="0 0 12 8" fill="none">
+                        <path d="M1 1.5L6 6.5L11 1.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                    </svg>
+                </button>
+                <div class="mobile-dropdown-content">
+                    <a href="resources.html#reports" class="mobile-nav-link">Reports</a>
+                    <a href="resources.html#recent-updates" class="mobile-nav-link">Recent Updates</a>
+                </div>
+            </div>
+
+            <a href="contact.html" class="mobile-nav-link">Contact</a>
+            <a href="#donate" class="mobile-nav-link donate-btn">Donate</a>
+        </div>
     </nav>
 
     <section class="programs-hero">

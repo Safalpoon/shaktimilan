@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -146,7 +147,8 @@
             margin-bottom: 0.5rem;
         }
 
-        .filter-input, .filter-select {
+        .filter-input,
+        .filter-select {
             padding: 0.8rem;
             border: 2px solid #e9ecef;
             border-radius: 8px;
@@ -154,7 +156,8 @@
             transition: border-color 0.3s ease;
         }
 
-        .filter-input:focus, .filter-select:focus {
+        .filter-input:focus,
+        .filter-select:focus {
             outline: none;
             border-color: #e74c3c;
         }
@@ -241,15 +244,15 @@
                 grid-template-columns: 1fr;
                 gap: 1.5rem;
             }
-            
+
             .resources-grid {
                 grid-template-columns: 1fr;
             }
-            
+
             .updates-timeline {
                 padding-left: 1rem;
             }
-            
+
             .update-item {
                 margin-left: 0.5rem;
             }
@@ -267,44 +270,145 @@
         }
     </style>
 </head>
+
 <body>
-    <nav class="navbar" id="home">
-        <div class="logo">
-           <a href="index.html"><img src="static/img/logo.jpg" alt="Globe Icon"></a>
-        </div>
-        <div class="menu-toggle">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-        <ul class="nav-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html" class="dropdown-toggle">About</a>
-                <ul class="dropdown">
-                    <li><a href="about.html">Introduction</a></li>
-                    <li><a href="about.html#history">The History</a></li>
-                    <li><a href="team.html">Our Team</a></li>
-                    <li><a href="affiliation.html">Affiliation</a></li>
-                </ul>
-            </li>
-            <li><a href="current-project.html" class="dropdown-toggle">Projects</a>
-                <!-- <ul class="dropdown">
-                    <li><a href="current-project.html">Current Project</a></li>
-                    <li><a href="previous-project.html">Previous Projects</a></li>
-                </ul> -->
-            </li>
-            <li><a href="resources.html" class="active">Resources</a></li>
-            <li><a href="contact.html">Contact</a></li>
-            <div class="donate">
-                <li><a href="#donate" class="donate-btn">Donate</a></li>
+    <nav class="navbar">
+        <div class="nav-container">
+            <!-- Logo Section -->
+            <div class="nav-logo">
+                <a href="index.html">
+                    <img src="static/img/logo.jpg" alt="Company Logo" class="logo-img">
+                </a>
             </div>
-        </ul>
+
+            <!-- Desktop Navigation Menu -->
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link">Home</a>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a href="about.html" class="nav-link dropdown-toggle">
+                        What We Are
+                        <svg class="dropdown-arrow" width="12" height="8" viewBox="0 0 12 8" fill="none">
+                            <path d="M1 1.5L6 6.5L11 1.5" stroke="currentColor" stroke-width="1.5"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </a>
+                    <div class="dropdown-menu">
+                        <a href="about.html" class="dropdown-item">Introduction</a>
+                        <a href="about.html#history" class="dropdown-item">The History</a>
+                        <a href="team.html" class="dropdown-item">Our Team</a>
+                        <a href="affiliation.html" class="dropdown-item">Affiliation</a>
+                    </div>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a href="current-project.html" class="nav-link dropdown-toggle">
+                        What We Do
+                        <!-- <svg class="dropdown-arrow" width="12" height="8" viewBox="0 0 12 8" fill="none">
+                            <path d="M1 1.5L6 6.5L11 1.5" stroke="currentColor" stroke-width="1.5"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                        </svg> -->
+                    </a>
+                    <!-- <div class="dropdown-menu">
+                        <a href="#current-projects" class="dropdown-item">Current Projects</a>
+                        <a href="#completed-projects" class="dropdown-item">Completed Projects</a>
+                        <a href="#upcoming-projects" class="dropdown-item">Upcoming Projects</a>
+                    </div> -->
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a href="resources.html" class="nav-link dropdown-toggle active">
+                        Resources
+                        <svg class="dropdown-arrow" width="12" height="8" viewBox="0 0 12 8" fill="none">
+                            <path d="M1 1.5L6 6.5L11 1.5" stroke="currentColor" stroke-width="1.5"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </a>
+                    <div class="dropdown-menu">
+                        <a href="resources.html#reports" class="dropdown-item">Reports</a>
+                        <a href="resources.html#recent-updates" class="dropdown-item">Recent Updates</a>
+                    </div>
+                </li>
+
+                <li class="nav-item">
+                    <a href="contact.html" class="nav-link">Contact</a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="#donate" class="nav-link donate-btn">Donate</a>
+                </li>
+            </ul>
+
+            <!-- Mobile Menu Toggle -->
+            <div class="mobile-menu-toggle">
+                <span class="toggle-bar"></span>
+                <span class="toggle-bar"></span>
+                <span class="toggle-bar"></span>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Menu -->
+        <div class="mobile-menu">
+            <a href="index.html" class="mobile-nav-link">Home</a>
+
+            <div class="mobile-dropdown">
+                <button class="mobile-dropdown-toggle">
+                    Who We Are
+                    <svg class="mobile-dropdown-arrow" width="12" height="8" viewBox="0 0 12 8" fill="none">
+                        <path d="M1 1.5L6 6.5L11 1.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                    </svg>
+                </button>
+                <div class="mobile-dropdown-content">
+                    <a href="about.html" class="mobile-nav-link">Introduction</a>
+                    <a href="about.html#history" class="mobile-nav-link">The History</a>
+                    <a href="team.html" class="mobile-nav-link">Our Team</a>
+                    <a href="affiliation.html" class="mobile-nav-link">Affiliation</a>
+                </div>
+            </div>
+
+            <a href="current-project.html" class="mobile-nav-link">What We Do</a>
+            <!-- <div class="mobile-dropdown">
+                <button class="mobile-dropdown-toggle">
+                    Projects
+                    <svg class="mobile-dropdown-arrow" width="12" height="8" viewBox="0 0 12 8" fill="none">
+                        <path d="M1 1.5L6 6.5L11 1.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                    </svg>
+                </button>
+                <div class="mobile-dropdown-content">
+                    <a href="#current-projects" class="mobile-nav-link">Current Projects</a>
+                    <a href="#completed-projects" class="mobile-nav-link">Completed Projects</a>
+                    <a href="#upcoming-projects" class="mobile-nav-link">Upcoming Projects</a>
+                </div>
+            </div> -->
+
+            <div class="mobile-dropdown">
+                <button class="mobile-dropdown-toggle active">
+                    Resources
+                    <svg class="mobile-dropdown-arrow" width="12" height="8" viewBox="0 0 12 8" fill="none">
+                        <path d="M1 1.5L6 6.5L11 1.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                    </svg>
+                </button>
+                <div class="mobile-dropdown-content">
+                    <a href="resources.html#reports" class="mobile-nav-link">Reports</a>
+                    <a href="resources.html#recent-updates" class="mobile-nav-link">Recent Updates</a>
+                </div>
+            </div>
+
+            <a href="contact.html" class="mobile-nav-link">Contact</a>
+            <a href="#donate" class="mobile-nav-link donate-btn">Donate</a>
+        </div>
     </nav>
 
     <section class="projects-hero">
         <div class="container">
             <h1>Resources</h1>
-            <p>Access our reports, publications, and latest updates on our mission to empower women and children affected by HIV/AIDS and human trafficking</p>
+            <p>Access our reports, publications, and latest updates on our mission to empower women and children
+                affected by HIV/AIDS and human trafficking</p>
         </div>
     </section>
 
@@ -318,21 +422,25 @@
         <div class="intro-content">
             <h2>Knowledge & Information Hub</h2>
             <p>
-                Our resources section provides access to comprehensive reports, research findings, policy documents, and regular updates about our programs and their impact. These materials reflect our commitment to transparency and knowledge sharing in the fight against HIV/AIDS stigma and human trafficking.
+                Our resources section provides access to comprehensive reports, research findings, policy documents, and
+                regular updates about our programs and their impact. These materials reflect our commitment to
+                transparency and knowledge sharing in the fight against HIV/AIDS stigma and human trafficking.
             </p>
             <p>
-                Whether you're a researcher, policy maker, partner organization, or community member, these resources offer valuable insights into our work and the challenges faced by vulnerable populations in Nepal.
+                Whether you're a researcher, policy maker, partner organization, or community member, these resources
+                offer valuable insights into our work and the challenges faced by vulnerable populations in Nepal.
             </p>
         </div>
     </section>
 
-    <section class="team-section">
+    <section class="team-section" id="reports">
         <div class="team-container">
             <div class="search-filter-section fade-in">
                 <div class="search-filter-grid">
                     <div class="filter-group">
                         <label class="filter-label">Search Resources</label>
-                        <input type="text" class="filter-input" placeholder="Search by title, keyword, or topic..." id="searchInput">
+                        <input type="text" class="filter-input" placeholder="Search by title, keyword, or topic..."
+                            id="searchInput">
                     </div>
                     <div class="filter-group">
                         <label class="filter-label">Resource Type</label>
@@ -380,8 +488,15 @@
                         <span class="resource-type">Annual Report</span>
                     </div>
                     <p class="resource-description">
-                        Comprehensive overview of SMS activities, achievements, and impact throughout 2024. Includes program statistics, financial summary, and success stories from beneficiaries.
+                        Comprehensive overview of SMS activities, achievements, and impact throughout 2024. Includes
+                        program statistics, financial summary, and success stories from beneficiaries.
                     </p>
+                    <div class="resource-actions">
+                        <a href="reports/report1.html" class="resource-btn btn-view">
+                            <i class="fas fa-eye"></i>
+                            Preview
+                        </a>
+                    </div>
                     <!-- <div class="resource-actions">
                         <a href="#" class="resource-btn btn-download">
                             <i class="fas fa-download"></i>
@@ -409,8 +524,15 @@
                         <span class="resource-type">Research Paper</span>
                     </div>
                     <p class="resource-description">
-                        Research findings on the effectiveness of community-based interventions in reducing HIV-related stigma among women in rural Nepal.
+                        Research findings on the effectiveness of community-based interventions in reducing HIV-related
+                        stigma among women in rural Nepal.
                     </p>
+                    <div class="resource-actions">
+                         <a href="reports/report1.html" class="resource-btn btn-view">
+                            <i class="fas fa-eye"></i>
+                            Preview
+                        </a>
+                    </div>
                     <!-- <div class="resource-actions">
                         <a href="#" class="resource-btn btn-download">
                             <i class="fas fa-download"></i>
@@ -438,8 +560,15 @@
                         <span class="resource-type">Guidelines</span>
                     </div>
                     <p class="resource-description">
-                        Comprehensive guidelines for providing psychosocial support and rehabilitation services to human trafficking survivors.
+                        Comprehensive guidelines for providing psychosocial support and rehabilitation services to human
+                        trafficking survivors.
                     </p>
+                    <div class="resource-actions">
+                         <a href="reports/report1.html" class="resource-btn btn-view">
+                            <i class="fas fa-eye"></i>
+                            Preview
+                        </a>
+                    </div>
                     <!-- <div class="resource-actions">
                         <a href="#" class="resource-btn btn-download">
                             <i class="fas fa-download"></i>
@@ -467,8 +596,15 @@
                         <span class="resource-type">Policy Document</span>
                     </div>
                     <p class="resource-description">
-                        Policy recommendations for improving access to HIV care and treatment services for women, with focus on rights-based approaches.
+                        Policy recommendations for improving access to HIV care and treatment services for women, with
+                        focus on rights-based approaches.
                     </p>
+                    <div class="resource-actions">
+                         <a href="reports/report1.html" class="resource-btn btn-view">
+                            <i class="fas fa-eye"></i>
+                            Preview
+                        </a>
+                    </div>
                     <!-- <div class="resource-actions">
                         <a href="#" class="resource-btn btn-download">
                             <i class="fas fa-download"></i>
@@ -496,8 +632,15 @@
                         <span class="resource-type">Impact Report</span>
                     </div>
                     <p class="resource-description">
-                        Detailed assessment of program outcomes and long-term impact on beneficiaries' lives, including health, economic, and social indicators.
+                        Detailed assessment of program outcomes and long-term impact on beneficiaries' lives, including
+                        health, economic, and social indicators.
                     </p>
+                    <div class="resource-actions">
+                         <a href="reports/report1.html" class="resource-btn btn-view">
+                            <i class="fas fa-eye"></i>
+                            Preview
+                        </a>
+                    </div>
                     <!-- <div class="resource-actions">
                         <a href="#" class="resource-btn btn-download">
                             <i class="fas fa-download"></i>
@@ -525,8 +668,15 @@
                         <span class="resource-type">Newsletter</span>
                     </div>
                     <p class="resource-description">
-                        Latest updates on our programs, success stories, upcoming events, and important announcements from the SMS community.
+                        Latest updates on our programs, success stories, upcoming events, and important announcements
+                        from the SMS community.
                     </p>
+                    <div class="resource-actions">
+                        <a href="reports/report1.html" class="resource-btn btn-view">
+                            <i class="fas fa-eye"></i>
+                            Preview
+                        </a>
+                    </div>
                     <!-- <div class="resource-actions">
                         <a href="#" class="resource-btn btn-download">
                             <i class="fas fa-download"></i>
@@ -547,7 +697,7 @@
         <p>Access to comprehensive reports, research papers, and updates spanning over two decades of our work</p>
     </div>
 
-    <section class="team-section">
+    <section class="team-section" id="recent-updates">
         <div class="team-container">
             <div class="section-header">
                 <h2>Recent Updates</h2>
@@ -559,7 +709,9 @@
                     <div class="update-date">January 15, 2025</div>
                     <div class="update-title">New Partnership with UNICEF Nepal</div>
                     <div class="update-content">
-                        SMS has entered into a strategic partnership with UNICEF Nepal to expand our child protection programs. This collaboration will enhance our capacity to support children affected by HIV/AIDS and trafficking, providing comprehensive care and rehabilitation services.
+                        SMS has entered into a strategic partnership with UNICEF Nepal to expand our child protection
+                        programs. This collaboration will enhance our capacity to support children affected by HIV/AIDS
+                        and trafficking, providing comprehensive care and rehabilitation services.
                     </div>
                 </div>
 
@@ -567,7 +719,9 @@
                     <div class="update-date">January 8, 2025</div>
                     <div class="update-title">Annual Report 2024 Published</div>
                     <div class="update-content">
-                        Our comprehensive Annual Report for 2024 is now available for download. The report highlights our achievements in serving over 1,200 beneficiaries, successful advocacy campaigns, and significant improvements in program delivery mechanisms.
+                        Our comprehensive Annual Report for 2024 is now available for download. The report highlights
+                        our achievements in serving over 1,200 beneficiaries, successful advocacy campaigns, and
+                        significant improvements in program delivery mechanisms.
                     </div>
                 </div>
 
@@ -575,7 +729,9 @@
                     <div class="update-date">December 20, 2024</div>
                     <div class="update-title">World AIDS Day 2024 Campaign Success</div>
                     <div class="update-content">
-                        Our World AIDS Day campaign reached over 10,000 people across 15 districts in Nepal. The campaign focused on reducing stigma and promoting testing, resulting in 500+ people getting tested for HIV and increased awareness about prevention methods.
+                        Our World AIDS Day campaign reached over 10,000 people across 15 districts in Nepal. The
+                        campaign focused on reducing stigma and promoting testing, resulting in 500+ people getting
+                        tested for HIV and increased awareness about prevention methods.
                     </div>
                 </div>
 
@@ -583,7 +739,9 @@
                     <div class="update-date">November 25, 2024</div>
                     <div class="update-title">International Day for Elimination of Violence Against Women</div>
                     <div class="update-content">
-                        SMS organized awareness programs in collaboration with local governments to mark the International Day for Elimination of Violence Against Women. The events highlighted the intersection of gender-based violence and HIV vulnerability.
+                        SMS organized awareness programs in collaboration with local governments to mark the
+                        International Day for Elimination of Violence Against Women. The events highlighted the
+                        intersection of gender-based violence and HIV vulnerability.
                     </div>
                 </div>
 
@@ -591,7 +749,9 @@
                     <div class="update-date">October 15, 2024</div>
                     <div class="update-title">New Counseling Center Inaugurated</div>
                     <div class="update-content">
-                        SMS inaugurated a new counseling and support center in Pokhara, expanding our reach to serve women and children in the western region of Nepal. The center provides psychosocial support, legal aid, and vocational training services.
+                        SMS inaugurated a new counseling and support center in Pokhara, expanding our reach to serve
+                        women and children in the western region of Nepal. The center provides psychosocial support,
+                        legal aid, and vocational training services.
                     </div>
                 </div>
 
@@ -599,7 +759,9 @@
                     <div class="update-date">September 30, 2024</div>
                     <div class="update-title">Research Study on HIV Stigma Completed</div>
                     <div class="update-content">
-                        SMS completed a comprehensive research study on HIV-related stigma in rural communities. The findings will inform policy recommendations and program improvements to better address discrimination faced by people living with HIV.
+                        SMS completed a comprehensive research study on HIV-related stigma in rural communities. The
+                        findings will inform policy recommendations and program improvements to better address
+                        discrimination faced by people living with HIV.
                     </div>
                 </div>
             </div>
@@ -743,19 +905,19 @@
             document.querySelectorAll('.btn-download').forEach(btn => {
                 btn.addEventListener('click', function (e) {
                     e.preventDefault();
-                    
+
                     // Add download animation
                     const icon = this.querySelector('i');
                     const originalClass = icon.className;
-                    
+
                     icon.className = 'fas fa-spinner fa-spin';
                     this.style.pointerEvents = 'none';
-                    
+
                     setTimeout(() => {
                         icon.className = 'fas fa-check';
                         this.innerHTML = '<i class="fas fa-check"></i> Downloaded';
                         this.style.background = '#27ae60';
-                        
+
                         setTimeout(() => {
                             icon.className = originalClass;
                             this.innerHTML = '<i class="fas fa-download"></i> Download PDF';
@@ -793,4 +955,5 @@
         });
     </script>
 </body>
+
 </html>
