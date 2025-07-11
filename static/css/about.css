@@ -1713,6 +1713,9 @@
     font-size: 0.9rem;
 }
 
+.author strong{
+    text-align: left;
+}
 @media (max-width: 1024px) {
     .program-card {
         flex: 1 1 calc(50% - 15px);
