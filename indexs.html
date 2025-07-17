@@ -1,798 +1,134 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Latest Facebook Posts</title>
+    <title>Facebook Feed</title>
     <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
     <style>
-        /* Reset and Base Styles */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+        #fb-feed {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+        }
 
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    line-height: 1.6;
-    color: #333;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    min-height: 100vh;
-}
+        #fb-feed h2 {
+            text-align: center;
+            color: #333;
+        }
 
-.container {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 20px;
-}
+        .post {
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
 
-/* Header Styles */
-.header {
-    text-align: center;
-    margin-bottom: 40px;
-    color: white;
-}
+        .post-text {
+            font-size: 16px;
+            color: #333;
+            margin-bottom: 10px;
+        }
 
-.header h1 {
-    font-size: 2.5rem;
-    margin-bottom: 10px;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-}
+        .post-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 4px;
+        }
 
-.header p {
-    font-size: 1.1rem;
-    opacity: 0.9;
-}
+        .post-date {
+            font-size: 12px;
+            color: #666;
+            margin-top: 10px;
+        }
 
-/* Posts Container */
-.posts-container {
-    background: white;
-    border-radius: 20px;
-    padding: 40px;
-    box-shadow: 0 15px 35px rgba(0,0,0,0.2);
-    position: relative;
-    overflow: hidden;
-}
+        .post-link {
+            color: #0066cc;
+            text-decoration: none;
+        }
 
-.posts-container::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 5px;
-    background: linear-gradient(90deg, #1877f2, #42a5f5, #1877f2);
-}
-
-/* Flex Grid for 4 Posts */
-.posts-grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 25px;
-    margin-bottom: 40px;
-}
-
-.post-wrapper {
-    flex: 1;
-    min-width: 300px;
-    max-width: calc(50% - 12.5px);
-    background: #f8f9fa;
-    border-radius: 15px;
-    padding: 20px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
-}
-
-.post-wrapper:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-}
-
-.post-wrapper::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 3px;
-    background: linear-gradient(90deg, #1877f2, #42a5f5);
-}
-
-/* Post Header */
-.post-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 15px;
-    padding-bottom: 10px;
-    border-bottom: 2px solid #e9ecef;
-}
-
-.post-number {
-    background: linear-gradient(135deg, #1877f2, #42a5f5);
-    color: white;
-    width: 35px;
-    height: 35px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
-    font-size: 0.9rem;
-}
-
-/* Loading Animation */
-.loading-indicator {
-    display: flex;
-    gap: 4px;
-}
-
-.loading-dot {
-    width: 8px;
-    height: 8px;
-    background: #1877f2;
-    border-radius: 50%;
-    animation: loading 1.4s infinite ease-in-out both;
-}
-
-.loading-dot:nth-child(1) { animation-delay: -0.32s; }
-.loading-dot:nth-child(2) { animation-delay: -0.16s; }
-
-@keyframes loading {
-    0%, 80%, 100% {
-        transform: scale(0);
-        opacity: 0.5;
-    }
-    40% {
-        transform: scale(1);
-        opacity: 1;
-    }
-}
-
-/* Facebook Post Styling */
-.fb-post {
-    width: 100% !important;
-}
-
-.fb-post iframe {
-    width: 100% !important;
-    border-radius: 10px !important;
-}
-
-/* Fallback content styling */
-.fb-xfbml-parse-ignore {
-    background: #fff;
-    border: 2px dashed #dee2e6;
-    border-radius: 10px;
-    padding: 20px;
-    text-align: center;
-    color: #6c757d;
-}
-
-.fb-xfbml-parse-ignore p {
-    margin-bottom: 10px;
-    font-style: italic;
-}
-
-.fb-xfbml-parse-ignore a {
-    color: #1877f2;
-    text-decoration: none;
-    font-weight: 600;
-}
-
-.fb-xfbml-parse-ignore a:hover {
-    text-decoration: underline;
-}
-
-/* Update Section */
-.update-section {
-    text-align: center;
-    padding: 30px;
-    background: linear-gradient(135deg, #f8f9fa, #e9ecef);
-    border-radius: 15px;
-    border: 2px dashed #dee2e6;
-}
-
-.update-section h3 {
-    color: #495057;
-    margin-bottom: 10px;
-    font-size: 1.3rem;
-}
-
-.update-section p {
-    color: #6c757d;
-    margin-bottom: 20px;
-    font-size: 0.95rem;
-}
-
-.refresh-btn {
-    background: linear-gradient(135deg, #1877f2, #42a5f5);
-    color: white;
-    border: none;
-    padding: 12px 30px;
-    border-radius: 25px;
-    font-size: 1rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(24, 119, 242, 0.3);
-}
-
-.refresh-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(24, 119, 242, 0.4);
-}
-
-.refresh-btn:active {
-    transform: translateY(0);
-}
-
-/* Responsive Design */
-@media (max-width: 1024px) {
-    .posts-grid {
-        gap: 20px;
-    }
-    
-    .post-wrapper {
-        max-width: calc(50% - 10px);
-        min-width: 280px;
-    }
-}
-
-@media (max-width: 768px) {
-    .container {
-        padding: 15px;
-    }
-    
-    .header h1 {
-        font-size: 2rem;
-    }
-    
-    .posts-container {
-        padding: 25px;
-    }
-    
-    .posts-grid {
-        flex-direction: column;
-        gap: 20px;
-    }
-    
-    .post-wrapper {
-        max-width: 100%;
-        min-width: auto;
-    }
-    
-    .update-section {
-        padding: 20px;
-    }
-}
-
-@media (max-width: 480px) {
-    .header h1 {
-        font-size: 1.8rem;
-    }
-    
-    .posts-container {
-        padding: 20px;
-    }
-    
-    .post-wrapper {
-        padding: 15px;
-    }
-    
-    .post-number {
-        width: 30px;
-        height: 30px;
-        font-size: 0.8rem;
-    }
-}
-
-/* Performance Optimizations */
-.post-wrapper {
-    will-change: transform;
-}
-
-.fb-post {
-    contain: layout style paint;
-}
-
-/* Accessibility */
-@media (prefers-reduced-motion: reduce) {
-    .loading-dot {
-        animation: none;
-    }
-    
-    .post-wrapper:hover {
-        transform: none;
-    }
-    
-    .refresh-btn:hover {
-        transform: none;
-    }
-}
-
-/* Print Styles */
-@media print {
-    .posts-container {
-        box-shadow: none;
-        border: 1px solid #ddd;
-    }
-    
-    .loading-indicator,
-    .update-section {
-        display: none;
-    }
-    
-    .post-wrapper {
-        break-inside: avoid;
-        box-shadow: none;
-        border: 1px solid #ddd;
-    }
-}
-
-/* Hide loading indicators when posts are loaded */
-.post-loaded .loading-indicator {
-    display: none;
-}
+        .post-link:hover {
+            text-decoration: underline;
+        }
     </style>
-    <div class="container">
-        <header class="header">
-            <h1>Our Latest Updates</h1>
-            <p>Stay connected with our 4 most recent posts</p>
-        </header>
-
-        <main class="posts-container">
-            <div class="posts-grid" id="postsGrid">
-                <!-- Post 1 -->
-                <div class="post-wrapper" data-post="1">
-                    <div class="post-header">
-                        <span class="post-number">01</span>
-                        <div class="loading-indicator">
-                            <div class="loading-dot"></div>
-                            <div class="loading-dot"></div>
-                            <div class="loading-dot"></div>
-                        </div>
-                    </div>
-                    <div class="fb-post" 
-                         data-href="https://www.facebook.com/YourPage/posts/POST_ID_1"
-                         data-width="auto"
-                         data-show-text="true">
-                        <blockquote cite="https://www.facebook.com/YourPage/posts/POST_ID_1" class="fb-xfbml-parse-ignore">
-                            <p>Loading post...</p>
-                            <a href="https://www.facebook.com/YourPage/posts/POST_ID_1">View on Facebook</a>
-                        </blockquote>
-                    </div>
-                </div>
-
-                <!-- Post 2 -->
-                <div class="post-wrapper" data-post="2">
-                    <div class="post-header">
-                        <span class="post-number">02</span>
-                        <div class="loading-indicator">
-                            <div class="loading-dot"></div>
-                            <div class="loading-dot"></div>
-                            <div class="loading-dot"></div>
-                        </div>
-                    </div>
-                    <div class="fb-post" 
-                         data-href="https://www.facebook.com/YourPage/posts/POST_ID_2"
-                         data-width="auto"
-                         data-show-text="true">
-                        <blockquote cite="https://www.facebook.com/YourPage/posts/POST_ID_2" class="fb-xfbml-parse-ignore">
-                            <p>Loading post...</p>
-                            <a href="https://www.facebook.com/YourPage/posts/POST_ID_2">View on Facebook</a>
-                        </blockquote>
-                    </div>
-                </div>
-
-                <!-- Post 3 -->
-                <div class="post-wrapper" data-post="3">
-                    <div class="post-header">
-                        <span class="post-number">03</span>
-                        <div class="loading-indicator">
-                            <div class="loading-dot"></div>
-                            <div class="loading-dot"></div>
-                            <div class="loading-dot"></div>
-                        </div>
-                    </div>
-                    <div class="fb-post" 
-                         data-href="https://www.facebook.com/YourPage/posts/POST_ID_3"
-                         data-width="auto"
-                         data-show-text="true">
-                        <blockquote cite="https://www.facebook.com/YourPage/posts/POST_ID_3" class="fb-xfbml-parse-ignore">
-                            <p>Loading post...</p>
-                            <a href="https://www.facebook.com/YourPage/posts/POST_ID_3">View on Facebook</a>
-                        </blockquote>
-                    </div>
-                </div>
-
-                <!-- Post 4 -->
-                <div class="post-wrapper" data-post="4">
-                    <div class="post-header">
-                        <span class="post-number">04</span>
-                        <div class="loading-indicator">
-                            <div class="loading-dot"></div>
-                            <div class="loading-dot"></div>
-                            <div class="loading-dot"></div>
-                        </div>
-                    </div>
-                    <div class="fb-post" 
-                         data-href="https://www.facebook.com/YourPage/posts/POST_ID_4"
-                         data-width="auto"
-                         data-show-text="true">
-                        <blockquote cite="https://www.facebook.com/YourPage/posts/POST_ID_4" class="fb-xfbml-parse-ignore">
-                            <p>Loading post...</p>
-                            <a href="https://www.facebook.com/YourPage/posts/POST_ID_4">View on Facebook</a>
-                        </blockquote>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Update Posts Section -->
-            <div class="update-section">
-                <h3>Update Posts</h3>
-                <p>To update posts, replace the POST_ID in the HTML with your new Facebook post IDs</p>
-                <button class="refresh-btn" onclick="refreshPosts()">Refresh Posts</button>
-            </div>
-        </main>
+    <div id="fb-feed">
+        <h2>Latest Facebook Posts</h2>
+        <div id="posts-container"></div>
     </div>
-
-    <!-- Facebook SDK -->
-    <div id="fb-root"></div>
-    <script async defer crossorigin="anonymous" 
-            src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v18.0"></script>
-    
     <script src="script.js"></script>
     <script>
-        // Facebook 4 Posts Manager
-class FacebookPostsManager {
-    constructor() {
-        this.postsContainer = document.getElementById('postsGrid');
-        this.postWrappers = document.querySelectorAll('.post-wrapper');
-        this.loadedPosts = 0;
-        this.totalPosts = 4;
-        
-        // Configuration for easy post updates
-        this.postConfig = [
-            {
-                id: 'POST_ID_1',
-                url: 'https://www.facebook.com/YourPage/posts/POST_ID_1'
-            },
-            {
-                id: 'POST_ID_2', 
-                url: 'https://www.facebook.com/YourPage/posts/POST_ID_2'
-            },
-            {
-                id: 'POST_ID_3',
-                url: 'https://www.facebook.com/YourPage/posts/POST_ID_3'
-            },
-            {
-                id: 'POST_ID_4',
-                url: 'https://www.facebook.com/YourPage/posts/POST_ID_4'
-            }
-        ];
-        
-        this.init();
-    }
+        const pageId = 'https://www.facebook.com/safal.poon.5815'; // Replace with your Facebook Page ID
+        const accessToken = 'YOUR_ACCESS_TOKEN'; // Replace with your Page Access Token
+        const postsContainer = document.getElementById('posts-container');
+        const apiUrl = `https://graph.facebook.com/v20.0/${pageId}/posts?fields=message,created_time,full_picture,permalink_url&limit=4&access_token=${accessToken}`;
 
-    init() {
-        this.waitForFacebookSDK();
-        this.setupIntersectionObserver();
-        this.setupEventListeners();
-        this.addPostLoadingHandlers();
-    }
+        // Function to fetch and display posts
+        async function fetchFacebookPosts() {
+            try {
+                const response = await fetch(apiUrl);
+                const data = await response.json();
 
-    waitForFacebookSDK() {
-        const checkFB = () => {
-            if (window.FB !== 'undefined') {
-                this.onFacebookSDKLoaded();
-            } else {
-                setTimeout(checkFB, 100);
-            }
-        };
-        
-        setTimeout(checkFB, 1000);
-        
-        // Timeout fallback
-        setTimeout(() => {
-            if (this.loadedPosts === 0) {
-                this.handleLoadingTimeout();
-            }
-        }, 15000);
-    }
-
-    onFacebookSDKLoaded() {
-        console.log('Facebook SDK loaded successfully');
-        
-        // Parse Facebook plugins
-        if (typeof window.FB.XFBML !== 'undefined') {
-            window.FB.XFBML.parse();
-        }
-        
-        this.setupFacebookEventListeners();
-    }
-
-    setupFacebookEventListeners() {
-        if (typeof window.FB !== 'undefined' && window.FB.Event) {
-            window.FB.Event.subscribe('xfbml.render', (response) => {
-                console.log('Facebook post rendered:', response);
-                this.handlePostLoaded(response);
-            });
-        }
-    }
-
-    handlePostLoaded(response) {
-        this.loadedPosts++;
-        
-        // Find and mark the loaded post
-        const postElement = response.element;
-        if (postElement) {
-            const wrapper = postElement.closest('.post-wrapper');
-            if (wrapper) {
-                wrapper.classList.add('post-loaded');
-                this.animatePostLoad(wrapper);
-            }
-        }
-        
-        // Check if all posts are loaded
-        if (this.loadedPosts >= this.totalPosts) {
-            this.onAllPostsLoaded();
-        }
-    }
-
-    animatePostLoad(wrapper) {
-        // Add a subtle animation when post loads
-        wrapper.style.opacity = '0';
-        wrapper.style.transform = 'translateY(20px)';
-        
-        setTimeout(() => {
-            wrapper.style.transition = 'all 0.5s ease';
-            wrapper.style.opacity = '1';
-            wrapper.style.transform = 'translateY(0)';
-        }, 100);
-    }
-
-    onAllPostsLoaded() {
-        console.log('All Facebook posts loaded successfully');
-        
-        // Hide any remaining loading indicators
-        document.querySelectorAll('.loading-indicator').forEach(indicator => {
-            indicator.style.display = 'none';
-        });
-        
-        // Add loaded class to container
-        this.postsContainer.classList.add('all-posts-loaded');
-    }
-
-    handleLoadingTimeout() {
-        console.warn('Facebook posts loading timeout');
-        
-        // Hide loading indicators and show fallback
-        document.querySelectorAll('.loading-indicator').forEach(indicator => {
-            indicator.style.display = 'none';
-        });
-        
-        // Show fallback message for unloaded posts
-        this.postWrappers.forEach(wrapper => {
-            if (!wrapper.classList.contains('post-loaded')) {
-                this.showPostFallback(wrapper);
-            }
-        });
-    }
-
-    showPostFallback(wrapper) {
-        const fbPost = wrapper.querySelector('.fb-post');
-        const fallbackContent = fbPost.querySelector('.fb-xfbml-parse-ignore');
-        
-        if (fallbackContent) {
-            fallbackContent.innerHTML = `
-                <p>Unable to load this post</p>
-                <a href="${this.getPostUrl(wrapper)}" target="_blank">View on Facebook</a>
-            `;
-            fallbackContent.style.display = 'block';
-        }
-    }
-
-    getPostUrl(wrapper) {
-        const fbPost = wrapper.querySelector('.fb-post');
-        return fbPost ? fbPost.getAttribute('data-href') : '#';
-    }
-
-    setupIntersectionObserver() {
-        if ('IntersectionObserver' in window) {
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        this.loadVisiblePosts();
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, {
-                rootMargin: '100px'
-            });
-
-            observer.observe(this.postsContainer);
-        }
-    }
-
-    loadVisiblePosts() {
-        if (typeof window.FB !== 'undefined' && window.FB.XFBML) {
-            window.FB.XFBML.parse();
-        }
-    }
-
-    setupEventListeners() {
-        // Handle window resize for responsive behavior
-        let resizeTimeout;
-        window.addEventListener('resize', () => {
-            clearTimeout(resizeTimeout);
-            resizeTimeout = setTimeout(() => {
-                this.handleResize();
-            }, 250);
-        });
-
-        // Handle network status changes
-        window.addEventListener('online', () => {
-            console.log('Network restored, refreshing posts');
-            this.refreshPosts();
-        });
-    }
-
-    handleResize() {
-        // Re-parse Facebook plugins for responsive behavior
-        if (typeof window.FB !== 'undefined' && window.FB.XFBML) {
-            setTimeout(() => {
-                window.FB.XFBML.parse();
-            }, 100);
-        }
-    }
-
-    addPostLoadingHandlers() {
-        // Add individual post loading handlers
-        this.postWrappers.forEach((wrapper, index) => {
-            const fbPost = wrapper.querySelector('.fb-post');
-            
-            // Add data attributes for easier management
-            wrapper.setAttribute('data-post-index', index);
-            
-            // Monitor for post loading
-            const observer = new MutationObserver((mutations) => {
-                mutations.forEach((mutation) => {
-                    if (mutation.type === 'childList') {
-                        const iframe = wrapper.querySelector('iframe');
-                        if (iframe && !wrapper.classList.contains('post-loaded')) {
-                            wrapper.classList.add('post-loaded');
-                            this.animatePostLoad(wrapper);
-                        }
-                    }
-                });
-            });
-            
-            observer.observe(wrapper, {
-                childList: true,
-                subtree: true
-            });
-        });
-    }
-
-    // Method to update post URLs (for easy post management)
-    updatePost(index, newPostUrl) {
-        if (index >= 0 && index < this.totalPosts) {
-            const wrapper = document.querySelector(`[data-post-index="${index}"]`);
-            const fbPost = wrapper.querySelector('.fb-post');
-            
-            if (fbPost) {
-                fbPost.setAttribute('data-href', newPostUrl);
-                
-                // Update blockquote cite and link
-                const blockquote = fbPost.querySelector('blockquote');
-                const link = fbPost.querySelector('a');
-                
-                if (blockquote) blockquote.setAttribute('cite', newPostUrl);
-                if (link) link.setAttribute('href', newPostUrl);
-                
-                // Refresh this specific post
-                if (typeof window.FB !== 'undefined' && window.FB.XFBML) {
-                    window.FB.XFBML.parse(wrapper);
+                if (data.error) {
+                    console.error('Error fetching posts:', data.error);
+                    postsContainer.innerHTML = '<p>Error loading posts. Please try again later.</p>';
+                    return;
                 }
+
+                // Clear existing posts
+                postsContainer.innerHTML = '';
+
+                // Display the 4 most recent posts
+                data.data.slice(0, 4).forEach(post => {
+                    const postElement = document.createElement('div');
+                    postElement.classList.add('post');
+
+                    // Post message
+                    const message = post.message ? `<p class="post-text">${post.message}</p>` : '';
+
+                    // Post image (if available)
+                    const image = post.full_picture ? `<img src="${post.full_picture}" class="post-image" alt="Post image">` : '';
+
+                    // Post date
+                    const date = new Date(post.created_time).toLocaleDateString('en-US', {
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric',
+                        hour: 'numeric',
+                        minute: 'numeric'
+                    });
+
+                    // Post link
+                    const link = `<a href="${post.permalink_url}" class="post-link" target="_blank">View on Facebook</a>`;
+
+                    // Combine post elements
+                    postElement.innerHTML = `
+                ${message}
+                ${image}
+                <p class="post-date">Posted on ${date}</p>
+                ${link}
+            `;
+
+                    postsContainer.appendChild(postElement);
+                });
+            } catch (error) {
+                console.error('Error:', error);
+                postsContainer.innerHTML = '<p>Error loading posts. Please try again later.</p>';
             }
         }
-    }
 
-    // Method to refresh all posts
-    refreshPosts() {
-        console.log('Refreshing all Facebook posts');
-        
-        // Reset loaded posts counter
-        this.loadedPosts = 0;
-        
-        // Remove loaded classes
-        this.postWrappers.forEach(wrapper => {
-            wrapper.classList.remove('post-loaded');
-        });
-        
-        // Show loading indicators
-        document.querySelectorAll('.loading-indicator').forEach(indicator => {
-            indicator.style.display = 'flex';
-        });
-        
-        // Re-parse Facebook plugins
-        if (typeof window.FB !== 'undefined' && window.FB.XFBML) {
-            window.FB.XFBML.parse();
-        }
-    }
+        // Fetch posts initially
+        fetchFacebookPosts();
 
-    // Utility method to get post statistics
-    getPostStats() {
-        return {
-            totalPosts: this.totalPosts,
-            loadedPosts: this.loadedPosts,
-            loadingProgress: (this.loadedPosts / this.totalPosts) * 100
-        };
-    }
-}
-
-// Utility functions for post management
-const PostUtils = {
-    // Extract post ID from Facebook URL
-    extractPostId(url) {
-        const match = url.match(/posts\/(\d+)/);
-        return match ? match[1] : null;
-    },
-
-    // Validate Facebook post URL
-    isValidFacebookPostUrl(url) {
-        const pattern = /^https:\/\/www\.facebook\.com\/[^\/]+\/posts\/\d+/;
-        return pattern.test(url);
-    },
-
-    // Generate embed code for a post
-    generateEmbedCode(postUrl) {
-        return `
-            <div class="fb-post" 
-                 data-href="${postUrl}"
-                 data-width="auto"
-                 data-show-text="true">
-                <blockquote cite="${postUrl}" class="fb-xfbml-parse-ignore">
-                    <p>Loading post...</p>
-                    <a href="${postUrl}">View on Facebook</a>
-                </blockquote>
-            </div>
-        `;
-    }
-};
-
-// Global refresh function for the button
-function refreshPosts() {
-    if (window.facebookPostsManager) {
-        window.facebookPostsManager.refreshPosts();
-    }
-}
-
-// Initialize when DOM is loaded
-document.addEventListener('DOMContentLoaded', () => {
-    window.facebookPostsManager = new FacebookPostsManager();
-    
-    // Log initialization
-    console.log('Facebook 4 Posts Manager initialized');
-    
-    // Add some helpful methods to window for debugging
-    window.updatePost = (index, url) => {
-        window.facebookPostsManager.updatePost(index, url);
-    };
-    
-    window.getPostStats = () => {
-        return window.facebookPostsManager.getPostStats();
-    };
-});
-
-// Export utilities
-window.PostUtils = PostUtils;
+        // Auto-update every 30 minutes (1800000 ms)
+        setInterval(fetchFacebookPosts, 1800000);
     </script>
 </body>
+
 </html>
