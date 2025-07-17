@@ -11,13 +11,15 @@ html {
     background-color: #f5f9ff;
     color: #333;
 }
-html{
+
+html {
     scroll-padding-top: 70px;
 }
 
-body{
-     padding-top: 70px;
+body {
+    padding-top: 70px;
 }
+
 /* header {
     /* background: linear-gradient(135deg, #8B0000, #851e1e, #763e3e, #785252); 
     background-image: url(/static/img/founder.jpg);
@@ -43,7 +45,7 @@ body{
     width: 100%;
     z-index: 1000; */
     /* transition: all 0.3s ease; */
-     position: fixed;
+    position: fixed;
     top: 0;
     left: 0;
     right: 0;
@@ -359,6 +361,12 @@ body{
 
     .hero p {
         font-size: 1rem;
+    }
+
+    .one-rupee {
+        display: flex;
+        justify-content: space-evenly;
+        flex-direction: column;
     }
 }
 
@@ -1775,6 +1783,7 @@ select:focus {
 .footer-brand h3 {
     font-size: 28px;
     margin: 0;
+    color: #fff;
 }
 
 .footer-tagline {
@@ -2442,10 +2451,36 @@ select:focus {
     }
 }
 
-.highlight{
+.highlight {
     color: #3c4a68;
     font-size: 20px;
     font-weight: 400;
 }
 
+a {
+    text-decoration: none;
+}
 
+.one-rupee {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.donate {
+    width: 60%;
+    margin-top: 15px;
+}
+
+.donate img {
+    width: 80%;
+    height: 90%;
+}
+
+.bank-details {
+    padding: 25px;
+    text-align: left;
+}
+
+.bank-details .account {
+    margin: 5px;
+}
