@@ -4,12 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog Listing</title>
+    <title>Facebook Posts Integration</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
     <style>
+        /* Reset and Base Styles */
         * {
             margin: 0;
             padding: 0;
@@ -17,499 +18,547 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
             color: #333;
-            background-color: #f8fafc;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
         }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 2rem 1rem;
+            padding: 20px;
         }
 
+        /* Header Styles */
         .header {
             text-align: center;
-            margin-bottom: 3rem;
+            margin-bottom: 40px;
+            color: white;
         }
 
         .header h1 {
             font-size: 2.5rem;
-            font-weight: 700;
-            color: #1e293b;
-            margin-bottom: 1rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
         }
 
         .header p {
             font-size: 1.1rem;
-            color: #64748b;
-            max-width: 600px;
-            margin: 0 auto;
+            opacity: 0.9;
         }
 
-        .blog-grid {
+        /* Main Content */
+        .main-content {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-            margin-bottom: 3rem;
+            grid-template-columns: 1fr;
+            gap: 30px;
         }
 
-        .blog-card {
+        /* Facebook Container */
+        .facebook-container {
             background: white;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .blog-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-        }
-
-        .card-image {
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
             position: relative;
             overflow: hidden;
-            height: 200px;
         }
 
-        .card-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.3s ease;
-        }
-
-        .blog-card:hover .card-image img {
-            transform: scale(1.05);
-        }
-
-        .category-badge {
+        .facebook-container::before {
+            content: '';
             position: absolute;
-            top: 12px;
-            left: 12px;
-            background: rgba(0, 0, 0, 0.8);
-            color: white;
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 500;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #1877f2, #42a5f5);
         }
 
-        .card-content {
-            padding: 1.5rem;
-        }
-
-        .card-content h3 {
-            font-size: 1.25rem;
-            font-weight: 600;
-            color: #1e293b;
-            margin-bottom: 0.75rem;
-            line-height: 1.4;
-            transition: color 0.3s ease;
-        }
-
-        .blog-card:hover .card-content h3 {
-            color: #3b82f6;
-        }
-
-        .card-content p {
-            color: #64748b;
-            font-size: 0.9rem;
-            margin-bottom: 1rem;
-            display: -webkit-box;
-            -webkit-line-clamp: 3;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-        }
-
-        .card-meta {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 0.8rem;
-            color: #64748b;
-        }
-
-        .meta-left {
-            display: flex;
-            gap: 1rem;
-        }
-
-        .author,
-        .date,
-        .read-time {
-            display: flex;
-            align-items: center;
-            gap: 0.25rem;
-        }
-
-        .load-more-container {
+        .facebook-header {
+            margin-bottom: 20px;
             text-align: center;
         }
 
-        .load-more-btn {
-            background: #3b82f6;
+        .facebook-header h2 {
+            color: #1877f2;
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+
+        /* Loading Spinner */
+        .loading-spinner {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #1877f2;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 10px;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Facebook Page Plugin Wrapper */
+        .fb-page-wrapper {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            min-height: 600px;
+        }
+
+        .fb-page {
+            width: 100% !important;
+            max-width: 500px;
+        }
+
+        /* Fallback Content */
+        .fallback-content {
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .fallback-card {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 30px;
+            border: 2px dashed #dee2e6;
+        }
+
+        .fallback-card h3 {
+            color: #6c757d;
+            margin-bottom: 15px;
+        }
+
+        .fallback-card p {
+            color: #6c757d;
+            margin-bottom: 20px;
+        }
+
+        .facebook-link {
+            display: inline-block;
+            background: #1877f2;
             color: white;
-            border: none;
             padding: 12px 24px;
-            border-radius: 8px;
-            font-size: 1rem;
-            font-weight: 500;
-            cursor: pointer;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
             transition: background-color 0.3s ease;
         }
 
-        .load-more-btn:hover {
-            background: #2563eb;
+        .facebook-link:hover {
+            background: #166fe5;
         }
 
-        .load-more-btn:active {
-            transform: translateY(1px);
+        /* Embedded Posts Section */
+        .embedded-posts-section {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .embedded-posts-section h2 {
+            color: #333;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .posts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .post-placeholder {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            border: 2px dashed #dee2e6;
         }
 
         /* Responsive Design */
         @media (max-width: 768px) {
             .container {
-                padding: 1rem;
+                padding: 15px;
             }
 
             .header h1 {
                 font-size: 2rem;
             }
 
-            .blog-grid {
+            .facebook-container,
+            .embedded-posts-section {
+                padding: 20px;
+            }
+
+            .fb-page-wrapper {
+                min-height: 500px;
+            }
+
+            .posts-grid {
                 grid-template-columns: 1fr;
-                gap: 1.5rem;
-            }
-
-            .card-meta {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 0.5rem;
-            }
-
-            .meta-left {
-                flex-direction: column;
-                gap: 0.5rem;
             }
         }
 
-        @media (min-width: 769px) and (max-width: 1024px) {
-            .blog-grid {
-                grid-template-columns: repeat(2, 1fr);
+        @media (max-width: 480px) {
+            .header h1 {
+                font-size: 1.8rem;
+            }
+
+            .facebook-container,
+            .embedded-posts-section {
+                padding: 15px;
+            }
+
+            .fb-page-wrapper {
+                min-height: 400px;
             }
         }
 
-        @media (min-width: 1025px) {
-            .blog-grid {
-                grid-template-columns: repeat(3, 1fr);
+        /* Performance Optimizations */
+        .fb-page {
+            will-change: transform;
+        }
+
+        /* Accessibility */
+        @media (prefers-reduced-motion: reduce) {
+            .spinner {
+                animation: none;
             }
         }
 
-        /* Animation for new cards */
-        .blog-card.fade-in {
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeInUp 0.5s ease forwards;
-        }
+        /* Print Styles */
+        @media print {
+            .facebook-container {
+                box-shadow: none;
+                border: 1px solid #ddd;
+            }
 
-        @keyframes fadeInUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
+            .loading-spinner {
+                display: none;
             }
         }
     </style>
     <div class="container">
         <header class="header">
-            <h1>Latest Blog Posts</h1>
-            <p>Discover the latest insights, tutorials, and best practices in web development, design, and technology.
-            </p>
+            <h1>Latest Updates</h1>
+            <p>Stay connected with our latest posts and updates</p>
         </header>
 
-        <div class="blog-grid" id="blogGrid">
-            <article class="blog-card">
-                <div class="card-image">
-                    <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=400&h=200&fit=crop"
-                        alt="Getting Started with Next.js 14">
-                </div>
-                <div class="card-content">
-                    <h3>Getting Started with Next.js 14</h3>
-                    <p>Learn the fundamentals of Next.js 14 and build modern web applications with the latest features
-                        and improvements.</p>
-                </div>
-            </article>
-
-            <article class="blog-card">
-                <div class="card-image">
-                    <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?w=400&h=200&fit=crop"
-                        alt="Mastering Tailwind CSS">
-                    <span class="category-badge">Design</span>
-                </div>
-                <div class="card-content">
-                    <h3>Mastering Tailwind CSS</h3>
-                    <p>Discover advanced techniques and best practices for building beautiful, responsive designs with
-                        Tailwind CSS.</p>
-                    <div class="card-meta">
-                        <div class="meta-left">
-                            <span class="author">👤 Jane Smith</span>
-                            <span class="date">📅 Dec 12, 2024</span>
-                        </div>
-                        <span class="read-time">🕒 8 min read</span>
+        <main class="main-content">
+            <!-- Facebook Page Plugin Container -->
+            <div class="facebook-container">
+                <div class="facebook-header">
+                    <h2>Recent Facebook Posts</h2>
+                    <div class="loading-spinner" id="loadingSpinner">
+                        <div class="spinner"></div>
+                        <p>Loading posts...</p>
                     </div>
                 </div>
-            </article>
 
-            <article class="blog-card">
-                <div class="card-image">
-                    <img src="https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=400&h=200&fit=crop"
-                        alt="React Server Components Deep Dive">
-                    <span class="category-badge">React</span>
-                </div>
-                <div class="card-content">
-                    <h3>React Server Components Deep Dive</h3>
-                    <p>Explore the power of React Server Components and how they revolutionize the way we build React
-                        applications.</p>
-                    <div class="card-meta">
-                        <div class="meta-left">
-                            <span class="author">👤 Mike Johnson</span>
-                            <span class="date">📅 Dec 10, 2024</span>
-                        </div>
-                        <span class="read-time">🕒 12 min read</span>
+                <!-- Facebook Page Plugin -->
+                <div class="fb-page-wrapper">
+                    <div class="fb-page" data-href="https://www.facebook.com/safal.poon.5815" data-tabs="timeline"
+                        data-width="500" data-height="600" data-small-header="false" data-adapt-container-width="true"
+                        data-hide-cover="false" data-show-facepile="false">
+                        <blockquote cite="https://www.facebook.com/safal.poon.5815" class="fb-xfbml-parse-ignore">
+                            <a href="https://www.facebook.com/safal.poon.5815">Your Organization</a>
+                        </blockquote>
                     </div>
                 </div>
-            </article>
 
-            <article class="blog-card">
-                <div class="card-image">
-                    <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=400&h=200&fit=crop"
-                        alt="Building Scalable APIs with Node.js">
-                    <span class="category-badge">Backend</span>
-                </div>
-                <div class="card-content">
-                    <h3>Building Scalable APIs with Node.js</h3>
-                    <p>Learn how to design and implement robust, scalable APIs using Node.js and modern development
-                        practices.</p>
-                    <div class="card-meta">
-                        <div class="meta-left">
-                            <span class="author">👤 Sarah Wilson</span>
-                            <span class="date">📅 Dec 8, 2024</span>
-                        </div>
-                        <span class="read-time">🕒 10 min read</span>
+                <!-- Fallback Content -->
+                <div class="fallback-content" id="fallbackContent" style="display: none;">
+                    <div class="fallback-card">
+                        <h3>Unable to load Facebook posts</h3>
+                        <p>Please visit our Facebook page directly to see our latest updates.</p>
+                        <a href="https://www.facebook.com/safal.poon.5815" target="_blank" class="facebook-link">
+                            Visit Facebook Page
+                        </a>
                     </div>
                 </div>
-            </article>
+            </div>
 
-            <article class="blog-card">
-                <div class="card-image">
-                    <img src="https://images.unsplash.com/photo-1516116216624-53e697fedbea?w=400&h=200&fit=crop"
-                        alt="TypeScript Best Practices">
-                    <span class="category-badge">TypeScript</span>
-                </div>
-                <div class="card-content">
-                    <h3>TypeScript Best Practices</h3>
-                    <p>Improve your TypeScript skills with these essential best practices and patterns for better code
-                        quality.</p>
-                    <div class="card-meta">
-                        <div class="meta-left">
-                            <span class="author">👤 David Brown</span>
-                            <span class="date">📅 Dec 5, 2024</span>
-                        </div>
-                        <span class="read-time">🕒 7 min read</span>
+            <!-- Alternative: Embedded Posts Section -->
+            <div class="embedded-posts-section">
+                <h2>Featured Posts</h2>
+                <div class="posts-grid">
+                    <!-- You can manually embed specific posts here -->
+                    <div class="post-placeholder">
+                        <p>Manually embedded posts can go here</p>
+                        <small>Use Facebook's embed code for specific posts</small>
                     </div>
                 </div>
-            </article>
-
-            <article class="blog-card">
-                <div class="card-image">
-                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=200&fit=crop"
-                        alt="Modern CSS Grid Techniques">
-                    <span class="category-badge">CSS</span>
-                </div>
-                <div class="card-content">
-                    <h3>Modern CSS Grid Techniques</h3>
-                    <p>Master CSS Grid layout with practical examples and learn how to create complex, responsive
-                        layouts effortlessly.</p>
-                    <div class="card-meta">
-                        <div class="meta-left">
-                            <span class="author">👤 Emily Davis</span>
-                            <span class="date">📅 Dec 3, 2024</span>
-                        </div>
-                        <span class="read-time">🕒 6 min read</span>
-                    </div>
-                </div>
-            </article>
-        </div>
-
-        <div class="load-more-container">
-            <button class="load-more-btn" id="loadMoreBtn">Load More Posts</button>
-        </div>
+            </div>
+        </main>
     </div>
 
+    <!-- Facebook SDK -->
+    <div id="fb-root"></div>
+    <script async defer crossorigin="anonymous"
+        src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v18.0"></script>
+
     <script src="script.js"></script>
-    <!-- <script>
-        // Additional blog posts data for "Load More" functionality
-        const additionalPosts = [
-            {
-                title: "Advanced JavaScript Patterns",
-                excerpt: "Explore advanced JavaScript patterns and techniques to write more efficient and maintainable code.",
-                author: "Alex Thompson",
-                date: "Dec 1, 2024",
-                readTime: "9 min read",
-                category: "JavaScript",
-                image: "https://images.unsplash.com/photo-1579468118864-1b9ea3c0db4a?w=400&h=200&fit=crop"
-            },
-            {
-                title: "Database Optimization Strategies",
-                excerpt: "Learn how to optimize database performance with indexing, query optimization, and caching strategies.",
-                author: "Maria Garcia",
-                date: "Nov 28, 2024",
-                readTime: "11 min read",
-                category: "Database",
-                image: "https://images.unsplash.com/photo-1544383835-bda2bc66a55d?w=400&h=200&fit=crop"
-            },
-            {
-                title: "Mobile-First Design Principles",
-                excerpt: "Master mobile-first design principles and create responsive web applications that work on all devices.",
-                author: "Chris Lee",
-                date: "Nov 25, 2024",
-                readTime: "6 min read",
-                category: "Design",
-                image: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=400&h=200&fit=crop"
-            }
-        ];
+    <script>
+        // Facebook Posts Integration Script
+        class FacebookPostsIntegration {
+            constructor() {
+                this.loadingSpinner = document.getElementById('loadingSpinner');
+                this.fallbackContent = document.getElementById('fallbackContent');
+                this.fbPageElement = document.querySelector('.fb-page');
+                this.timeoutDuration = 10000; // 10 seconds timeout
 
-        let currentPostIndex = 0;
-
-        // Function to create a blog card HTML
-        function createBlogCard(post) {
-            return `
-        <article class="blog-card fade-in">
-            <div class="card-image">
-                <img src="${post.image}" alt="${post.title}">
-                <span class="category-badge">${post.category}</span>
-            </div>
-            <div class="card-content">
-                <h3>${post.title}</h3>
-                <p>${post.excerpt}</p>
-                <div class="card-meta">
-                    <div class="meta-left">
-                        <span class="author">👤 ${post.author}</span>
-                        <span class="date">📅 ${post.date}</span>
-                    </div>
-                    <span class="read-time">🕒 ${post.readTime}</span>
-                </div>
-            </div>
-        </article>
-    `;
-        }
-
-        // Function to load more posts
-        function loadMorePosts() {
-            const blogGrid = document.getElementById('blogGrid');
-            const loadMoreBtn = document.getElementById('loadMoreBtn');
-
-            // Add 3 more posts (or remaining posts if less than 3)
-            const postsToAdd = additionalPosts.slice(currentPostIndex, currentPostIndex + 3);
-
-            postsToAdd.forEach(post => {
-                const cardHTML = createBlogCard(post);
-                blogGrid.insertAdjacentHTML('beforeend', cardHTML);
-            });
-
-            currentPostIndex += postsToAdd.length;
-
-            // Hide button if no more posts
-            if (currentPostIndex >= additionalPosts.length) {
-                loadMoreBtn.style.display = 'none';
+                this.init();
             }
 
-            // Add smooth scroll to new content
-            setTimeout(() => {
-                const newCards = document.querySelectorAll('.blog-card.fade-in');
-                newCards.forEach(card => {
-                    card.classList.remove('fade-in');
-                });
-            }, 500);
-        }
+            init() {
+                // Wait for Facebook SDK to load
+                this.waitForFacebookSDK();
 
-        // Add click event listeners to blog cards
-        function addCardClickListeners() {
-            const blogCards = document.querySelectorAll('.blog-card');
-            blogCards.forEach(card => {
-                card.addEventListener('click', function () {
-                    const title = this.querySelector('h3').textContent;
-                    alert(`Opening blog post: "${title}"`);
-                    // In a real application, you would navigate to the full blog post
-                });
-            });
-        }
+                // Set up intersection observer for lazy loading
+                this.setupIntersectionObserver();
 
-        // Initialize the page
-        document.addEventListener('DOMContentLoaded', function () {
-            const loadMoreBtn = document.getElementById('loadMoreBtn');
+                // Set up error handling
+                this.setupErrorHandling();
 
-            // Add event listener to load more button
-            loadMoreBtn.addEventListener('click', loadMorePosts);
+                // Set up responsive behavior
+                this.setupResponsiveBehavior();
+            }
 
-            // Add click listeners to initial blog cards
-            addCardClickListeners();
+            waitForFacebookSDK() {
+                const checkFB = () => {
+                    if (typeof FB !== 'undefined') {
+                        this.onFacebookSDKLoaded();
+                    } else {
+                        setTimeout(checkFB, 100);
+                    }
+                };
 
-            // Add smooth scrolling behavior
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    document.querySelector(this.getAttribute('href')).scrollIntoView({
-                        behavior: 'smooth'
+                // Start checking after a short delay
+                setTimeout(checkFB, 1000);
+
+                // Set up timeout fallback
+                setTimeout(() => {
+                    if (this.loadingSpinner.style.display !== 'none') {
+                        this.showFallback();
+                    }
+                }, this.timeoutDuration);
+            }
+
+            onFacebookSDKLoaded() {
+                console.log('Facebook SDK loaded successfully');
+
+                // Parse Facebook plugins
+                if (typeof FB.XFBML !== 'undefined') {
+                    FB.XFBML.parse();
+                }
+
+                // Hide loading spinner after a delay to ensure content loads
+                setTimeout(() => {
+                    this.hideLoadingSpinner();
+                }, 3000);
+
+                // Set up Facebook event listeners
+                this.setupFacebookEventListeners();
+            }
+
+            setupFacebookEventListeners() {
+                // Listen for Facebook plugin render events
+                if (typeof FB !== 'undefined' && FB.Event) {
+                    FB.Event.subscribe('xfbml.render', (response) => {
+                        console.log('Facebook plugin rendered:', response);
+                        this.hideLoadingSpinner();
                     });
-                });
-            });
-        });
+                }
+            }
 
-        // Add search functionality (bonus feature)
-        function searchPosts(query) {
-            const blogCards = document.querySelectorAll('.blog-card');
-            const searchTerm = query.toLowerCase();
+            hideLoadingSpinner() {
+                if (this.loadingSpinner) {
+                    this.loadingSpinner.style.display = 'none';
+                }
+            }
 
-            blogCards.forEach(card => {
-                const title = card.querySelector('h3').textContent.toLowerCase();
-                const excerpt = card.querySelector('p').textContent.toLowerCase();
-                const category = card.querySelector('.category-badge').textContent.toLowerCase();
+            showFallback() {
+                console.log('Showing fallback content');
+                this.hideLoadingSpinner();
 
-                if (title.includes(searchTerm) || excerpt.includes(searchTerm) || category.includes(searchTerm)) {
-                    card.style.display = 'block';
+                if (this.fallbackContent) {
+                    this.fallbackContent.style.display = 'block';
+                }
+            }
+
+            setupIntersectionObserver() {
+                // Lazy load Facebook content when it comes into view
+                if ('IntersectionObserver' in window) {
+                    const observer = new IntersectionObserver((entries) => {
+                        entries.forEach(entry => {
+                            if (entry.isIntersecting) {
+                                this.loadFacebookContent();
+                                observer.unobserve(entry.target);
+                            }
+                        });
+                    }, {
+                        rootMargin: '50px'
+                    });
+
+                    if (this.fbPageElement) {
+                        observer.observe(this.fbPageElement);
+                    }
                 } else {
-                    card.style.display = 'none';
+                    // Fallback for browsers without IntersectionObserver
+                    this.loadFacebookContent();
+                }
+            }
+
+            loadFacebookContent() {
+                // Trigger Facebook content loading
+                if (typeof FB !== 'undefined' && FB.XFBML) {
+                    FB.XFBML.parse();
+                }
+            }
+
+            setupErrorHandling() {
+                // Handle network errors
+                window.addEventListener('online', () => {
+                    console.log('Network connection restored');
+                    this.retryFacebookLoad();
+                });
+
+                window.addEventListener('offline', () => {
+                    console.log('Network connection lost');
+                    this.showFallback();
+                });
+            }
+
+            retryFacebookLoad() {
+                // Retry loading Facebook content
+                if (this.fallbackContent.style.display === 'block') {
+                    this.fallbackContent.style.display = 'none';
+                    this.loadingSpinner.style.display = 'flex';
+                    this.waitForFacebookSDK();
+                }
+            }
+
+            setupResponsiveBehavior() {
+                // Handle responsive behavior
+                const handleResize = () => {
+                    if (typeof FB !== 'undefined' && FB.XFBML) {
+                        // Re-parse Facebook plugins on resize for better responsiveness
+                        setTimeout(() => {
+                            FB.XFBML.parse();
+                        }, 100);
+                    }
+                };
+
+                // Debounce resize events
+                let resizeTimeout;
+                window.addEventListener('resize', () => {
+                    clearTimeout(resizeTimeout);
+                    resizeTimeout = setTimeout(handleResize, 250);
+                });
+            }
+
+            // Method to manually refresh Facebook content
+            refreshFacebookContent() {
+                if (typeof FB !== 'undefined' && FB.XFBML) {
+                    FB.XFBML.parse();
+                }
+            }
+
+            // Method to update Facebook page URL dynamically
+            updateFacebookPage(pageUrl) {
+                if (this.fbPageElement) {
+                    this.fbPageElement.setAttribute('data-href', pageUrl);
+                    this.refreshFacebookContent();
+                }
+            }
+        }
+
+        // Utility functions
+        const FacebookUtils = {
+            // Check if Facebook is blocked
+            isFacebookBlocked() {
+                return new Promise((resolve) => {
+                    const img = new Image();
+                    img.onload = () => resolve(false);
+                    img.onerror = () => resolve(true);
+                    img.src = 'https://www.facebook.com/favicon.ico?' + Date.now();
+                });
+            },
+
+            // Get optimal Facebook plugin dimensions
+            getOptimalDimensions() {
+                const container = document.querySelector('.fb-page-wrapper');
+                if (container) {
+                    const containerWidth = container.offsetWidth;
+                    return {
+                        width: Math.min(containerWidth - 40, 500),
+                        height: window.innerWidth < 768 ? 400 : 600
+                    };
+                }
+                return { width: 500, height: 600 };
+            }
+        };
+
+        // Performance monitoring
+        const PerformanceMonitor = {
+            startTime: Date.now(),
+
+            logLoadTime() {
+                const loadTime = Date.now() - this.startTime;
+                console.log(`Facebook integration loaded in ${loadTime}ms`);
+            },
+
+            measureFacebookLoadTime() {
+                const start = performance.now();
+
+                if (typeof FB !== 'undefined' && FB.Event) {
+                    FB.Event.subscribe('xfbml.render', () => {
+                        const end = performance.now();
+                        console.log(`Facebook plugin rendered in ${end - start}ms`);
+                    });
+                }
+            }
+        };
+
+        // Initialize when DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            const facebookIntegration = new FacebookPostsIntegration();
+
+            // Check if Facebook is accessible
+            FacebookUtils.isFacebookBlocked().then(isBlocked => {
+                if (isBlocked) {
+                    console.warn('Facebook appears to be blocked');
+                    setTimeout(() => facebookIntegration.showFallback(), 2000);
                 }
             });
-        }
 
-        // Intersection Observer for lazy loading animation
-        // const observerOptions = {
-        //     threshold: 0.1,
-        //     rootMargin: '0px 0px -50px 0px'
-        // };
-
-        // const observer = new IntersectionObserver((entries) => {
-        //     entries.forEach(entry => {
-        //         if (entry.isIntersecting) {
-        //             entry.target.style.opacity = '1';
-        //             entry.target.style.transform = 'translateY(0)';
-        //         }
-        //     });
-        // }, observerOptions);
-
-        // Observe all blog cards for animation
-        document.addEventListener('DOMContentLoaded', function () {
-            const blogCards = document.querySelectorAll('.blog-card');
-            blogCards.forEach(card => {
-                observer.observe(card);
-            });
+            // Monitor performance
+            PerformanceMonitor.measureFacebookLoadTime();
         });
-    </script> -->
+
+        // Export for potential external use
+        window.FacebookPostsIntegration = FacebookPostsIntegration;
+        window.FacebookUtils = FacebookUtils;
+    </script>
 </body>
 
 </html>
