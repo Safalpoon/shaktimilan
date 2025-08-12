@@ -578,8 +578,16 @@
     .vision-mission-grid{
         grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
     }
+    .blog-grid{
+        grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    }
 }
 
+@media (max-width: 200px){
+    .blog-grid{
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    }
+}
 
 /*Team Css*/
 .intro-section {
@@ -1771,7 +1779,7 @@
 
 .blog-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 2rem;
     margin-bottom: 3rem;
 }
