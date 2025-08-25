@@ -1248,7 +1248,7 @@
 }
 
 .projects-hero {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #53bbb7 0%, #4d7978 100%);
     color: white;
     padding: 80px 0 70px;
     text-align: center;
@@ -1378,7 +1378,11 @@
 
 .programs-main {
     padding: 60px 0;
-    background: #f8f9fa;
+    background: #dcece9;
+}
+
+.program2{
+    background-color: #f0e3c3;
 }
 
 .programs-container {

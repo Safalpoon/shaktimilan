@@ -485,15 +485,15 @@ header {
 }
 
 .donate-btn {
-    background: #ff6b6b !important;
+    background: #840000 !important;
     color: white !important;
-    border: 2px solid #ff6b6b !important;
+    border: 2px solid #840000 !important;
 }
 
 .donate-btn:hover {
-    background: #ff5252 !important;
+    background: #a61e1e !important;
     transform: translateY(-2px) !important;
-    box-shadow: 0 10px 25px rgba(255, 107, 107, 0.4) !important;
+    box-shadow: 0 10px 25px #a61e1e !important;
 }
 
 .hero>div:last-child {
@@ -815,7 +815,7 @@ header {
 /*project section*/
 .projects-section {
     padding: 4rem 1rem;
-    background: linear-gradient(to bottom, #f0f8ff 0%, #ffffff 100%);
+    background: #dcece9;
 }
 
 .container {
@@ -969,7 +969,7 @@ p {
 
 /*Global Impact*/
 .impact-section {
-    background-color: #a04545;
+    background-color: #f0e3c3;
     padding: 60px 20px;
 }
 
@@ -984,7 +984,7 @@ p {
 
 .impact-container h2 {
     font-size: 2rem;
-    color: #fff;
+    color: #8b0000;
     margin-bottom: 10px;
     text-align: center;
 }
@@ -998,7 +998,7 @@ p {
 }
 
 .impact-container p {
-    color: #fff;
+    color: #8b0000;
     max-width: 600px;
     margin: 0 auto 40px;
     font-size: 1rem;
@@ -1766,7 +1766,7 @@ select:focus {
 
 /* Base Footer Styling */
 .footer {
-    background: linear-gradient(135deg, #e22727, #d48888);
+    background: #53bbb7;
     color: #fff;
     padding: 30px 20px 5px 20px;
     font-family: Arial, sans-serif;
@@ -1965,12 +1965,12 @@ select:focus {
     line-height: 1.2;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
     animation: titleFadeIn 1s ease-out 0.6s both; */
-    color: #d55662;
+    color: #840000;
     font-size: 2.2rem;
     font-weight: 800;
     margin-bottom: 1rem;
     line-height: 1.2;
-    background: #d55662;
+    background: #840000;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -2303,6 +2303,9 @@ select:focus {
     max-width: 1200px;
     margin: 0 auto;
 }
+.story-head h2{
+    color: #8b0000;
+}
 
 .story-section {
     display: flex;
@@ -2483,4 +2486,8 @@ a {
 
 .bank-details .account {
     margin: 5px;
+}
+
+.bank-details p{
+    color: #555;
 }
